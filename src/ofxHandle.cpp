@@ -9,10 +9,7 @@
 #include "ofxHandle.h"
 
 void ofxHandle::setup(float _x,float _y, float _w, float _h){
-	x = _x;
-	y = _y;
-	width = _w;
-	height = _h;
+	ofxTangibleCore::setup(_x,_y,_w,_w);
 	color.set(255,0,0);
 	fillMe = false;
 	bPressed =	false;

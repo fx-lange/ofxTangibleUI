@@ -8,8 +8,15 @@ ofxTangibleCore::~ofxTangibleCore() {
 	unregisterMouse();
 }
 
+void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
+	x = _x;
+	y = _y;
+	width = _w;
+	height = _h;
+}
+
 bool ofxTangibleCore::isOver(float px, float py) {
-	if( px > x && py > y && px < x + width && py < y + height){
+	if( px >= x && py >= y && px <= x + width && py <= y + height){
 		return true;
 	}else{
 		return false;
