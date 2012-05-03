@@ -15,6 +15,10 @@ public:
 //	void moveTo(float x, float y);
 	virtual void moveBy(float dx, float dy);
 
+	void addListener(ofxListener* listener){
+		listeners.push_back(listener);
+	}
+
 protected:
 	void moveListener(float dx, float dy);
 
