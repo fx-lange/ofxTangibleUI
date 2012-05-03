@@ -51,4 +51,18 @@ protected:
 	bool bPressed;
 };
 
+class ofxHandleYFixed : public ofxHandle{
+	virtual void moveBy(float dx, float dy){
+		x += dx;
+		moveListener(dx,0.f);
+	}
+};
+
+class ofxHandleXFixed : public ofxHandle{
+	virtual void moveBy(float dx, float dy){
+		y += dy;
+		moveListener(0.f,dy);
+	}
+};
+
 #endif /* OFXHANDLE_H_ */

@@ -1,8 +1,5 @@
 /*
  * ofxListener.h
- *
- *  Created on: May 3, 2012
- *      Author: spta
  */
 
 #ifndef OFXLISTENER_H_
@@ -16,7 +13,7 @@ public:
 
 	//REVISIT public vs protected
 //	void moveTo(float x, float y);
-	void moveBy(float dx, float dy);
+	virtual void moveBy(float dx, float dy);
 
 protected:
 	void moveListener(float dx, float dy);

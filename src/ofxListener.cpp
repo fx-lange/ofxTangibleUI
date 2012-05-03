@@ -1,8 +1,5 @@
 /*
  * ofxListener.cpp
- *
- *  Created on: May 3, 2012
- *      Author: spta
  */
 
 #include "ofxListener.h"
