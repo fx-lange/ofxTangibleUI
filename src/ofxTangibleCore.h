@@ -1,8 +1,5 @@
 /*
  * ofxTangibleCore.h
- *
- *  Created on: May 3, 2012
- *      Author: spta
  */
 
 #ifndef OFXTANGIBLECORE_H_
@@ -17,6 +14,7 @@ public:
 	ofxTangibleCore(){
 		isMouseRegistered = false;
 	}
+
 	virtual ~ofxTangibleCore();
 
 	//TODO copyconstructor and destrcutor - see ofxGrabbablePolyLine

@@ -1,12 +1,38 @@
 /*
  * ofxHandle.cpp
- *
- *  Created on: May 3, 2012
- *      Author: spta
  */
+
+/*TODO
+ * hover?!
+ * */
 
 #include "ofxHandle.h"
 
+void ofxHandle::setup(float _x,float _y, float _w, float _h){
+	x = _x;
+	y = _y;
+	width = _w;
+	height = _h;
+	color.set(255,0,0);
+	fillMe = false;
+	bPressed =	false;
+	registerMouse();
+	enableGrabbing();
+}
+
+void ofxHandle::draw(){
+	ofPushStyle();
+
+	if(fillMe){
+		ofFill();
+	}else{
+		ofNoFill();
+	}
+	ofSetColor(color);
+	ofRect(x,y,width,height);
+
+	ofPopStyle();
+}
 
 void ofxHandle::mousePressed(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !isOver(e.x, e.y))

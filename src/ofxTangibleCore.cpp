@@ -1,8 +1,5 @@
 /*
  * ofxTangibleCore.cpp
- *
- *  Created on: May 3, 2012
- *      Author: spta
  */
 
 #include "ofxTangibleCore.h"

@@ -1,8 +1,5 @@
 /*
  * ofxHandle.h
- *
- *  Created on: May 3, 2012
- *      Author: spta
  */
 
 #ifndef OFXHANDLE_H_
@@ -23,16 +20,9 @@ public:
 		setup(center.x,center.y,w,h);
 	}
 
-	virtual void setup(float _x,float _y, float _w, float _h){
-		x = _x;
-		y = _y;
-		width = _w;
-		height = _h;
-		color.set(255,0,0);
-		fillMe = false;
-		bPressed =	false;
-		registerMouse();
-	}
+	virtual void setup(float _x,float _y, float _w, float _h);
+
+	virtual void draw();
 
 	void enableGrabbing() {
 		setGrabbing(true);
