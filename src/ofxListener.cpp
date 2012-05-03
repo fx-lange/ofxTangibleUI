@@ -15,7 +15,7 @@ void ofxListener::moveBy(float dx,float dy){
 }
 
 void ofxListener::moveListener(float dx, float dy) {
-	std::list<ofxListener>::iterator it = listeners.begin();
+	std::list<ofxListener*>::iterator it = listeners.begin();
 	for(;it != listeners.end();++it){
 		ofxListener * listener = *it;
 		listener->moveBy(dx,dy);

@@ -7,17 +7,11 @@
 
 #include "ofxTangibleCore.h"
 
-ofxTangibleCore::ofxTangibleCore(float _x, float _y, float _width, float _height) :
-		ofPoint(_x, _y) {
-	width = _width;
-	height = _height;
-}
-
 ofxTangibleCore::~ofxTangibleCore() {
 	unregisterMouse();
 }
 
-virtual bool ofxTangibleCore::isOver(float px, float py) {
+bool ofxTangibleCore::isOver(float px, float py) {
 	if( px > x && py > y && px < x + width && py < y + height){
 		return true;
 	}else{
@@ -25,15 +19,21 @@ virtual bool ofxTangibleCore::isOver(float px, float py) {
 	}
 }
 
-virtual void ofxTangibleCore::registerMouse() {
+void ofxTangibleCore::registerMouse() {
+	if(isMouseRegistered)
+		return;
 	ofAddListener(ofEvents.mousePressed, this, &ofxTangibleCore::mousePressed);
 	ofAddListener(ofEvents.mouseDragged, this, &ofxTangibleCore::mouseDragged);
 	ofAddListener(ofEvents.mouseReleased, this, &ofxTangibleCore::mouseReleased);
+	isMouseRegistered = true;
 }
 
-virtual void ofxTangibleCore::unregisterMouse(){
+void ofxTangibleCore::unregisterMouse(){
+	if(!isMouseRegistered)
+		return;
 	ofRemoveListener(ofEvents.mousePressed, this, &ofxTangibleCore::mousePressed);
 	ofRemoveListener(ofEvents.mouseDragged, this, &ofxTangibleCore::mouseDragged);
 	ofRemoveListener(ofEvents.mouseReleased, this, &ofxTangibleCore::mouseReleased);
+	isMouseRegistered = false;
 }
 

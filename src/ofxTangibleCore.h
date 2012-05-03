@@ -8,11 +8,15 @@
 #ifndef OFXTANGIBLECORE_H_
 #define OFXTANGIBLECORE_H_
 
+#include "ofxListener.h"
+
 class ofxTangibleCore: public ofxListener {
 public:
 	float width, height;
 
-	ofxTangibleCore(float _x, float _y, float _width, float _height);
+	ofxTangibleCore(){
+		isMouseRegistered = false;
+	}
 	virtual ~ofxTangibleCore();
 
 	//TODO copyconstructor and destrcutor - see ofxGrabbablePolyLine
@@ -26,6 +30,7 @@ public:
 protected:
 	float pX, pY;
 
+	bool isMouseRegistered;
 	virtual bool isOver(float px, float py);
 };
 

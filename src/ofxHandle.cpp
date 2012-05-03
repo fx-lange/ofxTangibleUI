@@ -8,7 +8,7 @@
 #include "ofxHandle.h"
 
 
-virtual void ofxHandle::mousePressed(ofMouseEventArgs &e) {
+void ofxHandle::mousePressed(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !isOver(e.x, e.y))
 		return;
 
@@ -18,7 +18,7 @@ virtual void ofxHandle::mousePressed(ofMouseEventArgs &e) {
 	pY = e.y;
 }
 
-virtual void ofxHandle::mouseDragged(ofMouseEventArgs &e) {
+void ofxHandle::mouseDragged(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;
 
@@ -31,7 +31,7 @@ virtual void ofxHandle::mouseDragged(ofMouseEventArgs &e) {
 	pY = e.y;
 }
 
-virtual void ofxHandle::mouseReleased(ofMouseEventArgs &e) {
+void ofxHandle::mouseReleased(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;
 

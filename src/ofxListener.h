@@ -24,4 +24,5 @@ protected:
 	std::list<ofxListener*> listeners;
 };
 
+
 #endif OFXLISTENER_H_
