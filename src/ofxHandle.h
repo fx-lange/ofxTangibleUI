@@ -53,27 +53,13 @@ protected:
 
 class ofxHandleYFixed : public ofxHandle{
 	virtual void moveBy(float dx, float dy){
-		if(bLocked)
-			return;
-		bLocked = true;
-
-		x += dx;
-		moveListener(dx,0.f);
-
-		bLocked = false;
+		ofxListener::moveBy(dx,0.f);
 	}
 };
 
 class ofxHandleXFixed : public ofxHandle{
 	virtual void moveBy(float dx, float dy){
-		if(bLocked)
-			return;
-		bLocked = true;
-
-		y += dy;
-		moveListener(0.f,dy);
-
-		bLocked = false;
+		ofxListener::moveBy(0.f,dy);
 	}
 };
 
