@@ -6,11 +6,16 @@
 
 
 void ofxListener::moveBy(float dx,float dy){
+	if(bLocked)
+		return;
+	bLocked = true;
+
 	x += dx;
 	y += dy;
 
-	//TODO can result in infinite loops
 	moveListener(dx,dy);
+
+	bLocked = false;
 }
 
 void ofxListener::moveListener(float dx, float dy) {

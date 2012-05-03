@@ -17,20 +17,20 @@ bool ofxTangibleCore::isOver(float px, float py) {
 }
 
 void ofxTangibleCore::registerMouse() {
-	if(isMouseRegistered)
+	if(bMouseRegistered)
 		return;
 	ofAddListener(ofEvents.mousePressed, this, &ofxTangibleCore::mousePressed);
 	ofAddListener(ofEvents.mouseDragged, this, &ofxTangibleCore::mouseDragged);
 	ofAddListener(ofEvents.mouseReleased, this, &ofxTangibleCore::mouseReleased);
-	isMouseRegistered = true;
+	bMouseRegistered = true;
 }
 
 void ofxTangibleCore::unregisterMouse(){
-	if(!isMouseRegistered)
+	if(!bMouseRegistered)
 		return;
 	ofRemoveListener(ofEvents.mousePressed, this, &ofxTangibleCore::mousePressed);
 	ofRemoveListener(ofEvents.mouseDragged, this, &ofxTangibleCore::mouseDragged);
 	ofRemoveListener(ofEvents.mouseReleased, this, &ofxTangibleCore::mouseReleased);
-	isMouseRegistered = false;
+	bMouseRegistered = false;
 }
 

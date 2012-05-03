@@ -12,7 +12,7 @@ public:
 	float width, height;
 
 	ofxTangibleCore(){
-		isMouseRegistered = false;
+		bMouseRegistered = false;
 	}
 
 	virtual ~ofxTangibleCore();
@@ -28,7 +28,7 @@ public:
 protected:
 	float pX, pY;
 
-	bool isMouseRegistered;
+	bool bMouseRegistered;
 	virtual bool isOver(float px, float py);
 };
 

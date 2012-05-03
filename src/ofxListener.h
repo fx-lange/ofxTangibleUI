@@ -10,6 +10,9 @@
 
 class ofxListener : public ofPoint{
 public:
+	ofxListener(){
+		bLocked = false;
+	}
 
 	//REVISIT public vs protected
 //	void moveTo(float x, float y);
@@ -20,6 +23,8 @@ public:
 	}
 
 protected:
+	bool bLocked;
+
 	void moveListener(float dx, float dy);
 
 	std::list<ofxListener*> listeners;
