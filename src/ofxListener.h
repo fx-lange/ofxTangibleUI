@@ -8,8 +8,7 @@
 #include "ofMain.h"
 
 /*TODO REVISIT
- * potential null pointer exceptions - if listener will be deleted or moved (vector/container)
- * incorrect naming
+ * incorrect naming?!
  */
 
 class ofxListener : public ofPoint{
@@ -29,15 +28,7 @@ public:
 		listener->addTransmitter(this);
 	}
 
-	void removeListener(ofxListener * listener){
-		list<ofxListener*>::iterator it = listeners.begin();
-		for(;it!=listeners.end();++it){
-			if(*it == listener){
-				listeners.erase(it);
-				break;
-			}
-		}
-	}
+	void removeListener(ofxListener * listener);
 
 protected:
 	bool bLocked;
@@ -47,6 +38,7 @@ protected:
 	std::list<ofxListener*> listeners;
 
 private:
+	//only to organize the pointer structure
 	std::list<ofxListener*> listensTo;
 	void addTransmitter(ofxListener* transmitter){
 		listensTo.push_back(transmitter);

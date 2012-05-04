@@ -8,7 +8,7 @@
 #include "ofxListener.h"
 
 /*TODO
- * save to xml and load from xml
+ * save and load to and from xml
  */
 
 class ofxTangibleCore: public ofxListener {
@@ -33,7 +33,6 @@ public:
 
 	virtual void setup(float _x,float _y, float _w, float _h);
 
-	//TODO copyconstructor and destrcutor - see ofxGrabbablePolyLine
 	virtual void registerMouse();
 	virtual void unregisterMouse();
 
