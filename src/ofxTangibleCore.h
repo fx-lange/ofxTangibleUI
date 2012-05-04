@@ -49,4 +49,4 @@ protected:
 	virtual bool isOver(float px, float py);
 };
 
-#endif OFXTANGIBLECORE_H_
+#endif /* OFXTANGIBLECORE_H_*/

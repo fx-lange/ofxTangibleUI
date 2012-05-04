@@ -45,4 +45,4 @@ private:
 	}
 };
 
-#endif OFXLISTENER_H_
+#endif /* OFXLISTENER_H_*/

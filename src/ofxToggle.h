@@ -20,7 +20,7 @@ public:
 		return bActive;
 	}
 
-	bool setActive(bool active){
+	void setActive(bool active){
 		bActive = active;
 	}
 
