@@ -4,6 +4,29 @@
 
 #include "ofxListener.h"
 
+ofxListener::~ofxListener(){
+	//keeping pointer up to date
+	//little overhead but this way the listening concept is null-pointer safe
+	list<ofxListener*>::iterator it = listensTo.begin();
+	for(;it!=listensTo.end();++it){
+		ofxListener * transmitter = *it;
+		transmitter->removeListener(this);
+	}
+	listeners.clear();
+	listensTo.clear();
+}
+
+ofxListener::ofxListener(const ofxListener& other){
+	listeners = other.listeners;
+	//keeping pointer up to date
+	//	 new listener should listen to the same transmitters
+	list<ofxListener*> transmitters = other.listensTo;
+	list<ofxListener*>::iterator it = transmitters.begin();
+	for(;it!=transmitters.end();++it){
+		ofxListener * transmitter = *it;
+		transmitter->addListener(this);
+	}
+}
 
 void ofxListener::moveBy(float dx,float dy){
 	if(bLocked)

@@ -8,9 +8,9 @@ ofxTangibleCore::~ofxTangibleCore() {
 	unregisterMouse();
 }
 
-ofxTangibleCore::ofxTangibleCore(const ofxTangibleCore& other){
+ofxTangibleCore::ofxTangibleCore(const ofxTangibleCore& other)
+	:ofxListener(other){
 	setup(other.x,other.y,other.width,other.height);
-	listeners = other.listeners;
 	if(other.bMouseRegistered){
 		registerMouse();
 	}
