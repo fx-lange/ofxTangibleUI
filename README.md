@@ -4,7 +4,7 @@ ofxTangibleUI
 Abstract core for tangible/movable/dynamic user interfaces - easy to extend and implement in your own projects.
 
 Under construction - feedback is welcome!
-Send me a message if you have a question or need help.
+Send me a message if you have any questions or need help.
 
 Motivation
 ----------
@@ -17,7 +17,7 @@ Features
 *	dynamic UI objects
 *	dependent movement between objects
 	
-	each object can listen to other objects movements and move in the same, oppesite, or otherwise modified direction
+	each object can listen to other objects movement and move in the same, oppesite, or otherwise modified direction
 *	easy to extend and implement
 *	style and modify (by overriding functions)
 
