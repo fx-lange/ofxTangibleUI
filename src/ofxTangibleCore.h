@@ -7,6 +7,10 @@
 
 #include "ofxListener.h"
 
+/*TODO
+ * save to xml and load from xml
+ */
+
 class ofxTangibleCore: public ofxListener {
 public:
 	float width, height;
@@ -14,6 +18,8 @@ public:
 	ofxTangibleCore(){
 		bMouseRegistered = false;
 	}
+
+	ofxTangibleCore(const ofxTangibleCore& other);
 
 	virtual ~ofxTangibleCore();
 

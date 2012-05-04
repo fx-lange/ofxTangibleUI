@@ -7,6 +7,9 @@
 
 #include "ofMain.h"
 
+/*TODO REVISIT
+ * potential null pointer exceptions - if listener will be deleted or moved (vector/container)
+ */
 
 class ofxListener : public ofPoint{
 public:
@@ -14,8 +17,7 @@ public:
 		bLocked = false;
 	}
 
-	//REVISIT public vs protected
-//	void moveTo(float x, float y);
+	//REVISIT public vs. protected
 	virtual void moveBy(float dx, float dy);
 
 	void addListener(ofxListener* listener){

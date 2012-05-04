@@ -8,6 +8,15 @@ ofxTangibleCore::~ofxTangibleCore() {
 	unregisterMouse();
 }
 
+ofxTangibleCore::ofxTangibleCore(const ofxTangibleCore& other){
+	setup(other.x,other.y,other.width,other.height);
+	listeners = other.listeners;
+	if(other.bMouseRegistered){
+		registerMouse();
+	}
+	bMouseRegistered = other.bMouseRegistered;
+}
+
 void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 	x = _x;
 	y = _y;
