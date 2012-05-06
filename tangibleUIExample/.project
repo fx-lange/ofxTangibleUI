@@ -3,6 +3,9 @@
 	<name>tangibleUIExample</name>
 	<comment></comment>
 	<projects>
+		<project>addons</project>
+		<project>libs</project>
+		<project>openFrameworks</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -51,7 +54,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.fullBuildTarget</key>
-					<value>all</value>
+					<value>Debug</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.stopOnError</key>
