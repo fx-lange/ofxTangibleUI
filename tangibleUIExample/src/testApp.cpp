@@ -31,13 +31,18 @@ void tangibleUiExample::setup(){
 	ofxHandle tempHandle;
 	tempHandle.setup(80,80,10,10);
 	tempHandle.fillMe = true;
+	tempHandle.disableGrabbing();
 	handle.addListener(&tempHandle);
 	handles.push_back(tempHandle);
 }
 
 //--------------------------------------------------------------
 void tangibleUiExample::update(){
-
+	if(toggle.hasChanged()){
+		handle.setGrabbing(!toggle.isActive());
+		handle.fillMe = toggle.isActive();
+		toggle.resetChanged();
+	}
 }
 
 //--------------------------------------------------------------
