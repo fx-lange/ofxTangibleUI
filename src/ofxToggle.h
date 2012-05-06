@@ -24,6 +24,14 @@ public:
 		bActive = active;
 	}
 
+	bool hasChanged(){
+		return bChanged;
+	}
+
+	void resetChanged(){
+		bChanged = false;
+	}
+
 	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);
@@ -32,6 +40,7 @@ protected:
 	bool bPressed;
 	bool bClickable;
 	bool bActive;
+	bool bChanged;
 };
 
 #endif /* OFXTOGGLE_H_ */

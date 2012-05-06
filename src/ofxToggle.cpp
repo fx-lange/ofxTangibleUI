@@ -10,6 +10,7 @@ void ofxToggle::setup(float _x,float _y, float _w, float _h){
 	bActive = bPressed = false;
 	registerMouse();
 	bClickable = true;
+	bChanged = false;
 }
 
 void ofxToggle::draw(){
@@ -41,5 +42,6 @@ void ofxToggle::mouseReleased(ofMouseEventArgs &e) {
 		return;
 
 	bActive = !bActive;
+	bChanged = true;
 	bPressed = false;
 }
