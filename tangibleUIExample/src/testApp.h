@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxHandle.h"
 #include "ofxToggle.h"
+#include "ofxTangiblePolyline.h"
 
 class tangibleUiExample : public ofBaseApp{
 
