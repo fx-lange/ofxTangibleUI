@@ -12,31 +12,16 @@
 #include "ofMain.h"
 #include "ofxHandle.h"
 
-class ofxTangiblePolyline : public ofPolyline {
+/**
+ * its not possible to extend ofPolyline the way I want :(
+ * but to use polylines intern and add wrapper functions should work
+ */
+
+class ofxTangiblePolyline {
 public:
 	ofxTangiblePolyline();
 	virtual ~ofxTangiblePolyline();
 
-	void addVertex(ofPoint & p){
-		addVertex(p.x,p.y);
-	}
-
-	void addVertex(float x,float y){
-		ofxHandle h;
-		h.setup(x,y,10,10);
-		points.push_back(h);
-	}
-
-	virtual void draw(){
-		ofPolyline::draw();
-
-		for(int i=0;i<points.size();++i){
-			//not possible
-		}
-	}
-
-//private:
-//	vector<ofxHandle> points;
 };
 
 #endif /* OFXTANGIBLEPOLYLINE_H_ */

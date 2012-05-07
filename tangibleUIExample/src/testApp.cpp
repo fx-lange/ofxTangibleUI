@@ -6,7 +6,6 @@ ofxHandleYFixed yfixed;
 ofxToggle toggle;
 vector<ofxHandle> handles;
 
-ofxTangiblePolyline line;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
@@ -37,10 +36,6 @@ void tangibleUiExample::setup(){
 	handle.addListener(&tempHandle);
 	handles.push_back(tempHandle);
 
-	//test tangiblePolyline
-	line.addVertex(200,200);
-	line.addVertex(200,210);
-	line.addVertex(200,220);
 }
 
 //--------------------------------------------------------------
@@ -59,7 +54,6 @@ void tangibleUiExample::draw(){
 	xfixed.draw();
 	yfixed.draw();
 	handles[0].draw();
-	line.draw();
 }
 
 //--------------------------------------------------------------
