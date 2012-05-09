@@ -1,11 +1,11 @@
 #include "testApp.h"
 
-ofxHandle handle;
-ofxHandleXFixed xfixed;
-ofxHandleYFixed yfixed;
-ofxToggle toggle;
-vector<ofxHandle> handles;
-ofxHandleYFixed xSpeed3;
+ofxTangibleHandle handle;
+ofxTangibleXFixedHandle xfixed;
+ofxTangibleYFixedHandle yfixed;
+ofxTangibleToggle toggle;
+vector<ofxTangibleHandle> handles;
+ofxTangibleYFixedHandle xSpeed3;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
@@ -29,7 +29,7 @@ void tangibleUiExample::setup(){
 	handle.addListener(&toggle);
 
 	//test destructor and copy constructor
-	ofxHandle tempHandle;
+	ofxTangibleHandle tempHandle;
 	tempHandle.setup(80,80,10,10);
 	tempHandle.fillMe = true;
 	tempHandle.disableGrabbing();

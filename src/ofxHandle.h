@@ -7,7 +7,7 @@
 
 #include "ofxTangibleCore.h"
 
-class ofxHandle : public ofxTangibleCore{
+class ofxTangibleHandle : public ofxTangibleCore{
 public:
 	ofColor color;
 	bool fillMe;
@@ -43,13 +43,13 @@ protected:
 	bool bPressed;
 };
 
-class ofxHandleYFixed : public ofxHandle{
+class ofxTangibleYFixedHandle : public ofxTangibleHandle{
 	virtual void moveBy(float dx, float dy){
 		ofxListener::moveBy(dx,0.f);
 	}
 };
 
-class ofxHandleXFixed : public ofxHandle{
+class ofxTangibleXFixedHandle : public ofxTangibleHandle{
 	virtual void moveBy(float dx, float dy){
 		ofxListener::moveBy(0.f,dy);
 	}

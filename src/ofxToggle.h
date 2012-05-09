@@ -7,7 +7,7 @@
 
 #include "ofxTangibleCore.h"
 
-class ofxToggle : public ofxTangibleCore{
+class ofxTangibleToggle : public ofxTangibleCore{
 public:
 
 	ofColor color;

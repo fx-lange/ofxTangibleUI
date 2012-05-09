@@ -4,7 +4,7 @@
 
 #include "ofxToggle.h"
 
-void ofxToggle::setup(float _x,float _y, float _w, float _h){
+void ofxTangibleToggle::setup(float _x,float _y, float _w, float _h){
 	ofxTangibleCore::setup(_x,_y,_w,_w);
 	color.set(255,255,0);
 	bActive = bPressed = false;
@@ -13,7 +13,7 @@ void ofxToggle::setup(float _x,float _y, float _w, float _h){
 	bChanged = false;
 }
 
-void ofxToggle::draw(){
+void ofxTangibleToggle::draw(){
 	ofPushStyle();
 
 	if(bActive){
@@ -27,17 +27,17 @@ void ofxToggle::draw(){
 	ofPopStyle();
 }
 
-void ofxToggle::mousePressed(ofMouseEventArgs &e) {
+void ofxTangibleToggle::mousePressed(ofMouseEventArgs &e) {
 	if (!bClickable || !isOver(e.x, e.y))
 		return;
 
 	bPressed = true;
 }
 
-void ofxToggle::mouseDragged(ofMouseEventArgs &e) {
+void ofxTangibleToggle::mouseDragged(ofMouseEventArgs &e) {
 }
 
-void ofxToggle::mouseReleased(ofMouseEventArgs &e) {
+void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
 	if (!bClickable || !bPressed || !isOver(e.x, e.y))
 		return;
 

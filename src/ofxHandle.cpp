@@ -8,7 +8,7 @@
 
 #include "ofxHandle.h"
 
-void ofxHandle::setup(float _x,float _y, float _w, float _h){
+void ofxTangibleHandle::setup(float _x,float _y, float _w, float _h){
 	ofxTangibleCore::setup(_x,_y,_w,_h);
 	color.set(255,0,0);
 	fillMe = false;
@@ -17,7 +17,7 @@ void ofxHandle::setup(float _x,float _y, float _w, float _h){
 	enableGrabbing();
 }
 
-void ofxHandle::draw(){
+void ofxTangibleHandle::draw(){
 	ofPushStyle();
 
 	if(fillMe){
@@ -31,7 +31,7 @@ void ofxHandle::draw(){
 	ofPopStyle();
 }
 
-void ofxHandle::mousePressed(ofMouseEventArgs &e) {
+void ofxTangibleHandle::mousePressed(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !isOver(e.x, e.y))
 		return;
 
@@ -41,7 +41,7 @@ void ofxHandle::mousePressed(ofMouseEventArgs &e) {
 	pY = e.y;
 }
 
-void ofxHandle::mouseDragged(ofMouseEventArgs &e) {
+void ofxTangibleHandle::mouseDragged(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;
 
@@ -54,7 +54,7 @@ void ofxHandle::mouseDragged(ofMouseEventArgs &e) {
 	pY = e.y;
 }
 
-void ofxHandle::mouseReleased(ofMouseEventArgs &e) {
+void ofxTangibleHandle::mouseReleased(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;
 
