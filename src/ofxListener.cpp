@@ -18,6 +18,8 @@ ofxListener::~ofxListener(){
 }
 
 ofxListener::ofxListener(const ofxListener& other){
+	bLocked = other.bLocked;
+	moveListenersSpeed = other.moveListenersSpeed;
 	listeners = other.listeners;
 	//keeping pointer up to date
 	//	 new listener should listen to the same transmitters
@@ -48,12 +50,12 @@ void ofxListener::moveBy(float dx,float dy){
 	x += dx;
 	y += dy;
 
-	moveListener(dx,dy);
+	moveListeners(dx * moveListenersSpeed.x,dy * moveListenersSpeed.y);
 
 	bLocked = false;
 }
 
-void ofxListener::moveListener(float dx, float dy) {
+void ofxListener::moveListeners(float dx, float dy) {
 	std::list<ofxListener*>::iterator it = listeners.begin();
 	for(;it != listeners.end();++it){
 		ofxListener * listener = *it;

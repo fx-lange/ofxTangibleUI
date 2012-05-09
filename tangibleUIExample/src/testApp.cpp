@@ -5,7 +5,7 @@ ofxHandleXFixed xfixed;
 ofxHandleYFixed yfixed;
 ofxToggle toggle;
 vector<ofxHandle> handles;
-
+ofxHandleYFixed xSpeed3;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
@@ -36,6 +36,11 @@ void tangibleUiExample::setup(){
 	handle.addListener(&tempHandle);
 	handles.push_back(tempHandle);
 
+	//test moveListenerSpeed
+	xSpeed3.setup(70,100,30,30);
+	xSpeed3.setMoveListenersSpeed(3.f,1.f);
+	xSpeed3.color.set(60,170,20);
+	xSpeed3.addListener(&handles[0]);
 }
 
 //--------------------------------------------------------------
@@ -54,6 +59,7 @@ void tangibleUiExample::draw(){
 	xfixed.draw();
 	yfixed.draw();
 	handles[0].draw();
+	xSpeed3.draw();
 }
 
 //--------------------------------------------------------------

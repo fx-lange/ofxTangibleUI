@@ -15,6 +15,7 @@ class ofxListener : public ofPoint{
 public:
 	ofxListener(){
 		bLocked = false;
+		moveListenersSpeed.set(1.f,1.f);
 	}
 
 	ofxListener(const ofxListener& other);
@@ -30,10 +31,19 @@ public:
 
 	void removeListener(ofxListener * listener);
 
+	void setMoveListenersSpeed(float vx,float vy){
+		moveListenersSpeed.set(vx,vy);
+	}
+
+	void setMoveListenersSpeed(ofVec2f & v){
+		setMoveListenersSpeed(v.x,v.y);
+	}
+
 protected:
 	bool bLocked;
+	ofVec2f moveListenersSpeed;
 
-	void moveListener(float dx, float dy);
+	virtual void moveListeners(float dx, float dy);
 
 	std::list<ofxListener*> listeners;
 
