@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxHandle.h"
-#include "ofxToggle.h"
+#include "ofxTangibleHandle.h"
+#include "ofxTangibleToggle.h"
 #include "ofxTangiblePolyline.h"
 
 class tangibleUiExample : public ofBaseApp{

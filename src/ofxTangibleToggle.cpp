@@ -1,8 +1,8 @@
 /*
- * ofxToggle.cpp
+ * ofxTangibleToggle.cpp
  */
 
-#include "ofxToggle.h"
+#include "ofxTangibleToggle.h"
 
 void ofxTangibleToggle::setup(float _x,float _y, float _w, float _h){
 	ofxTangibleCore::setup(_x,_y,_w,_w);

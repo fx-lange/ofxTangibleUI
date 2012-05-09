@@ -1,12 +1,12 @@
 /*
- * ofxHandle.cpp
+ * ofxTangibleHandle.cpp
  */
 
 /*TODO
  * hover?!
  * */
 
-#include "ofxHandle.h"
+#include "ofxTangibleHandle.h"
 
 void ofxTangibleHandle::setup(float _x,float _y, float _w, float _h){
 	ofxTangibleCore::setup(_x,_y,_w,_h);

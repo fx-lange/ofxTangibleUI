@@ -1,5 +1,5 @@
 /*
- * ofxToggle.h
+ * ofxTangibleToggle.h
  */
 
 #ifndef OFXTOGGLE_H_

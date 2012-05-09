@@ -1,5 +1,5 @@
 /*
- * ofxHandle.h
+ * ofxTangibleHandle.h
  */
 
 #ifndef OFXHANDLE_H_
