@@ -45,3 +45,7 @@ void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
 	bChanged = true;
 	bPressed = false;
 }
+
+void ofxTangibleToggle::mouseMoved(ofMouseEventArgs &e){
+	//TODO hover effets
+}

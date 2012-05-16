@@ -10,7 +10,7 @@
 #define OFXTANGIBLEPOLYLINE_H_
 
 #include "ofMain.h"
-#include "ofxHandle.h"
+#include "ofxTangibleHandle.h"
 
 /**
  * its not possible to extend ofPolyline the way I want :(

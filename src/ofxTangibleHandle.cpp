@@ -54,6 +54,10 @@ void ofxTangibleHandle::mouseDragged(ofMouseEventArgs &e) {
 	pY = e.y;
 }
 
+void ofxTangibleHandle::mouseMoved(ofMouseEventArgs &e){
+	//override for hover effects
+}
+
 void ofxTangibleHandle::mouseReleased(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;

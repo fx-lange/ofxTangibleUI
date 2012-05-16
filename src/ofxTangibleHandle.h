@@ -32,6 +32,7 @@ public:
 		setGrabbing(!bGrabbingEnabled);
 	}
 
+	virtual void mouseMoved(ofMouseEventArgs &e);
 	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);

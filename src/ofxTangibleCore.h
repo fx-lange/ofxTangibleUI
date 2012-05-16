@@ -37,6 +37,7 @@ public:
 	virtual void registerMouse();
 	virtual void unregisterMouse();
 
+	virtual void mouseMoved(ofMouseEventArgs &e) = 0;
 	virtual void mousePressed(ofMouseEventArgs &e) = 0; //REVISIT perhaps use wrapper functions like in simpleguitoo
 	virtual void mouseDragged(ofMouseEventArgs &e) = 0;
 	virtual void mouseReleased(ofMouseEventArgs &e) = 0;
