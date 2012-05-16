@@ -32,16 +32,24 @@ public:
 		setGrabbing(!bGrabbingEnabled);
 	}
 
-	virtual void mouseMoved(ofMouseEventArgs &e);
 	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);
 
+	virtual void touchDown(ofTouchEventArgs &e);
+	virtual void touchMoved(ofTouchEventArgs &e);
+	virtual void touchUp(ofTouchEventArgs &e);
 
 protected:
 	float pX, pY;
 	bool bGrabbingEnabled;
 	bool bPressed;
+
+	int touchId;
+
+//	virtual void _dragged(float x, float y);
+//	virtual void _down(float x,float y);
+//	virtual void _up(float x,float y);
 };
 
 class ofxTangibleYFixedHandle : public ofxTangibleHandle{
