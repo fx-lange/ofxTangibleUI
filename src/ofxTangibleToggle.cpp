@@ -34,9 +34,6 @@ void ofxTangibleToggle::mousePressed(ofMouseEventArgs &e) {
 	bPressed = true;
 }
 
-void ofxTangibleToggle::mouseDragged(ofMouseEventArgs &e) {
-}
-
 void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
 	if (!bClickable || !bPressed || !isOver(e.x, e.y))
 		return;
@@ -48,4 +45,25 @@ void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
 
 void ofxTangibleToggle::mouseMoved(ofMouseEventArgs &e){
 	//TODO hover effets
+}
+
+void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
+	if (!bClickable || !isOver(e.x, e.y) || bPressed)
+		return;
+
+	touchId = e.id;
+	bPressed = true;
+}
+
+
+void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
+	if (!bClickable || !bPressed || isOver(e.x,e.y))
+		return;
+
+	if(touchId != e.id)
+		return;
+
+	bActive = !bActive;
+	bChanged = true;
+	bPressed = false;
 }

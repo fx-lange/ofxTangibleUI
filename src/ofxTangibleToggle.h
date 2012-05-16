@@ -33,9 +33,11 @@ public:
 	}
 
 	virtual void mouseMoved(ofMouseEventArgs &e);
-	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);
+
+	virtual void touchDown(ofTouchEventArgs &e);
+	virtual void touchUp(ofTouchEventArgs &e);
 
 protected:
 	bool bPressed;

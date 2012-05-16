@@ -56,6 +56,7 @@ public:
 
 protected:
 	float pX, pY;
+	int touchId;
 
 	bool bMouseRegistered, bTouchRegistered;
 	virtual bool isOver(float px, float py);

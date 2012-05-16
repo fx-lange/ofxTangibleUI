@@ -45,8 +45,6 @@ protected:
 	bool bGrabbingEnabled;
 	bool bPressed;
 
-	int touchId;
-
 //	virtual void _dragged(float x, float y);
 //	virtual void _down(float x,float y);
 //	virtual void _up(float x,float y);

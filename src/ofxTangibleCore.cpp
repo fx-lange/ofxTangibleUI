@@ -29,6 +29,7 @@ void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 	y = _y;
 	width = _w;
 	height = _h;
+	touchId = -1;
 }
 
 bool ofxTangibleCore::isOver(float px, float py) {

@@ -13,7 +13,6 @@ void ofxTangibleHandle::setup(float _x,float _y, float _w, float _h){
 	color.set(255,0,0);
 	fillMe = false;
 	bPressed =	false;
-	touchId = -1;
 	registerMouse();
 	registerTouch();
 	enableGrabbing();
