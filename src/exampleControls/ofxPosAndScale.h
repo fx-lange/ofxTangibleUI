@@ -40,24 +40,23 @@ public:
 	}
 };
 
-class ofxPosAndScale : public ofxListener{
+class ofxPosAndScale : public ofxTangibleHandle{
 public:
 	virtual void setup(float x, float y, float w, float h){
-		handle.setup(x,y,w,h);
+		ofxTangibleHandle::setup(x,y,w,h);
 		slider.setup(x+w+5,y,w,h);
-		handle.addListener(&(slider.range));
-		handle.addListener(&slider);
+		addListener(&(slider.range));
+		addListener(&slider);
 
 	}
 
 	virtual void draw(){
-		handle.draw();
+		ofxTangibleHandle::draw();
 		slider.draw();
 		ofSetColor(255);
 		slider.range.draw();
 	}
 protected:
-	ofxTangibleHandle handle;
 	ofxTangibleSlider slider;
 };
 
