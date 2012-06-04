@@ -6,10 +6,12 @@ ofxTangibleYFixedHandle yfixed;
 ofxTangibleToggle toggle;
 vector<ofxTangibleHandle> handles;
 ofxTangibleYFixedHandle xSpeed3;
+ofxTimeline timeline;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
 	ofSetLogLevel(OF_LOG_NOTICE);
+	ofBackground(0);
 
 	//test handles
 	handle.setup(40,40,20,20);
@@ -41,6 +43,9 @@ void tangibleUiExample::setup(){
 	xSpeed3.setMoveListenersSpeed(3.f,1.f);
 	xSpeed3.color.set(60,170,20);
 	xSpeed3.addListener(&handles[0]);
+
+	//test timeline
+	timeline.setup(0,0,ofGetWidth(),ofGetHeight()/3);
 }
 
 //--------------------------------------------------------------
@@ -60,6 +65,7 @@ void tangibleUiExample::draw(){
 	yfixed.draw();
 	handles[0].draw();
 	xSpeed3.draw();
+	timeline.draw();
 }
 
 //--------------------------------------------------------------
