@@ -18,6 +18,10 @@ void ofxTangibleHandle::setup(float _x,float _y, float _w, float _h){
 	enableGrabbing();
 }
 
+void ofxTangibleHandle::moveInner(float dx, float dy){
+	moveBy(dx,dy);
+}
+
 void ofxTangibleHandle::draw(){
 	ofPushStyle();
 
@@ -49,7 +53,7 @@ void ofxTangibleHandle::mouseDragged(ofMouseEventArgs &e) {
 	float dx = e.x - pX;
 	float dy = e.y - pY;
 
-	moveBy(dx,dy);
+	moveInner(dx,dy);
 
 	pX = e.x;
 	pY = e.y;

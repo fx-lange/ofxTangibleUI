@@ -14,6 +14,8 @@ public:
 
 	virtual void setup(float _x,float _y, float _w, float _h);
 
+	virtual void moveInner(float dx, float dy);
+
 	virtual void draw();
 
 	void enableGrabbing() {
@@ -51,12 +53,14 @@ protected:
 };
 
 class ofxTangibleYFixedHandle : public ofxTangibleHandle{
+public:
 	virtual void moveBy(float dx, float dy){
 		ofxListener::moveBy(dx,0.f);
 	}
 };
 
 class ofxTangibleXFixedHandle : public ofxTangibleHandle{
+public:
 	virtual void moveBy(float dx, float dy){
 		ofxListener::moveBy(0.f,dy);
 	}
