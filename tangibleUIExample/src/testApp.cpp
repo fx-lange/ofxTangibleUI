@@ -7,6 +7,7 @@ ofxTangibleToggle toggle;
 vector<ofxTangibleHandle> handles;
 ofxTangibleYFixedHandle xSpeed3;
 ofxTimeline timeline;
+ofxPosAndScale pAndS;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
@@ -46,6 +47,10 @@ void tangibleUiExample::setup(){
 
 	//test timeline
 	timeline.setup(0,0,ofGetWidth(),ofGetHeight()/3);
+
+	//test control examples
+	//pos and scale
+	pAndS.setup(400,400,20,40);
 }
 
 //--------------------------------------------------------------
@@ -66,6 +71,7 @@ void tangibleUiExample::draw(){
 	handles[0].draw();
 	xSpeed3.draw();
 	timeline.draw();
+	pAndS.draw();
 }
 
 //--------------------------------------------------------------

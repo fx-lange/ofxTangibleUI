@@ -5,6 +5,7 @@
 #include "ofxTangibleToggle.h"
 #include "ofxTangiblePolyline.h"
 #include "ofxTimeline.h"
+#include "ofxPosAndScale.h"
 
 class tangibleUiExample : public ofBaseApp{
 
