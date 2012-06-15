@@ -31,7 +31,11 @@ void ofxTangibleHandle::draw(){
 		ofNoFill();
 	}
 	ofSetColor(color);
-	ofRect(x,y,width,height);
+	if(drawType == TANIGBLE_DRAW_AS_RECT){
+		ofRect(x,y,width,height);
+	}else{
+		ofCircle(x+width/2,y+width/2,width,width);
+	}
 
 	ofPopStyle();
 }

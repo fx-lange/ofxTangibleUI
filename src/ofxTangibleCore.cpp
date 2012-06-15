@@ -33,10 +33,18 @@ void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 }
 
 bool ofxTangibleCore::isOver(float px, float py) {
-	if( px >= x && py >= y && px <= x + width && py <= y + height){
-		return true;
+	if(drawType == TANIGBLE_DRAW_AS_RECT){
+		if( px >= x && py >= y && px <= x + width && py <= y + height){
+			return true;
+		}else{
+			return false;
+		}
 	}else{
-		return false;
+		if( abs(px-x)<=width && abs(py-y)<=width){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 

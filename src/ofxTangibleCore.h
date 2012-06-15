@@ -11,12 +11,19 @@
  * save and load to and from xml
  */
 
+enum tangibleDrawType{
+	TANGIBLE_DRAW_AS_CIRCLE,
+	TANIGBLE_DRAW_AS_RECT
+};
+
 class ofxTangibleCore: public ofxListener {
 public:
 	float width, height;
+	tangibleDrawType drawType;
 
 	ofxTangibleCore(){
 		bMouseRegistered = false;
+		drawType = TANIGBLE_DRAW_AS_RECT;
 	}
 
 	ofxTangibleCore(const ofxTangibleCore& other);
