@@ -13,23 +13,48 @@
 
 class ofxListener : public ofPoint{
 public:
+	ofPoint rotateCenter;
+	ofVec3f base;
+	ofVec3f zeroBaseCheck;
+	float oldAngle;
+
 	ofxListener(){
 		bLocked = false;
-		moveListenersSpeed.set(1.f,1.f);
+		setup(0,0);
 	}
 
 	ofxListener(const ofxListener& other);
 
 	virtual ~ofxListener();
 
-	virtual void moveBy(float dx, float dy);
+	virtual void setup(float _x,float _y){
+		x = _x;
+		y = _y;
 
-	void addListener(ofxListener* listener){
-		listeners.push_back(listener);
-		listener->addTransmitter(this);
+		moveListenersSpeed.set(1.f,1.f);
+		rotateCenter.set(0.f,0.f);
+
+		base.set(0,-1);
+		zeroBaseCheck.set(1,0);
+
+		updateOldAngle();
 	}
 
-	void removeListener(ofxListener * listener);
+	virtual void moveBy(float dx, float dy);
+	virtual void rotateBy(float angle);
+
+	void addMoveListener(ofxListener* listener){
+		movelisteners.push_back(listener);
+		listener->addMoveTransmitter(this);
+	}
+
+	void addRotateListener(ofxListener* listener){
+		rotatelisteners.push_back(listener);
+		listener->addRotateTransmitter(this);
+	}
+
+	void removeMoveListener(ofxListener * listener);
+	void removeRotateListener(ofxListener * listener);
 
 	void setMoveListenersSpeed(float vx,float vy){
 		moveListenersSpeed.set(vx,vy);
@@ -43,15 +68,27 @@ protected:
 	bool bLocked;
 	ofVec2f moveListenersSpeed;
 
+	virtual void updateOldAngle(){
+		oldAngle = (*this - rotateCenter).angle(base);
+		if((*this - rotateCenter).angle(zeroBaseCheck) > 90.f){
+			oldAngle *= -1.f;
+		}
+	}
+
 	virtual void moveListeners(float dx, float dy);
+	virtual void rotateListeners(float angle);
 
-	std::list<ofxListener*> listeners;
-
+	std::list<ofxListener*> movelisteners;
+	std::list<ofxListener*> rotatelisteners;
 private:
 	//only to organize the pointer structure
-	std::list<ofxListener*> listensTo;
-	void addTransmitter(ofxListener* transmitter){
-		listensTo.push_back(transmitter);
+	std::list<ofxListener*> moveListensTo;
+	void addMoveTransmitter(ofxListener* transmitter){
+		moveListensTo.push_back(transmitter);
+	}
+	std::list<ofxListener*> rotateListensTo;
+	void addRotateTransmitter(ofxListener* transmitter){
+		moveListensTo.push_back(transmitter);
 	}
 };
 

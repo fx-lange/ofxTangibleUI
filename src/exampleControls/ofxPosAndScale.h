@@ -45,8 +45,8 @@ public:
 	virtual void setup(float x, float y, float w, float h){
 		ofxTangibleHandle::setup(x,y,w,h);
 		slider.setup(x+w+5,y,w,h);
-		addListener(&(slider.range));
-		addListener(&slider);
+		addMoveListener(&(slider.range));
+		addMoveListener(&slider);
 
 	}
 

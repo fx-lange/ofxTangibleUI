@@ -1,77 +1,62 @@
 #include "testApp.h"
 
+
 ofxTangibleHandle handle;
-ofxTangibleXFixedHandle xfixed;
-ofxTangibleYFixedHandle yfixed;
-ofxTangibleToggle toggle;
-vector<ofxTangibleHandle> handles;
-ofxTangibleYFixedHandle xSpeed3;
-ofxTimeline timeline;
-ofxPosAndScale pAndS;
+ofPoint old;
+ofPoint center;
+ofPoint follower;
+ofVec3f vec;
+float oldAngle;
+float angleDiff;
+
+ofxTangibleBezierHelper rotateHandle;
+ofxTangibleHandle r1, r2;
+
+ofxTangibleBezierControl bC,bC2,bC3;
+
+ofPolyline line;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
 	ofSetLogLevel(OF_LOG_NOTICE);
 	ofBackground(0);
 
-	//test handles
-	handle.setup(40,40,20,20);
-	yfixed.setup(40,20,20,10);
-	xfixed.setup(20,40,10,20);
-
-	//test listening concept
-	handle.addMoveListener(&xfixed);
-	handle.addMoveListener(&yfixed);
-
-	//test mutual listening
-	yfixed.addMoveListener(&handle);
-	xfixed.addMoveListener(&handle);
-
-	//test toggle
-	toggle.setup(65,40,20,20);
-	handle.addMoveListener(&toggle);
-
-	//test destructor and copy constructor
-	ofxTangibleHandle tempHandle;
-	tempHandle.setup(80,80,10,10);
-	tempHandle.fillMe = true;
-	tempHandle.disableGrabbing();
-	handle.addMoveListener(&tempHandle);
-	handles.push_back(tempHandle);
-
-	//test moveListenerSpeed
-	xSpeed3.setup(70,100,30,30);
-	xSpeed3.setMoveListenersSpeed(3.f,1.f);
-	xSpeed3.color.set(60,170,20);
-	xSpeed3.addMoveListener(&handles[0]);
-
-	//test timeline
-	timeline.setup(0,0,ofGetWidth(),ofGetHeight()/3);
-
-	//test control examples
-	//pos and scale
-	pAndS.setup(400,400,20,40);
+	bC.setup(500,300,10,10);
+	bC2.setup(100,100,10,10);
+	bC3.setup(500,500,10,10);
 }
 
 //--------------------------------------------------------------
 void tangibleUiExample::update(){
-	if(toggle.hasChanged()){
-		handle.setGrabbing(!toggle.isActive());
-		handle.fillMe = toggle.isActive();
-		toggle.resetChanged();
-	}
+	line.clear();
+	line.addVertex(bC2);
+	line.bezierTo(bC2.r2,bC.r1,bC);
+	line.bezierTo(bC.r2,bC3.r1,bC3);
 }
 
 //--------------------------------------------------------------
 void tangibleUiExample::draw(){
-	handle.draw();
-	toggle.draw();
-	xfixed.draw();
-	yfixed.draw();
-	handles[0].draw();
-	xSpeed3.draw();
-	timeline.draw();
-	pAndS.draw();
+	ofSetColor(255,255,255);
+	line.draw();
+	bC.draw();
+	bC2.draw();
+	bC3.draw();
+//	handle.draw();
+//	ofEllipse(center,10,10);
+//	ofEllipse(old,10,10);
+//	ofEllipse(follower,10,10);
+//	float currentAngle = (handle-center).angle(old-center);
+//
+//	float angle = oldAngle - currentAngle;
+////
+////	angle = 0.1;
+//		vec = follower-center;
+//		vec.rotate(0,0,angle);
+//		follower = center + vec;
+////	follower.rotate(0,0,angle);
+//
+//	ofDrawBitmapString(ofToString(angle),handle);
+//	oldAngle = currentAngle;
 }
 
 //--------------------------------------------------------------

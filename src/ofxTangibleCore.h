@@ -13,7 +13,8 @@
 
 enum tangibleDrawType{
 	TANGIBLE_DRAW_AS_CIRCLE,
-	TANIGBLE_DRAW_AS_RECT
+	TANGIBLE_DRAW_AS_RECT,
+	TANGIBLE_DRAW_AS_CENTER_RECT
 };
 
 class ofxTangibleCore: public ofxListener {
@@ -23,7 +24,7 @@ public:
 
 	ofxTangibleCore(){
 		bMouseRegistered = false;
-		drawType = TANIGBLE_DRAW_AS_RECT;
+		drawType = TANGIBLE_DRAW_AS_RECT;
 	}
 
 	ofxTangibleCore(const ofxTangibleCore& other);

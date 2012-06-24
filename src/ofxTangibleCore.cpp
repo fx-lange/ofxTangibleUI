@@ -25,6 +25,7 @@ ofxTangibleCore::ofxTangibleCore(const ofxTangibleCore& other)
 }
 
 void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
+	ofxListener::setup(_x,_y);
 	x = _x;
 	y = _y;
 	width = _w;
@@ -33,14 +34,20 @@ void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 }
 
 bool ofxTangibleCore::isOver(float px, float py) {
-	if(drawType == TANIGBLE_DRAW_AS_RECT){
-		if( px >= x && py >= y && px <= x + width && py <= y + height){
+	if(drawType == TANGIBLE_DRAW_AS_RECT){
+		if( px > x && py > y && px < x + width && py < y + height){
 			return true;
 		}else{
 			return false;
 		}
+	}else if(drawType == TANGIBLE_DRAW_AS_CENTER_RECT){
+		if ( abs(px-x)<width/2 && abs(py-y)<height/2 ){
+			return true;
+		}else {
+			return false;
+		}
 	}else{
-		if( abs(px-x)<=width && abs(py-y)<=width){
+		if( abs(px-x)<width/2 && abs(py-y)<width/2){
 			return true;
 		}else{
 			return false;

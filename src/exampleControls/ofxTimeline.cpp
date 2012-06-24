@@ -19,7 +19,7 @@ void ofxTimeline::setup(float x, float y, float w, float h, int range ) {
 	dropZone = ofRectangle(x,y,w*4,h);
 	timerange = range;
 
-	addListener(&dropZone);
+	addMoveListener(&dropZone);
 	setMoveListenersSpeed(-3,0);
 //	settings.x0 = &(dropZone.x);
 //	settings.y0 = &(dropZone.y);

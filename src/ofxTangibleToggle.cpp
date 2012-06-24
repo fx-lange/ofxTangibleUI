@@ -23,7 +23,7 @@ void ofxTangibleToggle::draw(){
 	}
 
 	ofSetColor(color);
-	if(drawType == TANIGBLE_DRAW_AS_RECT){
+	if(drawType == TANGIBLE_DRAW_AS_RECT){
 		ofRect(x,y,width,height);
 	}else{
 		ofCircle(x+width/2,y+width/2,width,width);
