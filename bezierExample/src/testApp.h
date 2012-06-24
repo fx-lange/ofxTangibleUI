@@ -1,8 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxTangibleHandle.h"
-#include "ofxRotateTmp.h"
 #include "ofxTangibleBezierControl.h"
 
 class tangibleUiExample : public ofBaseApp{

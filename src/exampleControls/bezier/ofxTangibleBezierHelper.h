@@ -1,10 +1,3 @@
-/*
- * ofxRotateTmp.h
- *
- *  Created on: Jun 23, 2012
- *      Author: spta32
- */
-
 #ifndef OFXROTATETMP_H_
 #define OFXROTATETMP_H_
 

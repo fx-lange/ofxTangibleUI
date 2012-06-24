@@ -1,10 +1,3 @@
-/*
- * ofxRotateTmp.cpp
- *
- *  Created on: Jun 23, 2012
- *      Author: spta32
- */
-
 #include "ofxTangibleBezierHelper.h"
 
 ofxTangibleBezierHelper::ofxTangibleBezierHelper() {

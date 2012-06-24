@@ -1,19 +1,8 @@
 #include "testApp.h"
 
 
-ofxTangibleHandle handle;
-ofPoint old;
-ofPoint center;
-ofPoint follower;
-ofVec3f vec;
-float oldAngle;
-float angleDiff;
-
-ofxTangibleBezierHelper rotateHandle;
-ofxTangibleHandle r1, r2;
 
 ofxTangibleBezierControl bC,bC2,bC3;
-
 ofPolyline line;
 
 //--------------------------------------------------------------
@@ -41,22 +30,6 @@ void tangibleUiExample::draw(){
 	bC.draw();
 	bC2.draw();
 	bC3.draw();
-//	handle.draw();
-//	ofEllipse(center,10,10);
-//	ofEllipse(old,10,10);
-//	ofEllipse(follower,10,10);
-//	float currentAngle = (handle-center).angle(old-center);
-//
-//	float angle = oldAngle - currentAngle;
-////
-////	angle = 0.1;
-//		vec = follower-center;
-//		vec.rotate(0,0,angle);
-//		follower = center + vec;
-////	follower.rotate(0,0,angle);
-//
-//	ofDrawBitmapString(ofToString(angle),handle);
-//	oldAngle = currentAngle;
 }
 
 //--------------------------------------------------------------

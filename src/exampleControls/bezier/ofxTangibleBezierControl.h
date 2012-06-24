@@ -9,7 +9,7 @@
 #define OFXTANGIBLEBEZIERCONTROL_H_
 
 #include "ofxTangibleHandle.h"
-#include "ofxRotateTmp.h"
+#include "ofxTangibleBezierHelper.h"
 
 class ofxTangibleBezierControl : public ofxTangibleHandle{
 public:
