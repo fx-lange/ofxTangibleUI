@@ -1,10 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxTangibleBezierControl.h"
 #include "ofxTangibleBezier.h"
 
-class tangibleUiExample : public ofBaseApp{
+class bezierExample : public ofBaseApp{
 
 	public:
 		void setup();

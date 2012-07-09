@@ -36,11 +36,8 @@ public:
 		pY = e.y;
 
 		ofxTangibleBezierControl control;
-//		control.setup(e.x,e.y,10,10);
-//		control.setPressed(true);
 		controls.push_back(control);
 		controls.back().setup(e.x,e.y,10,10);
-//		controls.back().setPressed(true,e.x,e.y);
 	}
 
 	virtual void mouseMoved(ofMouseEventArgs &e){
@@ -67,8 +64,6 @@ public:
 		controls.back().r2.enableGrabbing();
 
 		ofxTangibleBezierControl control;
-//		control.setup(e.x,e.y,10,10);
-//		control.setPressed(true);
 		controls.push_back(control);
 		controls.back().setup(e.x,e.y,10,10);
 	}

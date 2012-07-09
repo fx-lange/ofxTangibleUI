@@ -18,32 +18,7 @@ public:
 	ofxTangibleBezierControl();
 	virtual ~ofxTangibleBezierControl();
 
-//	ofxTangibleBezierControl(const ofxTangibleBezierControl& other){
-//		bLocked = other.bLocked;
-//		rotateCenter = other.rotateCenter;
-//		moveListenersSpeed = other.moveListenersSpeed;
-//		base = other.base;
-//		zeroBaseCheck = other.zeroBaseCheck;
-//		oldAngle = other.oldAngle;
-//
-//		r1(other.r1);
-//		r2(other.r2);
-//
-//		r1.moveListensTo.clear();
-//		r1.movelisteners.clear();
-//		r1.rotateListensTo.clear();
-//		r1.rotatelisteners.clear();
-//		r2.moveListensTo.clear();
-//		r2.movelisteners.clear();
-//		r2.rotateListensTo.clear();
-//		r2.rotatelisteners.clear();
-//
-//		addMoveListener(&r1);
-//		addMoveListener(&r2);
-//
-//		r1.addRotateListener(&r2);
-//		r2.addRotateListener(&r1);
-//	}
+	//TODO copy constructor!!! important!!
 
 	virtual void setup(float _x,float _y, float _w, float _h){
 		ofxTangibleHandle::setup(_x,_y,_w,_h);
