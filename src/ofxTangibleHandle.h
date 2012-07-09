@@ -34,6 +34,12 @@ public:
 		setGrabbing(!bGrabbingEnabled);
 	}
 
+	void setPressed(bool pressed, float x, float y){
+		bPressed = pressed;
+		pX = x;
+		pY = y;
+	}
+
 	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);
@@ -43,7 +49,6 @@ public:
 	virtual void touchUp(ofTouchEventArgs &e);
 
 protected:
-	float pX, pY;
 	bool bGrabbingEnabled;
 	bool bPressed;
 

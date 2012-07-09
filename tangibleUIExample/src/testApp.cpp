@@ -8,6 +8,9 @@ vector<ofxTangibleHandle> handles;
 ofxTangibleYFixedHandle xSpeed3;
 ofxTimeline timeline;
 ofxPosAndScale pAndS;
+ofxTangibleBezierHelper r1,r2;
+
+float x,y;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
@@ -51,6 +54,16 @@ void tangibleUiExample::setup(){
 	//test control examples
 	//pos and scale
 	pAndS.setup(400,400,20,40);
+
+	//rotation
+	x = 600;
+	y = 300;
+	r1.setup(x+1,y,10,10,x,y);
+	r2.setup(x-15,y,10,10,x,y);
+	r1.drawType = r2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
+
+	r1.addRotateListener(&r2);
+	r2.addRotateListener(&r1);
 }
 
 //--------------------------------------------------------------
@@ -72,6 +85,10 @@ void tangibleUiExample::draw(){
 	xSpeed3.draw();
 	timeline.draw();
 	pAndS.draw();
+	r1.draw();
+	r2.draw();
+	ofSetColor(255,255,255);
+	ofEllipse(x,y,5,5);
 }
 
 //--------------------------------------------------------------

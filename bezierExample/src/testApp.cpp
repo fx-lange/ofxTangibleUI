@@ -4,6 +4,7 @@
 
 ofxTangibleBezierControl bC,bC2,bC3;
 ofPolyline line;
+ofxTangibleBezier bezier;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
@@ -13,6 +14,8 @@ void tangibleUiExample::setup(){
 	bC.setup(500,300,10,10);
 	bC2.setup(100,100,10,10);
 	bC3.setup(500,500,10,10);
+
+	bezier.setup();
 }
 
 //--------------------------------------------------------------
@@ -26,15 +29,22 @@ void tangibleUiExample::update(){
 //--------------------------------------------------------------
 void tangibleUiExample::draw(){
 	ofSetColor(255,255,255);
-	line.draw();
-	bC.draw();
-	bC2.draw();
-	bC3.draw();
+//	line.draw();
+//	bC.draw();
+//	bC2.draw();
+//	bC3.draw();
+
+	bezier.draw();
 }
 
 //--------------------------------------------------------------
 void tangibleUiExample::keyPressed(int key){
-
+	if(key == 'd'){
+		bezier.bGrabbingEnabled = !bezier.bGrabbingEnabled;
+	}
+	if(key == 'c'){
+		bezier.controls.clear();
+	}
 }
 
 //--------------------------------------------------------------

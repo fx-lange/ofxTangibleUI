@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxTangibleBezierControl.h"
+#include "ofxTangibleBezier.h"
 
 class tangibleUiExample : public ofBaseApp{
 
