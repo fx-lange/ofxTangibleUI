@@ -23,7 +23,7 @@ Features
 
 Dependencies
 ------------
-*	openFrameworks 0.07
+*	openFrameworks 0.071
 
 TODO
 ----
