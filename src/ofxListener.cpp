@@ -53,13 +53,13 @@ void ofxListener::startListeningTo(const int id,tangibleEventType type){
 		moveTransmitters.push_back(id);
 		if(moveTransmitters.size()>0 && !isListeningToMove){
 			isListeningToMove = true;
-			ofRemoveListener(ofxTangibleMoveEvent::events, this, &ofxListener::moveEvent);
+			ofAddListener(ofxTangibleMoveEvent::events, this, &ofxListener::moveEvent);
 		}
 	}else if(type == TANGIBLE_ROTATE){
 		rotateTransmitters.push_back(id);
 		if(rotateTransmitters.size()>0 && !isListeningToRotate){
 			isListeningToRotate = true;
-			ofRemoveListener(ofxTangibleRotateEvent::events, this, &ofxListener::rotateEvent);
+			ofAddListener(ofxTangibleRotateEvent::events, this, &ofxListener::rotateEvent);
 		}
 	}
 }
