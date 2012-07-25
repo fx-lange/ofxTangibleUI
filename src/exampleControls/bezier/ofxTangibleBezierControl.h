@@ -27,8 +27,8 @@ public:
 		r2.setup(x-15,y,width,height,x,y);
 		r1.drawType = r2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
 
-		addMoveListener(&r1);
-		addMoveListener(&r2);
+		r1.startListeningTo(this);
+		r2.startListeningTo(this);
 
 		r1.addRotateListener(&r2);
 		r2.addRotateListener(&r1);

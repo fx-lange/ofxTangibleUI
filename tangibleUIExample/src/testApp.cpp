@@ -1,14 +1,5 @@
 #include "testApp.h"
 
-ofxTangibleHandle handle;
-ofxTangibleXFixedHandle xfixed;
-ofxTangibleYFixedHandle yfixed;
-ofxTangibleToggle toggle;
-vector<ofxTangibleHandle> handles;
-ofxTangibleYFixedHandle xSpeed3;
-ofxTimeline timeline;
-ofxPosAndScale pAndS;
-ofxTangibleBezierHelper r1,r2;
 
 float x,y;
 
@@ -23,30 +14,30 @@ void tangibleUiExample::setup(){
 	xfixed.setup(20,40,10,20);
 
 	//test listening concept
-	handle.addMoveListener(&xfixed);
-	handle.addMoveListener(&yfixed);
+	xfixed.startListeningTo(handle);
+	yfixed.startListeningTo(handle);
 
 	//test mutual listening
-	yfixed.addMoveListener(&handle);
-	xfixed.addMoveListener(&handle);
+	handle.startListeningTo(yfixed);
+	handle.startListeningTo(xfixed);
 
 	//test toggle
 	toggle.setup(65,40,20,20);
-	handle.addMoveListener(&toggle);
+	toggle.startListeningTo(handle);
 
 	//test destructor and copy constructor
 	ofxTangibleHandle tempHandle;
 	tempHandle.setup(80,80,10,10);
 	tempHandle.fillMe = true;
 	tempHandle.disableGrabbing();
-	handle.addMoveListener(&tempHandle);
+	tempHandle.startListeningTo(handle);
 	handles.push_back(tempHandle);
 
 	//test moveListenerSpeed
 	xSpeed3.setup(70,100,30,30);
 	xSpeed3.setMoveListenersSpeed(3.f,1.f);
 	xSpeed3.color.set(60,170,20);
-	xSpeed3.addMoveListener(&handles[0]);
+	handles[0].startListeningTo(xSpeed3);
 
 	//test timeline
 	timeline.setup(0,0,ofGetWidth(),ofGetHeight()/3);

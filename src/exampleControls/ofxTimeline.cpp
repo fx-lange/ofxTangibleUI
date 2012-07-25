@@ -16,10 +16,10 @@ void ofxTimeline::setup(float x, float y, float w, float h, int range ) {
 	ofxTangibleHandle::setup(x,y,20,20);
 
 //	bGrabbingEnabled = false;
-	dropZone = ofRectangle(x,y,w*4,h);
+	dropZone.set(x,y,w*4,h);
 	timerange = range;
 
-	addMoveListener(&dropZone);
+	dropZone.startListeningTo(this);
 	setMoveListenersSpeed(-3,0);
 //	settings.x0 = &(dropZone.x);
 //	settings.y0 = &(dropZone.y);

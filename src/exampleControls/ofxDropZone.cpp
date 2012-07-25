@@ -1,10 +1,13 @@
 #include "ofxDropZone.h"
 
 void ofxDropZone::setup(float x,float y,float w,float h){
-	this->x = x;
-	this->y = y;
+	ofxListener::setup(x,y);
+	internalRect.x = x;
+	internalRect.y = y;
 	internalRect.width = w;
 	internalRect.height = h;
+	width = internalRect.width;
+	height = internalRect.height;
 }
 
 ofxDropZone::operator ofRectangle & (){

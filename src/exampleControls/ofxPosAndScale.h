@@ -19,6 +19,10 @@ public:
 		return y+range;
 	}
 
+	virtual void moveBy(float dx,float dy){
+		ofxListener::moveBy(dx,dy);
+	}
+
 	//TODO getter setter
 };
 
@@ -28,8 +32,7 @@ public:
 
 	virtual void setup(float x,float y, float w, float h){
 		ofxTangibleHandle::setup(x,y+h/2,w/3,h/10);
-		range.x = x;
-		range.y = y;
+		range.setup(x,y);
 		range.range = h;
 	}
 
@@ -38,6 +41,8 @@ public:
 		y = y < range.getMin() ? range.getMin() : y;
 		y = y > range.getMax() ? range.getMax() : y;
 	}
+
+
 };
 
 class ofxPosAndScale : public ofxTangibleHandle{
@@ -45,8 +50,8 @@ public:
 	virtual void setup(float x, float y, float w, float h){
 		ofxTangibleHandle::setup(x,y,w,h);
 		slider.setup(x+w+5,y,w,h);
-		addMoveListener(&(slider.range));
-		addMoveListener(&slider);
+		slider.range.startListeningTo(this);
+		slider.startListeningTo(this);
 
 	}
 

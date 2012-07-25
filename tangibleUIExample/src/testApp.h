@@ -25,4 +25,13 @@ class tangibleUiExample : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
+		ofxTangibleXFixedHandle xfixed;
+		ofxTangibleHandle handle;
+		ofxTangibleYFixedHandle yfixed;
+		ofxTangibleToggle toggle;
+		vector<ofxTangibleHandle> handles;
+		ofxTangibleYFixedHandle xSpeed3;
+		ofxTimeline timeline;
+		ofxPosAndScale pAndS;
+		ofxTangibleBezierHelper r1,r2;
 };

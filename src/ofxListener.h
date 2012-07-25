@@ -21,7 +21,7 @@ public:
 
 	ofxListener(){
 		bLocked = false;
-		setup(0,0); //TODO don't use virtual functions in (copy)constructors or destructors
+//		setup(0,0); //TODO don't use virtual functions in (copy)constructors or destructors
 	}
 
 	ofxListener(const ofxListener& other);
@@ -51,6 +51,10 @@ public:
 		startListeningTo(transmitter.getId());
 	}
 
+	void startListeningTo(ofxTransmitter * transmitter){
+		startListeningTo(transmitter->getId());
+	}
+
 	void startListeningTo(const int id){
 		transmitters.push_back(id);
 	}
@@ -59,13 +63,12 @@ public:
 		stopListeningTo(transmitter.getId());
 	}
 
-	void stopListeningTo(const int id){
-		transmitters.remove(id);
+	void stopListeningTo(ofxTransmitter * transmitter){
+		stopListeningTo(transmitter->getId());
 	}
 
-	void addMoveListener(ofxListener* listener){
-		movelisteners.push_back(listener);
-		listener->addMoveTransmitter(this);
+	void stopListeningTo(const int id){
+		transmitters.remove(id);
 	}
 
 	void addRotateListener(ofxListener* listener){
@@ -73,7 +76,6 @@ public:
 		listener->addRotateTransmitter(this);
 	}
 
-	void removeMoveListener(ofxListener * listener);
 	void removeRotateListener(ofxListener * listener);
 
 	void setMoveListenersSpeed(float vx,float vy){
@@ -96,18 +98,12 @@ protected:
 	}
 
 	virtual void rotateListeners(float angle);
-
-	std::list<ofxListener*> movelisteners;
 	std::list<ofxListener*> rotatelisteners;
 private:
 	//only to organize the pointer structure
-	std::list<ofxListener*> moveListensTo;
-	void addMoveTransmitter(ofxListener* transmitter){
-		moveListensTo.push_back(transmitter);
-	}
 	std::list<ofxListener*> rotateListensTo;
 	void addRotateTransmitter(ofxListener* transmitter){
-		moveListensTo.push_back(transmitter);
+		rotateListensTo.push_back(transmitter);
 	}
 
 	list<int> transmitters;

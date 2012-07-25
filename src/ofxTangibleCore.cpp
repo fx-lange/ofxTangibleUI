@@ -5,6 +5,7 @@
 #include "ofxTangibleCore.h"
 
 ofxTangibleCore::~ofxTangibleCore() {
+
 	unregisterMouse();
 	unregisterTouch();
 }

@@ -8,41 +8,29 @@ ofxListener::~ofxListener(){
 	//keeping pointer up to date
 	//
 	//	little overhead but this way the listening concept is null-pointer safe
-	list<ofxListener*>::iterator it = moveListensTo.begin();
-	for(;it!=moveListensTo.end();++it){
-		ofxListener * transmitter = *it;
-		transmitter->removeMoveListener(this);
-	}
-	movelisteners.clear();
-	moveListensTo.clear();
-
-	it = rotateListensTo.begin();
+	list<ofxListener*>::iterator it = rotateListensTo.begin();
 	for(;it!=rotateListensTo.end();++it){
 		ofxListener * transmitter = *it;
 		transmitter->removeRotateListener(this);
 	}
 	rotatelisteners.clear();
 	rotateListensTo.clear();
+
+	ofRemoveListener(ofxTangibleMoveEvent::events, this, &ofxListener::moveEvent); //TODO nur vor dem Programm!
 }
 
 ofxListener::ofxListener(const ofxListener& other){
 	bLocked = other.bLocked;
 	rotateCenter = other.rotateCenter;
 	moveListenersSpeed = other.moveListenersSpeed;
-	movelisteners = other.movelisteners;
 	base = other.base;
 	zeroBaseCheck = other.zeroBaseCheck;
 	oldAngle = other.oldAngle;
 	//keeping pointer up to date
 	//	 new listener should listen to the same transmitters
 	//	 this way ofxListener and extensions can be stored in std::containern
-	list<ofxListener*> transmitters_ = other.moveListensTo;
+	list<ofxListener*> transmitters_ = other.rotateListensTo;
 	list<ofxListener*>::iterator it = transmitters_.begin();
-	for(;it!=transmitters_.end();++it){
-		ofxListener * transmitter = *it;
-		transmitter->addMoveListener(this);
-	}
-	transmitters_ = other.rotateListensTo;
 	it = transmitters_.begin();
 	for(;it!=transmitters_.end();++it){
 		ofxListener * transmitter = *it;
@@ -50,16 +38,6 @@ ofxListener::ofxListener(const ofxListener& other){
 	}
 
 	transmitters = other.transmitters;
-}
-
-void ofxListener::removeMoveListener(ofxListener * listener){
-	list<ofxListener*>::iterator it = movelisteners.begin();
-	for(;it!=movelisteners.end();++it){
-		if(*it == listener){
-			movelisteners.erase(it);
-			break;
-		}
-	}
 }
 
 void ofxListener::removeRotateListener(ofxListener * listener){
