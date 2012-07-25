@@ -6,12 +6,13 @@
 #define OFXLISTENER_H_
 
 #include "ofMain.h"
+#include "ofxTransmitter.h"
 
 /*TODO REVISIT
  * incorrect naming?!
  */
 
-class ofxListener : public ofPoint{
+class ofxListener : public ofPoint, public ofxTransmitter {
 public:
 	ofPoint rotateCenter;
 	ofVec3f base;
@@ -20,7 +21,7 @@ public:
 
 	ofxListener(){
 		bLocked = false;
-		setup(0,0);
+		setup(0,0); //TODO don't use virtual functions in (copy)constructors or destructors
 	}
 
 	ofxListener(const ofxListener& other);
@@ -38,10 +39,29 @@ public:
 		zeroBaseCheck.set(1,0);
 
 		updateOldAngle();
+		ofAddListener(ofxTangibleMoveEvent::events, this, &ofxListener::moveEvent);
 	}
+
+	virtual void moveEvent(ofxTangibleMoveEvent & e);
 
 	virtual void moveBy(float dx, float dy);
 	virtual void rotateBy(float angle);
+
+	void startListeningTo(ofxTransmitter & transmitter){
+		startListeningTo(transmitter.getId());
+	}
+
+	void startListeningTo(const int id){
+		transmitters.push_back(id);
+	}
+
+	void stopListeningTo(ofxTransmitter & transmitter){
+		stopListeningTo(transmitter.getId());
+	}
+
+	void stopListeningTo(const int id){
+		transmitters.remove(id);
+	}
 
 	void addMoveListener(ofxListener* listener){
 		movelisteners.push_back(listener);
@@ -75,7 +95,6 @@ protected:
 		}
 	}
 
-	virtual void moveListeners(float dx, float dy);
 	virtual void rotateListeners(float angle);
 
 	std::list<ofxListener*> movelisteners;
@@ -90,6 +109,8 @@ private:
 	void addRotateTransmitter(ofxListener* transmitter){
 		moveListensTo.push_back(transmitter);
 	}
+
+	list<int> transmitters;
 };
 
 #endif /* OFXLISTENER_H_*/

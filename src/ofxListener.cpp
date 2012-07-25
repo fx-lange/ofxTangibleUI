@@ -36,18 +36,20 @@ ofxListener::ofxListener(const ofxListener& other){
 	//keeping pointer up to date
 	//	 new listener should listen to the same transmitters
 	//	 this way ofxListener and extensions can be stored in std::containern
-	list<ofxListener*> transmitters = other.moveListensTo;
-	list<ofxListener*>::iterator it = transmitters.begin();
-	for(;it!=transmitters.end();++it){
+	list<ofxListener*> transmitters_ = other.moveListensTo;
+	list<ofxListener*>::iterator it = transmitters_.begin();
+	for(;it!=transmitters_.end();++it){
 		ofxListener * transmitter = *it;
 		transmitter->addMoveListener(this);
 	}
-	transmitters = other.rotateListensTo;
-	it = transmitters.begin();
-	for(;it!=transmitters.end();++it){
+	transmitters_ = other.rotateListensTo;
+	it = transmitters_.begin();
+	for(;it!=transmitters_.end();++it){
 		ofxListener * transmitter = *it;
 		transmitter->addRotateListener(this);
 	}
+
+	transmitters = other.transmitters;
 }
 
 void ofxListener::removeMoveListener(ofxListener * listener){
@@ -67,6 +69,19 @@ void ofxListener::removeRotateListener(ofxListener * listener){
 			rotatelisteners.erase(it);
 			break;
 		}
+	}
+}
+
+void ofxListener::moveEvent(ofxTangibleMoveEvent & e){
+	bool bListenToTransmitter = false;
+	for(list<int>::iterator it = transmitters.begin();it != transmitters.end();++it){
+		if(e.id == *it){
+			bListenToTransmitter = true;
+			break;
+		}
+	}
+	if(bListenToTransmitter){
+		moveBy(e.dx,e.dy);
 	}
 }
 
@@ -108,14 +123,6 @@ void ofxListener::rotateBy(float angle){
 	updateOldAngle();
 
 	bLocked = false;
-}
-
-void ofxListener::moveListeners(float dx, float dy) {
-	std::list<ofxListener*>::iterator it = movelisteners.begin();
-	for(;it != movelisteners.end();++it){
-		ofxListener * listener = *it;
-		listener->moveBy(dx,dy);
-	}
 }
 
 void ofxListener::rotateListeners(float angle) {
