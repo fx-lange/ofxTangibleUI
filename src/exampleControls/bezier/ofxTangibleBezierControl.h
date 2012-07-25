@@ -27,11 +27,11 @@ public:
 		r2.setup(x-15,y,width,height,x,y);
 		r1.drawType = r2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
 
-		r1.startListeningTo(this);
-		r2.startListeningTo(this);
+		r1.startListeningTo(this,TANGIBLE_MOVE);
+		r2.startListeningTo(this,TANGIBLE_MOVE);
 
-		r1.addRotateListener(&r2);
-		r2.addRotateListener(&r1);
+		r1.startListeningTo(this,TANGIBLE_ROTATE);
+		r2.startListeningTo(this,TANGIBLE_ROTATE);
 
 		r2.disableGrabbing();
 		disableGrabbing();

@@ -53,8 +53,8 @@ void tangibleUiExample::setup(){
 	r2.setup(x-15,y,10,10,x,y);
 	r1.drawType = r2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
 
-	r1.addRotateListener(&r2);
-	r2.addRotateListener(&r1);
+	r1.startListeningTo(r2,TANGIBLE_ROTATE);
+	r2.startListeningTo(r1,TANGIBLE_ROTATE);
 }
 
 //--------------------------------------------------------------

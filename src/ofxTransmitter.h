@@ -12,8 +12,13 @@ public:
 	int id;
 	float dx, dy;
 	static ofEvent <ofxTangibleMoveEvent> events;
+};
 
-	//ofAddListener(ofxTangibleMoveEvent::events, this, &testApp::gameEvent);
+class ofxTangibleRotateEvent : public ofEventArgs{
+public:
+	int id;
+	float angle;
+	static ofEvent <ofxTangibleRotateEvent> events;
 };
 
 class ofxTransmitter {
@@ -23,7 +28,7 @@ public:
 	}
 
 	ofxTransmitter();
-	virtual ~ofxTransmitter();
+	virtual ~ofxTransmitter(){};
 
 	int getId(){
 		return id;
@@ -31,6 +36,7 @@ public:
 
 protected:
 	virtual void moveListeners(float dx, float dy);
+	virtual void rotateListeners(float angle);
 
 private:
 	int id;

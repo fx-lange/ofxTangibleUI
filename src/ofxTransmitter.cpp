@@ -6,19 +6,12 @@
 
 int ofxTransmitter::generatedId = 0;
 ofEvent <ofxTangibleMoveEvent> ofxTangibleMoveEvent::events;
+ofEvent <ofxTangibleRotateEvent> ofxTangibleRotateEvent::events;
 
 ofxTransmitter::ofxTransmitter()
-	:id(generateId())
-{
-
-}
-
-ofxTransmitter::~ofxTransmitter() {
-	// TODO Auto-generated destructor stub
-}
+	:id(generateId()) {}
 
 void ofxTransmitter::moveListeners(float dx, float dy) {
-
 	//send ofEvent
 	ofxTangibleMoveEvent moveEvent;
 	moveEvent.id = getId();
@@ -26,5 +19,14 @@ void ofxTransmitter::moveListeners(float dx, float dy) {
 	moveEvent.dy = dy;
 
 	ofNotifyEvent(ofxTangibleMoveEvent::events,moveEvent);
+}
+
+void ofxTransmitter::rotateListeners(float angle) {
+	//send ofEvent
+	ofxTangibleRotateEvent rotateEvent;
+	rotateEvent.id = getId();
+	rotateEvent.angle = angle;
+
+	ofNotifyEvent(ofxTangibleRotateEvent::events,rotateEvent);
 }
 
