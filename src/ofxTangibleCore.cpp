@@ -29,10 +29,13 @@ ofxTangibleCore& ofxTangibleCore::operator= (const ofxTangibleCore& other){
 }
 
 void ofxTangibleCore::init(const ofxTangibleCore& other){
-	bMouseRegistered = other.bMouseRegistered;
-	bTouchRegistered = other.bTouchRegistered;
+	drawType = other.drawType;
+	touchId = other.touchId;
+	width = other.width;
+	height = other.height;
 
-	//TODO is this all? don't think so!
+	pX = other.pX;
+	pY = other.pY;
 
 	if(other.bMouseRegistered){
 		registerMouse();

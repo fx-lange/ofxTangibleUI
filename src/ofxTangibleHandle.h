@@ -12,6 +12,8 @@ public:
 	ofColor color;
 	bool fillMe;
 
+	//default constructor and so on
+
 	virtual void setup(float _x,float _y, float _w, float _h);
 
 	virtual void moveInner(float dx, float dy);

@@ -28,12 +28,11 @@ public:
 	ofxTangibleCore(const ofxTangibleCore& other);
 	ofxTangibleCore& operator=(const ofxTangibleCore& other);
 
-
-	void setup(const ofRectangle & rect){
+	virtual void setup(const ofRectangle & rect){
 		setup(rect.x,rect.y,rect.width,rect.height);
 	}
 
-	void setup(const ofPoint &center,float w, float h){
+	virtual void setup(const ofPoint &center,float w, float h){
 		setup(center.x,center.y,w,h);
 	}
 

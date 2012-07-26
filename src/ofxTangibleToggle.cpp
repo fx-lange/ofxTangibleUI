@@ -4,13 +4,16 @@
 
 #include "ofxTangibleToggle.h"
 
-void ofxTangibleToggle::setup(float _x,float _y, float _w, float _h){
-	ofxTangibleCore::setup(_x,_y,_w,_w);
+ofxTangibleToggle::ofxTangibleToggle(){
 	color.set(255,255,0);
 	bActive = bPressed = false;
-	registerMouse();
 	bClickable = true;
 	bChanged = false;
+}
+
+void ofxTangibleToggle::setup(float _x,float _y, float _w, float _h){
+	ofxTangibleCore::setup(_x,_y,_w,_w);
+	registerMouse();
 }
 
 void ofxTangibleToggle::draw(){
