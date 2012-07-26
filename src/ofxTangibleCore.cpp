@@ -17,8 +17,8 @@ ofxTangibleCore::~ofxTangibleCore() {
 }
 
 ofxTangibleCore::ofxTangibleCore(const ofxTangibleCore& other)
-	:ofxListener(other){ //REVISIT isn't this default behaviour?
-
+	:ofxListener(other)
+{ //REVISIT isn't this default behaviour?
 	init(other); //REVISIT call before body?
 }
 

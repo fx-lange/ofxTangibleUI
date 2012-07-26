@@ -35,6 +35,8 @@ ofxListener& ofxListener::operator=(const ofxListener& other){
 }
 
 void ofxListener::init(const ofxListener& other){
+	x = other.x;
+	y = other.y;
 	bLocked = other.bLocked;
 
 	rotateCenter = other.rotateCenter;
@@ -45,8 +47,14 @@ void ofxListener::init(const ofxListener& other){
 
 	bListeningToMove = other.bListeningToMove;
 	bListeningToRotate = other.bListeningToRotate;
-	rotateTransmitters = other.rotateTransmitters;
-	moveTransmitters = other.moveTransmitters;
+	if(bListeningToMove){
+		ofAddListener(ofxTangibleMoveEvent::events,this,&ofxListener::moveEvent);
+		moveTransmitters = other.moveTransmitters;
+	}
+	if(bListeningToRotate){
+		ofAddListener(ofxTangibleRotateEvent::events,this,&ofxListener::rotateEvent);
+		rotateTransmitters = other.rotateTransmitters;
+	}
 }
 
 void ofxListener::setup(float _x,float _y){
