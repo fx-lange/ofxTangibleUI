@@ -18,8 +18,15 @@ ofxTangibleCore::~ofxTangibleCore() {
 
 ofxTangibleCore::ofxTangibleCore(const ofxTangibleCore& other)
 	:ofxListener(other)
-{ //REVISIT isn't this default behaviour?
-	init(other); //REVISIT call before body?
+	//isn't this default behaviour? no it's not!!
+	//non default copy constructors construct the base via the default constructor
+	//not via the copy constructor like default copy constructors do.
+{
+	init(other);
+	//REVISIT call init before body is not possible so this is not the best solution
+	//because members get initalized twice!!!
+
+	ofLog(OF_LOG_VERBOSE,"ofxTangibleCore COPY");
 }
 
 ofxTangibleCore& ofxTangibleCore::operator= (const ofxTangibleCore& other){
@@ -37,15 +44,19 @@ void ofxTangibleCore::init(const ofxTangibleCore& other){
 	pX = other.pX;
 	pY = other.pY;
 
+	/* very tricky ... took me long time to debug
+	 * because of (random) default initialization of bMouseRegistered
+	 * registerMouse() wasn't working in about 50%
+	 */
+	bMouseRegistered = false;
 	if(other.bMouseRegistered){
 		registerMouse();
 	}
-	bMouseRegistered = other.bMouseRegistered;
 
+	bTouchRegistered = false;
 	if(other.bTouchRegistered){
 		registerTouch();
 	}
-	bTouchRegistered = other.bTouchRegistered;
 }
 
 void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
@@ -77,8 +88,10 @@ bool ofxTangibleCore::isOver(float px, float py) {
 }
 
 void ofxTangibleCore::registerMouse() {
-	if(bMouseRegistered)
+	if(bMouseRegistered){
+		ofLog(OF_LOG_VERBOSE,"mouse already registered");
 		return;
+	}
 	ofRegisterMouseEvents(this);
 	bMouseRegistered = true;
 }

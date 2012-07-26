@@ -20,11 +20,11 @@ public:
 
 	virtual void draw();
 
-	void enableGrabbing() {
+	virtual void enableGrabbing() {
 		setGrabbing(true);
 	}
 
-	void disableGrabbing() {
+	virtual void disableGrabbing() {
 		setGrabbing(false);
 	}
 
@@ -32,8 +32,12 @@ public:
 		bGrabbingEnabled = bGrabbing;
 	}
 
-	void toggleGrabbing(){
+	virtual void toggleGrabbing(){
 		setGrabbing(!bGrabbingEnabled);
+	}
+
+	virtual bool isGrabbingEnabled(){
+		return bGrabbingEnabled;
 	}
 
 	void setPressed(bool pressed, float x, float y){

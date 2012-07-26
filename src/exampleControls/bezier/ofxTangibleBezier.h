@@ -28,7 +28,7 @@ public:
 		}
 		bPressed = true;
 
-		if(controls.size()!=0){
+		if(controls.size() != 0){
 			return;
 		}
 
@@ -36,8 +36,8 @@ public:
 		pY = e.y;
 
 		ofxTangibleBezierControl control;
+		control.setup(e.x,e.y,10,10);
 		controls.push_back(control);
-		controls.back().setup(e.x,e.y,10,10);
 	}
 
 	virtual void mouseMoved(ofMouseEventArgs &e){
@@ -64,8 +64,8 @@ public:
 		controls.back().r2.enableGrabbing();
 
 		ofxTangibleBezierControl control;
+		control.setup(e.x,e.y,10,10);
 		controls.push_back(control);
-		controls.back().setup(e.x,e.y,10,10);
 	}
 
 	virtual void draw(){

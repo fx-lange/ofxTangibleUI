@@ -25,8 +25,10 @@ ofxListener::~ofxListener(){
 	}
 }
 
-ofxListener::ofxListener(const ofxListener& other){
+ofxListener::ofxListener(const ofxListener& other):
+	ofxTransmitter(other){
 	init(other);
+	ofLog(OF_LOG_VERBOSE,"ofxListener COPY");
 }
 
 ofxListener& ofxListener::operator=(const ofxListener& other){
