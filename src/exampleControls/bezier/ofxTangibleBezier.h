@@ -74,7 +74,7 @@ public:
 		line.clear();
 		line.addVertex(controls[0]);
 		controls[0].draw();
-		for(int i=1;i<controls.size();++i){
+		for(unsigned int i=1;i<controls.size();++i){
 			line.bezierTo(controls[i-1].r2,controls[i].r1,controls[i]);
 			controls[i].draw();
 		}

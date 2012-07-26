@@ -15,9 +15,7 @@ class ofxTangibleBezierControl : public ofxTangibleHandle{
 public:
 	ofxTangibleBezierHelper r1,r2;
 
-	ofxTangibleBezierControl();
-	virtual ~ofxTangibleBezierControl();
-
+	//default constructor and destrcutor
 	//TODO copy constructor!!! important!!
 
 	virtual void setup(float _x,float _y, float _w, float _h){
@@ -30,8 +28,8 @@ public:
 		r1.startListeningTo(this,TANGIBLE_MOVE);
 		r2.startListeningTo(this,TANGIBLE_MOVE);
 
-		r1.startListeningTo(this,TANGIBLE_ROTATE);
-		r2.startListeningTo(this,TANGIBLE_ROTATE);
+		r1.startListeningTo(r2,TANGIBLE_ROTATE);
+		r2.startListeningTo(r1,TANGIBLE_ROTATE);
 
 		r2.disableGrabbing();
 		disableGrabbing();
