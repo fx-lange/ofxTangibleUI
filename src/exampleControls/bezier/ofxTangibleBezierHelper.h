@@ -3,31 +3,16 @@
 
 #include "ofxTangibleHandle.h"
 
-class ofxTangibleBezierHelper : public ofxTangibleHandle{
+class ofxTangibleBezierHelper: public ofxTangibleHandle {
 public:
 
+	//default constructor and so an
 
+	virtual void setup(float _x, float _y, float _w, float _h, float centerX = 0, float centerY = 0);
 
-	ofxTangibleBezierHelper();
-	virtual ~ofxTangibleBezierHelper();
+	virtual void moveInner(float dx, float dy);
 
-	virtual void setup(float _x,float _y, float _w, float _h, float centerX = 0, float centerY = 0){
-		ofxTangibleHandle::setup(_x,_y,_w,_h);
-
-		rotateCenter.set(centerX,centerY);
-		updateOldAngle();
-	}
-
-	virtual void moveInner(float dx, float dy){
-		ofxTangibleHandle::moveBy(dx,dy);
-	}
-
-	virtual void moveBy(float dx, float dy){
-		rotateCenter.x += dx;
-		rotateCenter.y += dy;
-
-		ofxTangibleHandle::moveBy(dx,dy);
-	}
+	virtual void moveBy(float dx, float dy);
 };
 
 #endif /* OFXROTATETMP_H_ */

@@ -49,7 +49,7 @@ void tangibleUiExample::setup(){
 	//rotation
 	x = 600;
 	y = 300;
-	r1.setup(x+1,y,10,10,x,y);
+	r1.setup(x+15,y,10,10,x,y);
 	r2.setup(x-15,y,10,10,x,y);
 	r1.drawType = r2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
 
