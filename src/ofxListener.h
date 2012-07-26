@@ -23,14 +23,11 @@ public:
 	ofVec3f zeroBaseCheck;
 	float oldAngle;
 
-	ofxListener() {
-		bLocked = false;
-		isListeningToMove = isListeningToRotate = false;
-	}
+	ofxListener();
+	virtual ~ofxListener();
 
 	ofxListener(const ofxListener& other);
-
-	virtual ~ofxListener();
+	ofxListener& operator=(const ofxListener& other);
 
 	virtual void setup(float x, float y);
 
@@ -58,7 +55,8 @@ protected:
 private:
 	list<int> moveTransmitters;
 	list<int> rotateTransmitters;
-	bool isListeningToMove, isListeningToRotate;
+	bool bListeningToMove, bListeningToRotate;
+	void init(const ofxListener& other);
 };
 
 #endif /* OFXLISTENER_H_*/

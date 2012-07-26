@@ -22,14 +22,12 @@ public:
 	float width, height;
 	tangibleDrawType drawType;
 
-	ofxTangibleCore(){
-		bMouseRegistered = false;
-		drawType = TANGIBLE_DRAW_AS_RECT;
-	}
+	ofxTangibleCore();
+	virtual ~ofxTangibleCore();
 
 	ofxTangibleCore(const ofxTangibleCore& other);
+	ofxTangibleCore& operator=(const ofxTangibleCore& other);
 
-	virtual ~ofxTangibleCore();
 
 	void setup(const ofRectangle & rect){
 		setup(rect.x,rect.y,rect.width,rect.height);
@@ -68,6 +66,8 @@ protected:
 
 	bool bMouseRegistered, bTouchRegistered;
 	virtual bool isOver(float px, float py);
+private:
+	void init(const ofxTangibleCore& other);
 };
 
 #endif /* OFXTANGIBLECORE_H_*/

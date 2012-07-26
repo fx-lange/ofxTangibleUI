@@ -4,25 +4,47 @@
 
 #include "ofxListener.h"
 
+ofxListener::ofxListener() {
+	bLocked = false;
+	bListeningToMove = bListeningToRotate = false;
+	moveListenersSpeed.set(1.f,1.f);
+	rotateCenter.set(0.f,0.f);
+
+	base.set(0,-1);
+	zeroBaseCheck.set(1,0);
+}
+
 ofxListener::~ofxListener(){
-	if(isListeningToMove){
-		isListeningToMove = false;
+	if(bListeningToMove){
+		bListeningToMove = false;
 		ofRemoveListener(ofxTangibleMoveEvent::events, this, &ofxListener::moveEvent);
 	}
-	if(isListeningToRotate){
-		isListeningToRotate = false;
+	if(bListeningToRotate){
+		bListeningToRotate = false;
 		ofRemoveListener(ofxTangibleRotateEvent::events, this, &ofxListener::rotateEvent);
 	}
 }
 
 ofxListener::ofxListener(const ofxListener& other){
+	init(other);
+}
+
+ofxListener& ofxListener::operator=(const ofxListener& other){
+	init(other);
+	return *this;
+}
+
+void ofxListener::init(const ofxListener& other){
 	bLocked = other.bLocked;
+
 	rotateCenter = other.rotateCenter;
 	moveListenersSpeed = other.moveListenersSpeed;
 	base = other.base;
 	zeroBaseCheck = other.zeroBaseCheck;
 	oldAngle = other.oldAngle;
 
+	bListeningToMove = other.bListeningToMove;
+	bListeningToRotate = other.bListeningToRotate;
 	rotateTransmitters = other.rotateTransmitters;
 	moveTransmitters = other.moveTransmitters;
 }
@@ -30,12 +52,6 @@ ofxListener::ofxListener(const ofxListener& other){
 void ofxListener::setup(float _x,float _y){
 	x = _x;
 	y = _y;
-
-	moveListenersSpeed.set(1.f,1.f);
-	rotateCenter.set(0.f,0.f);
-
-	base.set(0,-1);
-	zeroBaseCheck.set(1,0);
 
 	updateOldAngle();
 }
@@ -51,14 +67,14 @@ void ofxListener::startListeningTo(ofxTransmitter * transmitter,tangibleEventTyp
 void ofxListener::startListeningTo(const int id,tangibleEventType type){
 	if(type == TANGIBLE_MOVE){
 		moveTransmitters.push_back(id);
-		if(moveTransmitters.size()>0 && !isListeningToMove){
-			isListeningToMove = true;
+		if(moveTransmitters.size()>0 && !bListeningToMove){
+			bListeningToMove = true;
 			ofAddListener(ofxTangibleMoveEvent::events, this, &ofxListener::moveEvent);
 		}
 	}else if(type == TANGIBLE_ROTATE){
 		rotateTransmitters.push_back(id);
-		if(rotateTransmitters.size()>0 && !isListeningToRotate){
-			isListeningToRotate = true;
+		if(rotateTransmitters.size()>0 && !bListeningToRotate){
+			bListeningToRotate = true;
 			ofAddListener(ofxTangibleRotateEvent::events, this, &ofxListener::rotateEvent);
 		}
 	}
@@ -75,14 +91,14 @@ void ofxListener::stopListeningTo(ofxTransmitter * transmitter,tangibleEventType
 void ofxListener::stopListeningTo(const int id,tangibleEventType type){
 	if(type == TANGIBLE_MOVE){
 		moveTransmitters.remove(id);
-		if(moveTransmitters.size()==0 && isListeningToMove){
-			isListeningToMove = false;
+		if(moveTransmitters.size()==0 && bListeningToMove){
+			bListeningToMove = false;
 			ofRemoveListener(ofxTangibleMoveEvent::events, this, &ofxListener::moveEvent);
 		}
 	}else if(type == TANGIBLE_ROTATE){
 		rotateTransmitters.remove(id);
-		if(rotateTransmitters.size()==0 && isListeningToRotate){
-			isListeningToRotate = false;
+		if(rotateTransmitters.size()==0 && bListeningToRotate){
+			bListeningToRotate = false;
 			ofRemoveListener(ofxTangibleRotateEvent::events, this, &ofxListener::rotateEvent);
 		}
 	}

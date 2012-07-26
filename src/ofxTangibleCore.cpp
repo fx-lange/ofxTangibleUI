@@ -4,15 +4,35 @@
 
 #include "ofxTangibleCore.h"
 
-ofxTangibleCore::~ofxTangibleCore() {
+ofxTangibleCore::ofxTangibleCore(){
+	bMouseRegistered = false;
+	bTouchRegistered = false;
+	drawType = TANGIBLE_DRAW_AS_RECT;
+	touchId = -1;
+}
 
+ofxTangibleCore::~ofxTangibleCore() {
 	unregisterMouse();
 	unregisterTouch();
 }
 
 ofxTangibleCore::ofxTangibleCore(const ofxTangibleCore& other)
-	:ofxListener(other){
-	setup(other.x,other.y,other.width,other.height);
+	:ofxListener(other){ //REVISIT isn't this default behaviour?
+
+	init(other); //REVISIT call before body?
+}
+
+ofxTangibleCore& ofxTangibleCore::operator= (const ofxTangibleCore& other){
+	ofxListener::operator=(other);
+	init(other);
+	return *this;
+}
+
+void ofxTangibleCore::init(const ofxTangibleCore& other){
+	bMouseRegistered = other.bMouseRegistered;
+	bTouchRegistered = other.bTouchRegistered;
+
+	//TODO is this all? don't think so!
 
 	if(other.bMouseRegistered){
 		registerMouse();
@@ -27,11 +47,8 @@ ofxTangibleCore::ofxTangibleCore(const ofxTangibleCore& other)
 
 void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 	ofxListener::setup(_x,_y);
-	x = _x;
-	y = _y;
 	width = _w;
 	height = _h;
-	touchId = -1;
 }
 
 bool ofxTangibleCore::isOver(float px, float py) {
