@@ -5,7 +5,7 @@ float x,y;
 
 //--------------------------------------------------------------
 void tangibleUiExample::setup(){
-	ofSetLogLevel(OF_LOG_NOTICE);
+	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofBackground(0);
 
 	//test handles
@@ -46,6 +46,7 @@ void tangibleUiExample::setup(){
 	//pos and scale
 	pAndS.setup(400,400,20,40);
 
+	ofLog(OF_LOG_VERBOSE,"setup rotation");
 	//rotation
 	x = 600;
 	y = 300;
@@ -55,6 +56,20 @@ void tangibleUiExample::setup(){
 
 	r1.startListeningTo(r2,TANGIBLE_ROTATE);
 	r2.startListeningTo(r1,TANGIBLE_ROTATE);
+
+	ofxTangibleBezierHelper h1,h2;
+
+	h1.setup(x+50,y,10,10,x,y);
+	h2.setup(x-50,y,10,10,x,y);
+	h1.color.set(0,255,100);
+	h1.drawType = h2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
+
+	h1.startListeningTo(h2,TANGIBLE_ROTATE);
+	h2.startListeningTo(h1,TANGIBLE_ROTATE);
+	r1.startListeningTo(h1,TANGIBLE_ROTATE);
+	helpers.reserve(10);
+	helpers.push_back(h1);
+	helpers.push_back(h2);
 }
 
 //--------------------------------------------------------------
@@ -64,6 +79,8 @@ void tangibleUiExample::update(){
 		handle.fillMe = toggle.isActive();
 		toggle.resetChanged();
 	}
+//	cout << helpers[0].x << "/" << helpers[0].y << endl;
+//	cout << helpers[1].x << "/" << helpers[1].y << endl;
 }
 
 //--------------------------------------------------------------
@@ -80,6 +97,9 @@ void tangibleUiExample::draw(){
 	r2.draw();
 	ofSetColor(255,255,255);
 	ofEllipse(x,y,5,5);
+
+	helpers[0].draw();
+	helpers[1].draw();
 }
 
 //--------------------------------------------------------------

@@ -34,4 +34,5 @@ class tangibleUiExample : public ofBaseApp{
 		ofxTimeline timeline;
 		ofxPosAndScale pAndS;
 		ofxTangibleBezierHelper r1,r2;
+		vector<ofxTangibleBezierHelper> helpers;
 };
