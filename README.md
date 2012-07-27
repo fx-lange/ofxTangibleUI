@@ -17,7 +17,7 @@ Features
 *	dynamic UI objects
 *	dependent movement between objects
 	
-	each object can listen to other objects movement and move in the same, oppesite, or otherwise modified direction
+	each object can listen to other objects movement and move in the same, oppesite, or otherwise modified direction or angle
 *	easy to extend and implement
 *	style and modify (by overriding functions)
 
@@ -25,7 +25,7 @@ Dependencies
 ------------
 *	openFrameworks 0.071
 
-TODO
+Todo
 ----
 *	save and load from/to XML
 *	more basic UI elements

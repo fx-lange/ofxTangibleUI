@@ -4,6 +4,8 @@
 #include "ofMain.h"
 #include "ofxTangibleBezierControl.h"
 
+//TODO helper to a new controller should keep the same distance
+
 class ofxTangibleBezier: public ofxTangibleCore {
 public:
 
