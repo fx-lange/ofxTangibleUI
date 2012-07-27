@@ -15,28 +15,15 @@ public:
 	ofxTangibleToggle();
 
 	//default copy and assignment constructor
-//	ofxTangibleToggle(const ofxTangibleToggle& other);
-//	ofxTangibleToggle& operator=(const ofxTangibleToggle& other);
 
 	virtual void setup(float _x,float _y, float _w, float _h);
 
 	virtual void draw();
 
-	bool isActive(){
-		return bActive;
-	}
-
-	void setActive(bool active){
-		bActive = active;
-	}
-
-	bool hasChanged(){
-		return bChanged;
-	}
-
-	void resetChanged(){
-		bChanged = false;
-	}
+	bool isActive();
+	void setActive(bool active);
+	bool hasChanged();
+	void resetChanged();
 
 	virtual void mouseMoved(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);

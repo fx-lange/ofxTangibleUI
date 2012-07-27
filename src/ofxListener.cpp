@@ -66,6 +66,51 @@ void ofxListener::setup(float _x,float _y){
 	updateOldAngle();
 }
 
+void ofxListener::setMoveListenersSpeed(float vx,float vy){
+	moveListenersSpeed.set(vx,vy);
+}
+
+void ofxListener::setMoveListenersSpeed(const ofVec2f & v){
+	setMoveListenersSpeed(v.x,v.y);
+}
+
+const ofVec2f& ofxListener::getMoveListenerSpeed() const{
+	return moveListenersSpeed;
+}
+
+void ofxListener::setRotateCenter(const ofVec2f & rc){
+	setRotateCenter(rc.x,rc.y);
+}
+
+void ofxListener::setRotateCenter(float x, float y){
+	rotateCenter.x = x;
+	rotateCenter.y = y;
+	updateOldAngle();
+}
+
+void ofxListener::moveRotateCenter(const ofVec2f& diff, bool bUpdateAngle){
+	moveRotateCenter(diff.x,diff.y,bUpdateAngle);
+}
+
+void ofxListener::moveRotateCenter(float dx, float dy, bool bUpdateAngle){
+	rotateCenter.x += dx;
+	rotateCenter.y += dy;
+	if(bUpdateAngle){
+		updateOldAngle();
+	}
+}
+
+const ofVec2f& ofxListener::getRotateCenter() const{
+	return rotateCenter;
+}
+
+void ofxListener::updateOldAngle(){
+	oldAngle = (*this - rotateCenter).angle(base);
+	if((*this - rotateCenter).angle(zeroBaseCheck) > 90.f){
+		oldAngle *= -1.f;
+	}
+}
+
 void ofxListener::startListeningTo(ofxTransmitter & transmitter,tangibleEventType type){
 	startListeningTo(transmitter.getId(),type);
 }
@@ -112,14 +157,6 @@ void ofxListener::stopListeningTo(const int id,tangibleEventType type){
 			ofRemoveListener(ofxTangibleRotateEvent::events, this, &ofxListener::rotateEvent);
 		}
 	}
-}
-
-void ofxListener::setMoveListenersSpeed(float vx,float vy){
-	moveListenersSpeed.set(vx,vy);
-}
-
-void ofxListener::setMoveListenersSpeed(ofVec2f & v){
-	setMoveListenersSpeed(v.x,v.y);
 }
 
 void ofxListener::moveEvent(ofxTangibleMoveEvent & e){
@@ -187,13 +224,4 @@ void ofxListener::rotateBy(float angle){
 
 	bLocked = false;
 }
-
-void ofxListener::updateOldAngle(){
-	oldAngle = (*this - rotateCenter).angle(base);
-	if((*this - rotateCenter).angle(zeroBaseCheck) > 90.f){
-		oldAngle *= -1.f;
-	}
-}
-
-
 

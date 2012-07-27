@@ -39,18 +39,12 @@ public:
 	virtual void setup(float _x,float _y, float _w, float _h);
 
 	//Mouse
-	virtual void registerMouse();
-	virtual void unregisterMouse();
-
 	virtual void mouseMoved(ofMouseEventArgs &e){}
 	virtual void mousePressed(ofMouseEventArgs &e){}
 	virtual void mouseDragged(ofMouseEventArgs &e){}
 	virtual void mouseReleased(ofMouseEventArgs &e){}
 
 	//Touch
-	virtual void registerTouch();
-	virtual void unregisterTouch();
-
 	virtual void touchDoubleTap(ofTouchEventArgs &e){}
 	virtual void touchDown(ofTouchEventArgs &e){}
 	virtual void touchMoved(ofTouchEventArgs &e){}
@@ -63,9 +57,15 @@ protected:
 	float pX, pY;
 	int touchId;
 
-	bool bMouseRegistered, bTouchRegistered;
+	virtual void registerMouse();
+	virtual void unregisterMouse();
+
+	virtual void registerTouch();
+	virtual void unregisterTouch();
+
 	virtual bool isOver(float px, float py);
 private:
+	bool bMouseRegistered, bTouchRegistered;
 	void init(const ofxTangibleCore& other);
 };
 

@@ -16,6 +16,22 @@ void ofxTangibleToggle::setup(float _x,float _y, float _w, float _h){
 	registerMouse();
 }
 
+bool ofxTangibleToggle::isActive(){
+	return bActive;
+}
+
+void ofxTangibleToggle::setActive(bool active){
+	bActive = active;
+}
+
+bool ofxTangibleToggle::hasChanged(){
+	return bChanged;
+}
+
+void ofxTangibleToggle::resetChanged(){
+	bChanged = false;
+}
+
 void ofxTangibleToggle::draw(){
 	ofPushStyle();
 
