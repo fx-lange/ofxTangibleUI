@@ -1,8 +1,5 @@
 #include "testApp.h"
 
-
-ofxTangibleBezier bezier;
-
 //--------------------------------------------------------------
 void bezierExample::setup(){
 	ofSetLogLevel(OF_LOG_NOTICE);
@@ -24,10 +21,10 @@ void bezierExample::draw(){
 //--------------------------------------------------------------
 void bezierExample::keyPressed(int key){
 	if(key == 'd'){
-		bezier.bGrabbingEnabled = !bezier.bGrabbingEnabled;
+		bezier.toggleDrawing();
 	}
 	if(key == 'c'){
-		bezier.controls.clear();
+		bezier.clear();
 	}
 }
 

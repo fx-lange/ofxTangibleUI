@@ -6,7 +6,7 @@
 #include "ofxTangiblePolyline.h"
 #include "ofxTimeline.h"
 #include "ofxPosAndScale.h"
-#include "ofxTangibleBezierHelper.h"
+#include "ofxTangibleBezier.h"
 
 class tangibleUiExample : public ofBaseApp{
 

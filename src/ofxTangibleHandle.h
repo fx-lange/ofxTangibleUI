@@ -40,11 +40,11 @@ public:
 		return bGrabbingEnabled;
 	}
 
-	void setPressed(bool pressed, float x, float y){
-		bPressed = pressed;
-		pX = x;
-		pY = y;
-	}
+//	void setPressed(bool pressed, float x, float y){
+//		bPressed = pressed;
+//		pX = x;
+//		pY = y;
+//	}
 
 	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);

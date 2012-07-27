@@ -4,83 +4,31 @@
 #include "ofMain.h"
 #include "ofxTangibleBezierControl.h"
 
-class ofxTangibleBezier : public ofxTangibleCore{
+class ofxTangibleBezier: public ofxTangibleCore {
 public:
 
+	//default constructor and so on
+
+	virtual void setup();
+	virtual void clear();
+
+	virtual void startDrawing();
+	virtual void stopDrawing();
+	virtual void toggleDrawing();
+
+	virtual void mousePressed(ofMouseEventArgs &e);
+	virtual void mouseMoved(ofMouseEventArgs &e);
+	virtual void mouseDragged(ofMouseEventArgs &e);
+	virtual void mouseReleased(ofMouseEventArgs &e);
+
+	virtual void draw();
+
+protected:
 	vector<ofxTangibleBezierControl> controls;
 	ofPolyline line;
 	bool bPressed;
 	bool bGrabbingEnabled;
-
-	ofxTangibleBezier();
-	virtual ~ofxTangibleBezier();
-
-	virtual void setup(){
-		ofxTangibleCore::setup(0,0,0,0);
-		registerMouse();
-		bPressed = false;
-		controls.reserve(100);
-	}
-
-	virtual void mousePressed(ofMouseEventArgs &e){
-		if(bPressed || !bGrabbingEnabled){
-			return;
-		}
-		bPressed = true;
-
-		if(controls.size() != 0){
-			return;
-		}
-
-		pX = e.x;
-		pY = e.y;
-
-		ofxTangibleBezierControl control;
-		control.setup(e.x,e.y,10,10);
-		controls.push_back(control);
-	}
-
-	virtual void mouseMoved(ofMouseEventArgs &e){
-		if(controls.size()==0 || bPressed || !bGrabbingEnabled){
-			return;
-		}
-		controls.back().moveBy(e.x-pX,e.y-pY);
-		pX = e.x;
-		pY = e.y;
-	}
-
-	virtual void mouseDragged(ofMouseEventArgs &e){
-		pX = e.x;
-		pY = e.y;
-	}
-
-	virtual void mouseReleased(ofMouseEventArgs &e){
-		bPressed = false;
-		if(!bGrabbingEnabled){
-			return;
-		}
-
-		controls.back().enableGrabbing();
-		controls.back().r2.enableGrabbing();
-
-		ofxTangibleBezierControl control;
-		control.setup(e.x,e.y,10,10);
-		controls.push_back(control);
-	}
-
-	virtual void draw(){
-		if(controls.size()==0)
-			return;
-		line.clear();
-		line.addVertex(controls[0]);
-		controls[0].draw();
-		for(unsigned int i=1;i<controls.size();++i){
-			line.bezierTo(controls[i-1].r2,controls[i].r1,controls[i]);
-			controls[i].draw();
-		}
-		line.draw();
-	}
+	bool bStartedAgain;
 
 };
-
 #endif /* OFXTANGIBLEBEZIER_H_ */
