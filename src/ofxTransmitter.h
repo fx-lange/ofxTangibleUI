@@ -18,6 +18,7 @@ class ofxTangibleRotateEvent : public ofEventArgs{
 public:
 	int id;
 	float angle;
+	float distance;
 	static ofEvent <ofxTangibleRotateEvent> events;
 };
 
@@ -36,7 +37,7 @@ public:
 
 protected:
 	virtual void moveListeners(float dx, float dy);
-	virtual void rotateListeners(float angle);
+	virtual void rotateListeners(float angle, float distance);
 
 private:
 	int id;

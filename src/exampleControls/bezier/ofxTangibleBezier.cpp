@@ -6,7 +6,6 @@ void ofxTangibleBezier::setup() {
 	bPressed = false;
 	bGrabbingEnabled = false;
 	bStartedAgain = false;
-	controls.reserve(100);
 }
 
 void ofxTangibleBezier::clear(){
@@ -16,7 +15,9 @@ void ofxTangibleBezier::clear(){
 
 void ofxTangibleBezier::startDrawing(){
 	bGrabbingEnabled = true;
-	bStartedAgain = true;
+	if(controls.size()>0){
+		bStartedAgain = true;
+	}
 }
 
 void ofxTangibleBezier::stopDrawing(){
@@ -49,6 +50,8 @@ void ofxTangibleBezier::mousePressed(ofMouseEventArgs &e) {
 
 	ofxTangibleBezierControl control;
 	control.setup(e.x, e.y, 10, 10);
+	control.r2.enableGrabbing();
+	control.r1.keepSameDistance(true);
 	controls.push_back(control);
 }
 
@@ -60,6 +63,8 @@ void ofxTangibleBezier::mouseMoved(ofMouseEventArgs &e) {
 	if(bStartedAgain){
 		ofxTangibleBezierControl control;
 		control.setup(e.x, e.y, 10, 10);
+		control.r2.enableGrabbing();
+		control.r1.keepSameDistance(true);
 		controls.push_back(control);
 		bStartedAgain = false;
 	}else{
@@ -81,10 +86,13 @@ void ofxTangibleBezier::mouseReleased(ofMouseEventArgs &e) {
 	}
 
 	controls.back().enableGrabbing();
-	controls.back().r2.enableGrabbing();
+	controls.back().r1.enableGrabbing();
+	controls.back().r1.keepSameDistance(false);
 
 	ofxTangibleBezierControl control;
 	control.setup(e.x, e.y, 10, 10);
+	control.r2.enableGrabbing();
+	control.r1.keepSameDistance(true);
 	controls.push_back(control);
 }
 

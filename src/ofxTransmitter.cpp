@@ -21,11 +21,12 @@ void ofxTransmitter::moveListeners(float dx, float dy) {
 	ofNotifyEvent(ofxTangibleMoveEvent::events,moveEvent);
 }
 
-void ofxTransmitter::rotateListeners(float angle) {
+void ofxTransmitter::rotateListeners(float angle, float distance) {
 	//send ofEvent
 	ofxTangibleRotateEvent rotateEvent;
 	rotateEvent.id = getId();
 	rotateEvent.angle = angle;
+	rotateEvent.distance = distance;
 
 	ofNotifyEvent(ofxTangibleRotateEvent::events,rotateEvent);
 }

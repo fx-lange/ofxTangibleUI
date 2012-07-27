@@ -31,7 +31,7 @@ public:
 	virtual void rotateEvent(ofxTangibleRotateEvent & e);
 
 	virtual void moveBy(float dx, float dy);
-	virtual void rotateBy(float angle);
+	virtual void rotateBy(float angle, float distance);
 
 	void startListeningTo(ofxTransmitter & transmitter, tangibleEventType type = TANGIBLE_MOVE);
 	void startListeningTo(ofxTransmitter * transmitter, tangibleEventType type = TANGIBLE_MOVE);
@@ -49,6 +49,7 @@ public:
 	void moveRotateCenter(float dx, float dy, bool bUpdateAngle = false);
 	void moveRotateCenter(const ofVec2f& diff, bool bUpdateAngle = false);
 	const ofVec2f& getRotateCenter() const;
+	void keepSameDistance(bool sameDistance);
 
 protected:
 	bool bLocked;
@@ -58,9 +59,11 @@ protected:
 
 private:
 	ofVec2f rotateCenter;
-	ofVec3f base;
-	ofVec3f zeroBaseCheck;
+	const ofVec3f base;
+	const ofVec3f zeroBaseCheck;
 	float oldAngle;
+
+	bool bKeepSameDistance;
 
 	list<int> moveTransmitters;
 	list<int> rotateTransmitters;
