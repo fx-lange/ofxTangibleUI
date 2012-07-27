@@ -16,29 +16,13 @@ public:
 
 	virtual void setup(float _x,float _y, float _w, float _h);
 
-	virtual void moveInner(float dx, float dy);
-
 	virtual void draw();
 
-	virtual void enableGrabbing() {
-		setGrabbing(true);
-	}
-
-	virtual void disableGrabbing() {
-		setGrabbing(false);
-	}
-
-	virtual void setGrabbing(bool bGrabbing){
-		bGrabbingEnabled = bGrabbing;
-	}
-
-	virtual void toggleGrabbing(){
-		setGrabbing(!bGrabbingEnabled);
-	}
-
-	virtual bool isGrabbingEnabled(){
-		return bGrabbingEnabled;
-	}
+	virtual void enableGrabbing();
+	virtual void disableGrabbing();
+	virtual void setGrabbing(bool bGrabbing);
+	virtual void toggleGrabbing();
+	virtual bool isGrabbingEnabled();
 
 //	void setPressed(bool pressed, float x, float y){
 //		bPressed = pressed;
@@ -57,6 +41,8 @@ public:
 protected:
 	bool bGrabbingEnabled;
 	bool bPressed;
+
+	virtual void moveInner(float dx, float dy);
 
 //	virtual void _dragged(float x, float y);
 //	virtual void _down(float x,float y);

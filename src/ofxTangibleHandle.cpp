@@ -18,8 +18,24 @@ void ofxTangibleHandle::setup(float _x,float _y, float _w, float _h){
 	enableGrabbing();
 }
 
-void ofxTangibleHandle::moveInner(float dx, float dy){
-	moveBy(dx,dy);
+void ofxTangibleHandle::enableGrabbing() {
+	setGrabbing(true);
+}
+
+void ofxTangibleHandle::disableGrabbing() {
+	setGrabbing(false);
+}
+
+void ofxTangibleHandle::setGrabbing(bool bGrabbing){
+	bGrabbingEnabled = bGrabbing;
+}
+
+void ofxTangibleHandle::toggleGrabbing(){
+	setGrabbing(!bGrabbingEnabled);
+}
+
+bool ofxTangibleHandle::isGrabbingEnabled(){
+	return bGrabbingEnabled;
 }
 
 void ofxTangibleHandle::draw(){
@@ -42,6 +58,11 @@ void ofxTangibleHandle::draw(){
 
 	ofPopStyle();
 }
+
+void ofxTangibleHandle::moveInner(float dx, float dy){
+	moveBy(dx,dy);
+}
+
 
 void ofxTangibleHandle::mousePressed(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !isOver(e.x, e.y))
