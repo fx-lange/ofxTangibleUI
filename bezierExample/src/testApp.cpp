@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void bezierExample::setup(){
-	ofSetLogLevel(OF_LOG_NOTICE);
+	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofBackground(0);
 
 	bezier.setup();

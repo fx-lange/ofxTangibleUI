@@ -12,7 +12,8 @@ public:
 	ofColor color;
 	bool fillMe;
 
-	//default constructor and so on
+	ofxTangibleHandle();
+	//default destructor and copy/assignment constructor
 
 	virtual void setup(float _x,float _y, float _w, float _h);
 
@@ -38,9 +39,9 @@ public:
 	virtual void touchMoved(ofTouchEventArgs &e);
 	virtual void touchUp(ofTouchEventArgs &e);
 
+	bool bPressed;
 protected:
 	bool bGrabbingEnabled;
-	bool bPressed;
 
 	virtual void moveInner(float dx, float dy);
 
