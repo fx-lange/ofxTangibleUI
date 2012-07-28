@@ -100,11 +100,16 @@ void ofxTangibleBezier::draw() {
 	if (controls.size() == 0)
 		return;
 	line.clear();
-	line.addVertex(controls[0]);
-	controls[0].draw();
-	for (unsigned int i = 1; i < controls.size(); ++i) {
-		line.bezierTo(controls[i - 1].r2, controls[i].r1, controls[i]);
-		controls[i].draw();
+	list<ofxTangibleBezierControl>::iterator it_t0 = controls.begin();
+	list<ofxTangibleBezierControl>::iterator it_t1 = controls.begin();
+	it_t1++;
+	line.addVertex(*it_t0);
+	it_t0->draw();
+	for (; it_t1 != controls.end(); ++it_t0,++it_t1) {
+		ofxTangibleBezierControl & h0 = *it_t0;
+		ofxTangibleBezierControl & h1 = *it_t1;
+		line.bezierTo(h0.r2, h1.r1, h1);
+		h1.draw();
 	}
 	line.draw();
 }
