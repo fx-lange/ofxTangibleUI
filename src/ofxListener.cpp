@@ -218,7 +218,7 @@ void ofxListener::rotateBy(float angle, float distance) {
 	ofVec3f vec = *this - rotateCenter;
 	vec.rotate(0, 0, angle);
 
-	if (bKeepSameDistance) {
+	if (bKeepSameDistance && distance > 0.f) {
 		vec.normalize();
 		vec.scale(distance);
 	}
