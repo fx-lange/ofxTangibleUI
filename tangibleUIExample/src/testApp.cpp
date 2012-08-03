@@ -46,7 +46,6 @@ void tangibleUiExample::setup(){
 	//pos and scale
 	pAndS.setup(400,400,20,40);
 
-	ofLog(OF_LOG_VERBOSE,"setup rotation");
 	//rotation
 	x = 600;
 	y = 300;
@@ -79,8 +78,6 @@ void tangibleUiExample::update(){
 		handle.fillMe = toggle.isActive();
 		toggle.resetChanged();
 	}
-//	cout << helpers[0].x << "/" << helpers[0].y << endl;
-//	cout << helpers[1].x << "/" << helpers[1].y << endl;
 }
 
 //--------------------------------------------------------------
