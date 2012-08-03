@@ -49,7 +49,7 @@ public:
 	void moveRotateCenter(float dx, float dy, bool bUpdateAngle = false);
 	void moveRotateCenter(const ofVec2f& diff, bool bUpdateAngle = false);
 	const ofVec2f& getRotateCenter() const;
-	void keepSameDistance(bool sameDistance);
+	void setKeepSameDistance(bool sameDistance);
 
 protected:
 	bool bLocked;

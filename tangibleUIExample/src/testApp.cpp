@@ -64,6 +64,8 @@ void tangibleUiExample::setup(){
 	h1.drawType = h2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
 
 	h1.startListeningTo(h2,TANGIBLE_ROTATE);
+	h2.setKeepSameDistance(true);
+	h1.setKeepSameDistance(true);
 	h2.startListeningTo(h1,TANGIBLE_ROTATE);
 	r1.startListeningTo(h1,TANGIBLE_ROTATE);
 	helpers.reserve(10);

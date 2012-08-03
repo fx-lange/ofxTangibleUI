@@ -26,7 +26,8 @@ public:
 	virtual void draw();
 
 protected:
-	list<ofxTangibleBezierControl> controls;
+	typedef list<ofxTangibleBezierControl> BezierControls;
+	BezierControls controls;
 	ofPolyline line;
 	bool bPressed;
 	bool bGrabbingEnabled;

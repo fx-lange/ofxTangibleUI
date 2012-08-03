@@ -15,14 +15,14 @@ void ofxTangibleBezier::clear(){
 
 void ofxTangibleBezier::startDrawing(){
 	bGrabbingEnabled = true;
-	if(controls.size()>0){
+	if(!controls.empty()){
 		bStartedAgain = true;
 	}
 }
 
 void ofxTangibleBezier::stopDrawing(){
 	bGrabbingEnabled = false;
-	if(controls.size() > 0){
+	if(!controls.empty()){
 		controls.pop_back();
 	}
 }
@@ -41,7 +41,7 @@ void ofxTangibleBezier::mousePressed(ofMouseEventArgs &e) {
 	}
 	bPressed = true;
 
-	if (controls.size() != 0) {
+	if (!controls.empty()) {
 		return;
 	}
 
@@ -51,12 +51,12 @@ void ofxTangibleBezier::mousePressed(ofMouseEventArgs &e) {
 	ofxTangibleBezierControl control;
 	control.setup(e.x, e.y, 10, 10);
 	control.r2.enableGrabbing();
-	control.r1.keepSameDistance(true);
+	control.r1.setKeepSameDistance(true);
 	controls.push_back(control);
 }
 
 void ofxTangibleBezier::mouseMoved(ofMouseEventArgs &e) {
-	if (controls.size() == 0 || bPressed || !bGrabbingEnabled) {
+	if (controls.empty() || bPressed || !bGrabbingEnabled) {
 		return;
 	}
 
@@ -64,7 +64,7 @@ void ofxTangibleBezier::mouseMoved(ofMouseEventArgs &e) {
 		ofxTangibleBezierControl control;
 		control.setup(e.x, e.y, 10, 10);
 		control.r2.enableGrabbing();
-		control.r1.keepSameDistance(true);
+		control.r1.setKeepSameDistance(true);
 		controls.push_back(control);
 		bStartedAgain = false;
 	}else{
@@ -87,21 +87,21 @@ void ofxTangibleBezier::mouseReleased(ofMouseEventArgs &e) {
 
 	controls.back().enableGrabbing();
 	controls.back().r1.enableGrabbing();
-	controls.back().r1.keepSameDistance(false);
+	controls.back().r1.setKeepSameDistance(false);
 
 	ofxTangibleBezierControl control;
 	control.setup(e.x, e.y, 10, 10);
 	control.r2.enableGrabbing();
-	control.r1.keepSameDistance(true);
+	control.r1.setKeepSameDistance(true);
 	controls.push_back(control);
 }
 
 void ofxTangibleBezier::draw() {
-	if (controls.size() == 0)
+	if (controls.empty())
 		return;
 	line.clear();
-	list<ofxTangibleBezierControl>::iterator it_t0 = controls.begin();
-	list<ofxTangibleBezierControl>::iterator it_t1 = controls.begin();
+	BezierControls::iterator it_t0 = controls.begin();
+	BezierControls::iterator it_t1 = controls.begin();
 	it_t1++;
 	line.addVertex(*it_t0);
 	it_t0->draw();
