@@ -73,13 +73,14 @@ bool ofxTangibleCore::isOver(float px, float py) {
 			return false;
 		}
 	}else if(drawType == TANGIBLE_DRAW_AS_CENTER_RECT){
-		if ( abs(px-x)<width/2 && abs(py-y)<height/2 ){
+		if ( fabs(px-x)<width/2.f && fabs(py-y)<height/2.f ){
 			return true;
 		}else {
 			return false;
 		}
 	}else{
-		if( abs(px-x)<width/2 && abs(py-y)<width/2){
+//		if( fabs(px-x)<width/2.f && fabs(py-y)<width/2.f){ //TODO seems to be a bug here
+		if( this->distance(ofVec3f(px,py)) < width/2.f){
 			return true;
 		}else{
 			return false;

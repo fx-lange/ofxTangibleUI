@@ -58,7 +58,7 @@ void tangibleUiExample::setup(){
 
 	ofxTangibleBezierHelper h1,h2;
 
-	h1.setup(x+50,y,10,10,x,y);
+	h1.setup(x+50,y,50,50,x,y);
 	h2.setup(x-50,y,10,10,x,y);
 	h1.color.set(0,255,100);
 	h1.drawType = h2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
