@@ -24,7 +24,12 @@ void tangibleUiExample::setup(){
 	//test toggle
 	toggle.setup(65,40,20,20);
 	toggle.startListeningTo(handle);
-	toggle.addListener(this,&tangibleUiExample::hasChanged);
+	toggle.addListener(this,&tangibleUiExample::toggleHasChanged);
+
+	//test button
+	button.setup(90,40,20,20);
+	button.startListeningTo(toggle);
+	button.addListener(this,&tangibleUiExample::buttonHasChanged);
 
 	//test destructor and copy constructor
 	ofxTangibleHandle tempHandle;
@@ -74,9 +79,15 @@ void tangibleUiExample::setup(){
 	helpers.push_back(h2);
 }
 
-void tangibleUiExample::hasChanged(bool & active){
+void tangibleUiExample::toggleHasChanged(bool & active){
 	cout << "has changed: "+ofToString(active) << endl;
 	handle.setGrabbing(!active);
+}
+
+void tangibleUiExample::buttonHasChanged(bool & active){
+	cout << "has changed: "+ofToString(active) << endl;
+	if(toggle.isActive())
+		toggle.setActive(false);
 }
 
 //--------------------------------------------------------------
@@ -87,6 +98,7 @@ void tangibleUiExample::update(){
 void tangibleUiExample::draw(){
 	handle.draw();
 	toggle.draw();
+	button.draw();
 	xfixed.draw();
 	yfixed.draw();
 	handles[0].draw();

@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxTangibleHandle.h"
 #include "ofxTangibleToggle.h"
+#include "ofxTangibleButton.h"
 #include "ofxTangiblePolyline.h"
 #include "ofxTimeline.h"
 #include "ofxPosAndScale.h"
@@ -25,12 +26,14 @@ class tangibleUiExample : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-		void hasChanged(bool & active);
+		void toggleHasChanged(bool & active);
+		void buttonHasChanged(bool & active);
 
 		ofxTangibleXFixedHandle xfixed;
 		ofxTangibleHandle handle;
 		ofxTangibleYFixedHandle yfixed;
 		ofxTangibleToggle toggle;
+		ofxTangibleButton button;
 		vector<ofxTangibleHandle> handles;
 		ofxTangibleYFixedHandle xSpeed3;
 		ofxTimeline timeline;
