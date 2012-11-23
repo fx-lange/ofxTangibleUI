@@ -76,16 +76,11 @@ void tangibleUiExample::setup(){
 
 void tangibleUiExample::hasChanged(bool & active){
 	cout << "has changed: "+ofToString(active) << endl;
-	handle.setGrabbing(active);
+	handle.setGrabbing(!active);
 }
 
 //--------------------------------------------------------------
 void tangibleUiExample::update(){
-	if(toggle.hasChanged()){
-		handle.setGrabbing(!toggle.isActive());
-		handle.fillMe = toggle.isActive();
-		toggle.resetChanged();
-	}
 }
 
 //--------------------------------------------------------------
