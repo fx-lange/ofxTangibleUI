@@ -25,12 +25,6 @@ public:
 	virtual void toggleGrabbing();
 	virtual bool isGrabbingEnabled();
 
-//	void setPressed(bool pressed, float x, float y){
-//		bPressed = pressed;
-//		pX = x;
-//		pY = y;
-//	}
-
 	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);

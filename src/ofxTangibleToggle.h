@@ -32,9 +32,21 @@ public:
 	virtual void touchDown(ofTouchEventArgs &e);
 	virtual void touchUp(ofTouchEventArgs &e);
 
+	//TODO consider to inherit from ofxToggle (ofxGui)
+	template<class ListenerClass>
+	void addListener(ListenerClass * listener, void ( ListenerClass::*method )(bool&)){
+		ofAddListener(hasChangedEvent,listener,method);
+	}
+
+	template<class ListenerClass>
+	void removeListener(ListenerClass * listener, void ( ListenerClass::*method )(bool&)){
+		ofRemoveListener(hasChangedEvent,listener,method);
+	}
+
 protected:
 	bool bPressed;
 	bool bClickable;
+	ofEvent<bool> hasChangedEvent;
 	bool bActive;
 	bool bChanged;
 };

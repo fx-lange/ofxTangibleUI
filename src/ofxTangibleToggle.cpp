@@ -21,7 +21,10 @@ bool ofxTangibleToggle::isActive(){
 }
 
 void ofxTangibleToggle::setActive(bool active){
-	bActive = active;
+	if(bActive != active){
+		bActive = active;
+		ofNotifyEvent(hasChangedEvent,bActive,this);
+	}
 }
 
 bool ofxTangibleToggle::hasChanged(){
@@ -62,7 +65,7 @@ void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
 	if (!bClickable || !bPressed || !isOver(e.x, e.y))
 		return;
 
-	bActive = !bActive;
+	setActive(!bActive);
 	bChanged = true;
 	bPressed = false;
 }
