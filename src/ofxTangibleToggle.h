@@ -47,7 +47,7 @@ protected:
 	bool bPressed;
 	bool bClickable;
 	ofEvent<bool> hasChangedEvent;
-	bool bActive;
+	bool bActive, bTmpSwitch;
 	bool bChanged;
 };
 

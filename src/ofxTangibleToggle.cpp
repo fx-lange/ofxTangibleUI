@@ -6,7 +6,7 @@
 
 ofxTangibleToggle::ofxTangibleToggle(){
 	color.set(255,255,0);
-	bActive = bPressed = false;
+	bActive = bPressed = bTmpSwitch = false;
 	bClickable = true;
 	bChanged = false;
 }
@@ -39,7 +39,12 @@ void ofxTangibleToggle::resetChanged(){
 void ofxTangibleToggle::draw(){
 	ofPushStyle();
 
-	if(bActive){
+	bool bDrawActive = bActive;
+	if(bTmpSwitch){
+		bDrawActive = !bDrawActive;
+	}
+
+	if(bDrawActive){
 		ofFill();
 	}else{
 		ofNoFill();
@@ -60,9 +65,11 @@ void ofxTangibleToggle::mousePressed(ofMouseEventArgs &e) {
 		return;
 
 	bPressed = true;
+	bTmpSwitch = true;
 }
 
 void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
+	bTmpSwitch = false;
 	if (!bClickable || !bPressed || !isOver(e.x, e.y))
 		return;
 
@@ -76,6 +83,9 @@ void ofxTangibleToggle::mouseMoved(ofMouseEventArgs &e){
 }
 
 void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
+	if (!bClickable || bPressed)
+			return;
+
 	float touchX = e.x;
 	float touchY = e.y;
 
@@ -84,15 +94,19 @@ void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
 		touchY *= ofGetHeight();
 	}
 
-	if (!bClickable || !isOver(touchX, touchY) || bPressed)
-		return;
+	if (isOver(touchX, touchY)){
+		bTmpSwitch = true;
 
-	touchId = e.id;
-	bPressed = true;
+		touchId = e.id;
+		bPressed = true;
+	}
 }
 
 
 void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
+	if (!bClickable || !bPressed)
+		return;
+
 	float touchX = e.x;
 	float touchY = e.y;
 
@@ -101,13 +115,14 @@ void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
 		touchY *= ofGetHeight();
 	}
 
-	if (!bClickable || !bPressed || !isOver(touchX,touchY))
-		return;
-
 	if(touchId != e.id)
 		return;
 
-	setActive(!bActive);
-	bChanged = true;
+	bTmpSwitch = false;
 	bPressed = false;
+
+	if (isOver(touchX,touchY)){
+		setActive(!bActive);
+		bChanged = true;
+	}
 }
