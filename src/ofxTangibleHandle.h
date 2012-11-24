@@ -37,6 +37,9 @@ public:
 protected:
 	bool bGrabbingEnabled;
 
+	vector<ofTouchEventArgs> touchs;
+	ofVec2f touchCenter;
+
 	virtual void moveInner(float dx, float dy);
 
 //	virtual void _dragged(float x, float y);

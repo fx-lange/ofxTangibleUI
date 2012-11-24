@@ -103,21 +103,25 @@ void ofxTangibleHandle::touchDown(ofTouchEventArgs &e) {
 		touchY *= ofGetHeight();
 	}
 
-	if (!bGrabbingEnabled || !isOver(touchX, touchY) || bPressed)
+	if (!bGrabbingEnabled || !isOver(touchX, touchY))
 		return;
 
-	touchId = e.id;
-	bPressed = true;
-
-	pX = touchX;
-	pY = touchY;
+	if(touchs.empty()){
+		touchs.push_back(e);
+		touchs.back().x = touchX;
+		touchs.back().y = touchY;
+	}else if(touchs.size()==1){
+		touchs.push_back(e);
+		touchs.back().x = touchX;
+		touchs.back().y = touchY;
+		//calc center
+		touchCenter.x = (touchs[0].x + touchs[1].x)/2.f;
+		touchCenter.y = (touchs[0].y + touchs[1].y)/2.f;
+	}//else ignore
 }
 
 void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
-	if (!bGrabbingEnabled || !bPressed)
-		return;
-
-	if (touchId != e.id)
+	if (!bGrabbingEnabled || touchs.empty())
 		return;
 
 	float touchX = e.x;
@@ -128,22 +132,51 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 		touchY *= ofGetHeight();
 	}
 
-	float dx = touchX - pX;
-	float dy = touchY - pY;
+	if(touchs.size()==1){
+		ofTouchEventArgs & te = touchs[0];
+		if(e.id == te.id){
+			float dx = touchX - te.x;
+			float dy = touchY - te.y;
 
-	moveBy(dx, dy);
+			moveBy(dx, dy);
+			te.x = touchX;
+			te.y = touchY;
+		}
+	}else if(touchs.size()==2){
+		int otherIdx = -1;
+		if(e.id == touchs[0].id){
+			otherIdx = 1;
+		}else if(e.id == touchs[1].id){
+			otherIdx = 0;
+		}
 
-	pX = touchX;
-	pY = touchY;
+		if(otherIdx!=-1){
+			ofTouchEventArgs & et = touchs[1-otherIdx];
+			et = e;
+			if(bScaleTouchEvent){
+				et.x *= ofGetWidth();
+				et.y *= ofGetHeight();
+			}
+			ofTouchEventArgs & other = touchs[otherIdx];
+			ofVec2f newCenter((et.x+other.x)/2.f,(et.y+other.y)/2.f);
+			ofVec2f diff = newCenter - touchCenter;
+			moveBy(diff.x, diff.y);
+			touchCenter = newCenter;
+		}
+	}
 }
 
 void ofxTangibleHandle::touchUp(ofTouchEventArgs &e) {
-	if (!bGrabbingEnabled || !bPressed)
+	if (!bGrabbingEnabled )
 		return;
 
-	if (touchId != e.id)
-		return;
-
-	bPressed = false;
+	vector<ofTouchEventArgs>::iterator it = touchs.begin();
+	for(;it!=touchs.end();++it){
+		ofTouchEventArgs & et = *it;
+		if(et.id==e.id){
+			touchs.erase(it);
+			break;
+		}
+	}
 }
 
