@@ -95,14 +95,22 @@ void ofxTangibleHandle::mouseReleased(ofMouseEventArgs &e) {
 }
 
 void ofxTangibleHandle::touchDown(ofTouchEventArgs &e) {
-	if (!bGrabbingEnabled || !isOver(e.x, e.y) || bPressed)
+	float touchX = e.x;
+	float touchY = e.y;
+
+	if(bScaleTouchEvent){
+		touchX *= ofGetWidth();
+		touchY *= ofGetHeight();
+	}
+
+	if (!bGrabbingEnabled || !isOver(touchX, touchY) || bPressed)
 		return;
 
 	touchId = e.id;
 	bPressed = true;
 
-	pX = e.x;
-	pY = e.y;
+	pX = touchX;
+	pY = touchY;
 }
 
 void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
@@ -112,13 +120,21 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 	if (touchId != e.id)
 		return;
 
-	float dx = e.x - pX;
-	float dy = e.y - pY;
+	float touchX = e.x;
+	float touchY = e.y;
+
+	if(bScaleTouchEvent){
+		touchX *= ofGetWidth();
+		touchY *= ofGetHeight();
+	}
+
+	float dx = touchX - pX;
+	float dy = touchY - pY;
 
 	moveBy(dx, dy);
 
-	pX = e.x;
-	pY = e.y;
+	pX = touchX;
+	pY = touchY;
 }
 
 void ofxTangibleHandle::touchUp(ofTouchEventArgs &e) {

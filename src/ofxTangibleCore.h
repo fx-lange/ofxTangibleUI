@@ -21,6 +21,7 @@ class ofxTangibleCore: public ofxListener {
 public:
 	float width, height;
 	tangibleDrawType drawType;
+	bool bScaleTouchEvent;
 
 	ofxTangibleCore();
 	virtual ~ofxTangibleCore();
