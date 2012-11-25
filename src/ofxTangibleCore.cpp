@@ -68,23 +68,26 @@ void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 }
 
 bool ofxTangibleCore::isOver(float px, float py) {
-	if(drawType == TANGIBLE_DRAW_AS_RECT){
-		if( px > x && py > y && px < x + width && py < y + height){
-			return true;
-		}else{
-			return false;
-		}
-	}else if(drawType == TANGIBLE_DRAW_AS_CENTER_RECT){
-		if ( fabs(px-x)<width/2.f && fabs(py-y)<height/2.f ){
-			return true;
-		}else {
-			return false;
-		}
-	}else{
+	if(drawType == TANGIBLE_DRAW_AS_CIRCLE){
 //		if( fabs(px-x)<width/2.f && fabs(py-y)<width/2.f){ //TODO seems to be a bug here
 		if( this->distance(ofVec3f(px,py)) < width/2.f){
 			return true;
 		}else{
+			return false;
+		}
+	}else{
+		ofVec2f mouse(px-x,py-y);
+
+		if(drawType == TANGIBLE_DRAW_AS_RECT){
+			mouse.x -= width/2.f;
+			mouse.y -= height/2.f;
+		}
+
+		mouse.rotate(-innerRotate);
+
+		if ( fabs(mouse.x)<width/2.f && fabs(mouse.y)<height/2.f ){
+			return true;
+		}else {
 			return false;
 		}
 	}
