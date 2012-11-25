@@ -66,6 +66,8 @@ protected:
 	virtual void unregisterTouch();
 
 	virtual bool isOver(float px, float py);
+
+	virtual void rotateInner(float degree);
 private:
 	bool bMouseRegistered, bTouchRegistered;
 	void init(const ofxTangibleCore& other);

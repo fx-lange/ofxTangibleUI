@@ -174,7 +174,7 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 			touchCenter = newCenter;
 			//rotate
 			float newAngle = (touchs[0] - touchCenter).angle(base);
-			innerRotate += angleToTouchCenter - newAngle;
+			rotateInner(angleToTouchCenter - newAngle);
 			angleToTouchCenter = newAngle;
 		}
 	}
