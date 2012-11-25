@@ -56,7 +56,6 @@ public:
 
 protected:
 	float pX, pY;
-	float innerRotate;
 	int touchId;
 
 	virtual void registerMouse();
@@ -67,7 +66,6 @@ protected:
 
 	virtual bool isOver(float px, float py);
 
-	virtual void rotateInner(float degree);
 private:
 	bool bMouseRegistered, bTouchRegistered;
 	void init(const ofxTangibleCore& other);

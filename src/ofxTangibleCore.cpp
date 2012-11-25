@@ -93,10 +93,6 @@ bool ofxTangibleCore::isOver(float px, float py) {
 	}
 }
 
-void ofxTangibleCore::rotateInner(float degree){
-	innerRotate += degree;
-}
-
 void ofxTangibleCore::registerMouse() {
 	if(bMouseRegistered){
 		ofLog(OF_LOG_VERBOSE,"mouse already registered");

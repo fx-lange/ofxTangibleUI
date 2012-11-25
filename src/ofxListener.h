@@ -59,6 +59,9 @@ protected:
 
 	const ofVec3f base;
 	const ofVec3f zeroBaseCheck;
+
+	float innerRotate;
+	virtual void rotateInner(float degree);
 private:
 	ofVec2f rotateCenter;
 	float oldAngle;

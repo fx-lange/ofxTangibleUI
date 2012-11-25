@@ -217,9 +217,14 @@ void ofxListener::rotateBy(float angle, float distance) {
 	y = vec.y;
 
 	rotateListeners(angle, distance);
-
 	updateOldAngle();
 
+	rotateInner(angle);
+
 	bLocked = false;
+}
+
+void ofxListener::rotateInner(float degree){
+	innerRotate += degree;
 }
 
