@@ -118,6 +118,7 @@ void ofxTangibleHandle::touchDown(ofTouchEventArgs &e) {
 		touchs.push_back(e);
 		touchs.back().x = touchX;
 		touchs.back().y = touchY;
+		bPressed = true;
 	}else if(touchs.size()==1){
 		touchs.push_back(e);
 		touchs.back().x = touchX;
@@ -192,5 +193,8 @@ void ofxTangibleHandle::touchUp(ofTouchEventArgs &e) {
 			break;
 		}
 	}
+
+	if(touchs.empty())
+		bPressed = false;
 }
 
