@@ -42,6 +42,7 @@ bool ofxTangibleHandle::isGrabbingEnabled() {
 
 void ofxTangibleHandle::draw() {
 	ofPushStyle();
+	ofPushMatrix();
 
 	if (fillMe) {
 		ofFill();
@@ -50,14 +51,21 @@ void ofxTangibleHandle::draw() {
 	}
 	ofSetColor(color);
 	if (drawType == TANGIBLE_DRAW_AS_RECT) {
-		ofRect(x, y, width, height);
-	} else if (drawType == TANGIBLE_DRAW_AS_CENTER_RECT) {
+		ofTranslate(width/2.f,height/2.f);
+		ofTranslate(x,y);
+		ofRotate(innerRotate);
 		ofSetRectMode(OF_RECTMODE_CENTER);
-		ofRect(x, y, width, height);
+		ofRect(0, 0, width, height);
+	} else if (drawType == TANGIBLE_DRAW_AS_CENTER_RECT) {
+		ofTranslate(x,y);
+		ofRotate(innerRotate);
+		ofSetRectMode(OF_RECTMODE_CENTER);
+		ofRect(0, 0, width, height);
 	} else {
 		ofCircle(x, y, width / 2, width / 2);
 	}
 
+	ofPopMatrix();
 	ofPopStyle();
 }
 
@@ -115,8 +123,9 @@ void ofxTangibleHandle::touchDown(ofTouchEventArgs &e) {
 		touchs.back().x = touchX;
 		touchs.back().y = touchY;
 		//calc center
-		touchCenter.x = (touchs[0].x + touchs[1].x)/2.f;
-		touchCenter.y = (touchs[0].y + touchs[1].y)/2.f;
+		touchCenter = (touchs[0] + touchs[1]) /2.f;
+		//calc rotation
+		angleToTouchCenter = (touchs[0] - touchCenter).angle(base);
 	}//else ignore
 }
 
@@ -133,7 +142,7 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 	}
 
 	if(touchs.size()==1){
-		ofTouchEventArgs & te = touchs[0];
+		touchCursor & te = touchs[0];
 		if(e.id == te.id){
 			float dx = touchX - te.x;
 			float dy = touchY - te.y;
@@ -151,17 +160,22 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 		}
 
 		if(otherIdx!=-1){
-			ofTouchEventArgs & et = touchs[1-otherIdx];
+			touchCursor & et = touchs[1-otherIdx];
 			et = e;
 			if(bScaleTouchEvent){
 				et.x *= ofGetWidth();
 				et.y *= ofGetHeight();
 			}
-			ofTouchEventArgs & other = touchs[otherIdx];
-			ofVec2f newCenter((et.x+other.x)/2.f,(et.y+other.y)/2.f);
+			//pan
+			touchCursor & other = touchs[otherIdx];
+			ofVec2f newCenter = (et+other)/2.f;
 			ofVec2f diff = newCenter - touchCenter;
 			moveBy(diff.x, diff.y);
 			touchCenter = newCenter;
+			//rotate
+			float newAngle = (touchs[0] - touchCenter).angle(base);
+			innerRotate += angleToTouchCenter - newAngle;
+			angleToTouchCenter = newAngle;
 		}
 	}
 }
@@ -170,9 +184,9 @@ void ofxTangibleHandle::touchUp(ofTouchEventArgs &e) {
 	if (!bGrabbingEnabled )
 		return;
 
-	vector<ofTouchEventArgs>::iterator it = touchs.begin();
+	vector<touchCursor>::iterator it = touchs.begin();
 	for(;it!=touchs.end();++it){
-		ofTouchEventArgs & et = *it;
+		touchCursor & et = *it;
 		if(et.id==e.id){
 			touchs.erase(it);
 			break;

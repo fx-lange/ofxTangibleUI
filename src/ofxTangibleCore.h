@@ -56,6 +56,7 @@ public:
 
 protected:
 	float pX, pY;
+	float innerRotate;
 	int touchId;
 
 	virtual void registerMouse();

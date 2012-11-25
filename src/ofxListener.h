@@ -57,10 +57,10 @@ protected:
 
 	virtual void updateOldAngle();
 
-private:
-	ofVec2f rotateCenter;
 	const ofVec3f base;
 	const ofVec3f zeroBaseCheck;
+private:
+	ofVec2f rotateCenter;
 	float oldAngle;
 
 	bool bKeepSameDistance;

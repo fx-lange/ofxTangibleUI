@@ -9,6 +9,7 @@ ofxTangibleCore::ofxTangibleCore(){
 	bTouchRegistered = false;
 	drawType = TANGIBLE_DRAW_AS_RECT;
 	touchId = -1;
+	innerRotate = 0.f;
 	bScaleTouchEvent = true;
 }
 

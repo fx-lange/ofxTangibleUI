@@ -7,6 +7,23 @@
 
 #include "ofxTangibleCore.h"
 
+struct touchCursor : public ofVec2f{
+	int id;
+
+	touchCursor& operator=(const ofTouchEventArgs& e){
+		x = e.x;
+		y = e.y;
+		id = e.id;
+		return *this;
+	}
+
+	touchCursor(const ofTouchEventArgs& e){
+		x = e.x;
+		y = e.y;
+		id = e.id;
+	}
+};
+
 class ofxTangibleHandle : public ofxTangibleCore{
 public:
 	ofColor color;
@@ -37,8 +54,9 @@ public:
 protected:
 	bool bGrabbingEnabled;
 
-	vector<ofTouchEventArgs> touchs;
+	vector<touchCursor> touchs;
 	ofVec2f touchCenter;
+	float angleToTouchCenter;
 
 	virtual void moveInner(float dx, float dy);
 
