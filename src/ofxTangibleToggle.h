@@ -44,7 +44,6 @@ public:
 		ofRemoveListener(hasChangedEvent,listener,method);
 	}
 
-	bool bPressed;
 protected:
 	bool bClickable;
 	ofEvent<bool> hasChangedEvent;

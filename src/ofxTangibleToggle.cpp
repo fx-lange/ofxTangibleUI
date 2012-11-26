@@ -6,7 +6,7 @@
 
 ofxTangibleToggle::ofxTangibleToggle(){
 	color.set(255,255,0);
-	bActive = bPressed = bTmpSwitch = false;
+	bActive = bTmpSwitch = false;
 	bClickable = true;
 	bChanged = false;
 }

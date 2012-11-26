@@ -54,6 +54,7 @@ public:
 
 	virtual void draw() = 0;
 
+	bool bPressed;
 protected:
 	float pX, pY;
 	int touchId;

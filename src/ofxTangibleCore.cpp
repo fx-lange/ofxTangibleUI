@@ -11,6 +11,7 @@ ofxTangibleCore::ofxTangibleCore(){
 	touchId = -1;
 	innerRotate = 0.f;
 	bScaleTouchEvent = true;
+	bPressed = false;
 }
 
 ofxTangibleCore::~ofxTangibleCore() {

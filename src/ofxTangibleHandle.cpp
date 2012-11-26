@@ -9,7 +9,7 @@
 #include "ofxTangibleHandle.h"
 
 ofxTangibleHandle::ofxTangibleHandle() :
-	bGrabbingEnabled(false), bPressed(false), fillMe(false){
+	bGrabbingEnabled(false), fillMe(false){
 }
 
 void ofxTangibleHandle::setup(float _x, float _y, float _w, float _h) {
@@ -148,7 +148,7 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 			float dx = touchX - te.x;
 			float dy = touchY - te.y;
 
-			moveBy(dx, dy);
+			moveInner(dx, dy);
 			te.x = touchX;
 			te.y = touchY;
 		}
@@ -171,7 +171,7 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 			touchCursor & other = touchs[otherIdx];
 			ofVec2f newCenter = (et+other)/2.f;
 			ofVec2f diff = newCenter - touchCenter;
-			moveBy(diff.x, diff.y);
+			moveInner(diff.x, diff.y);
 			touchCenter = newCenter;
 			//rotate
 			float newAngle = (touchs[0] - touchCenter).angle(base);

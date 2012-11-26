@@ -50,7 +50,6 @@ public:
 	virtual void touchMoved(ofTouchEventArgs &e);
 	virtual void touchUp(ofTouchEventArgs &e);
 
-	bool bPressed;
 protected:
 	bool bGrabbingEnabled;
 
