@@ -31,7 +31,7 @@ public:
 	virtual void rotateEvent(ofxTangibleRotateEvent & e);
 
 	virtual void moveBy(float dx, float dy);
-	virtual void rotateBy(float angle, float distance);
+	virtual void rotateBy(float angle, float distance);//TODO distance default = 0
 
 	void startListeningTo(ofxTransmitter & transmitter, tangibleEventType type = TANGIBLE_MOVE);
 	void startListeningTo(ofxTransmitter * transmitter, tangibleEventType type = TANGIBLE_MOVE);

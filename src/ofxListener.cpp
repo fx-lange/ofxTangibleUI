@@ -10,7 +10,7 @@ ofxListener::ofxListener() :
 	bListeningToMove = bListeningToRotate = false;
 	bKeepSameDistance = false;
 	moveListenersSpeed.set(1.f, 1.f);
-	rotateCenter.set(0.f, 0.f);
+	rotateCenter.set(0.f, 0.f); //TODO should be init as center?
 	oldAngle = 0;
 }
 
