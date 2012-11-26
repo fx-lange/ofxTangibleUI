@@ -12,7 +12,7 @@ ofxTangibleToggle::ofxTangibleToggle(){
 }
 
 void ofxTangibleToggle::setup(float _x,float _y, float _w, float _h){
-	ofxTangibleCore::setup(_x,_y,_w,_w);
+	ofxTangibleCore::setup(_x,_y,_w,_h);
 	registerMouse();
 	registerTouch();
 }
@@ -34,6 +34,10 @@ bool ofxTangibleToggle::hasChanged(){
 
 void ofxTangibleToggle::resetChanged(){
 	bChanged = false;
+}
+
+void ofxTangibleToggle::setClickable(bool clickable){
+	bClickable = clickable;
 }
 
 void ofxTangibleToggle::draw(){

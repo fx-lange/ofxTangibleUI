@@ -24,6 +24,7 @@ public:
 	void setActive(bool active);
 	bool hasChanged();
 	void resetChanged();
+	void setClickable(bool clickable);
 
 	virtual void mouseMoved(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
@@ -34,17 +35,17 @@ public:
 
 	//TODO consider to inherit from ofxToggle (ofxGui)
 	template<class ListenerClass>
-	void addListener(ListenerClass * listener, void ( ListenerClass::*method )(bool&)){
+	void addEventListener(ListenerClass * listener, void ( ListenerClass::*method )(bool&)){
 		ofAddListener(hasChangedEvent,listener,method);
 	}
 
 	template<class ListenerClass>
-	void removeListener(ListenerClass * listener, void ( ListenerClass::*method )(bool&)){
+	void removeEventListener(ListenerClass * listener, void ( ListenerClass::*method )(bool&)){
 		ofRemoveListener(hasChangedEvent,listener,method);
 	}
 
-protected:
 	bool bPressed;
+protected:
 	bool bClickable;
 	ofEvent<bool> hasChangedEvent;
 	bool bActive, bTmpSwitch;
