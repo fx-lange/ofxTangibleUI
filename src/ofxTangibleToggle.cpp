@@ -42,6 +42,7 @@ void ofxTangibleToggle::setClickable(bool clickable){
 
 void ofxTangibleToggle::draw(){
 	ofPushStyle();
+	ofPushMatrix();
 
 	bool bDrawActive = bActive;
 	if(bTmpSwitch){
@@ -55,12 +56,22 @@ void ofxTangibleToggle::draw(){
 	}
 
 	ofSetColor(color);
-	if(drawType == TANGIBLE_DRAW_AS_RECT){
-		ofRect(x,y,width,height);
-	}else{
-		ofCircle(x+width/2,y+width/2,width,width);
+	if (drawType == TANGIBLE_DRAW_AS_RECT) {
+		ofTranslate(width/2.f,height/2.f);
+		ofTranslate(x,y);
+		ofRotate(innerRotate);
+		ofSetRectMode(OF_RECTMODE_CENTER);
+		ofRect(0, 0, width, height);
+	} else if (drawType == TANGIBLE_DRAW_AS_CENTER_RECT) {
+		ofTranslate(x,y);
+		ofRotate(innerRotate);
+		ofSetRectMode(OF_RECTMODE_CENTER);
+		ofRect(0, 0, width, height);
+	} else {
+		ofCircle(x, y, width / 2, width / 2);
 	}
 
+	ofPopMatrix();
 	ofPopStyle();
 }
 
