@@ -40,6 +40,7 @@ void ofxListener::init(const ofxListener& other) {
 	x = other.x;
 	y = other.y;
 	bLocked = other.bLocked;
+	innerRotate = other.innerRotate;
 
 	rotateCenter = other.rotateCenter;
 	moveListenersSpeed = other.moveListenersSpeed;
@@ -219,7 +220,8 @@ void ofxListener::rotateBy(float angle, float distance) {
 	rotateListeners(angle, distance);
 	updateOldAngle();
 
-	rotateInner(angle);
+//	rotateInner(angle);
+	innerRotate += angle;
 
 	bLocked = false;
 }
