@@ -114,3 +114,11 @@ void ofxTangibleBezier::draw() {
 	line.draw();
 }
 
+void ofxTangibleBezier::printLinePoints(){
+	for(int i=0;i<line.size();++i){
+		ofPoint & p = line[i];
+//		cout << "(" << p.x << "," << p.y << ");" << endl;
+		cout <<  p.x << "," << p.y <<  endl;
+	}
+}
+

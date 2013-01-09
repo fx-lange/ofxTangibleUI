@@ -12,6 +12,7 @@ ofxTangibleCore::ofxTangibleCore(){
 	innerRotate = 0.f;
 	bScaleTouchEvent = true;
 	bPressed = false;
+	bPressedByTouch = false;
 }
 
 ofxTangibleCore::~ofxTangibleCore() {
@@ -43,6 +44,9 @@ void ofxTangibleCore::init(const ofxTangibleCore& other){
 	touchId = other.touchId;
 	width = other.width;
 	height = other.height;
+	bPressed = other.bPressed;
+	bPressedByTouch = other.bPressedByTouch;
+	bScaleTouchEvent = other.bScaleTouchEvent;
 
 	pX = other.pX;
 	pY = other.pY;

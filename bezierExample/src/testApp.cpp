@@ -1,5 +1,7 @@
 #include "testApp.h"
 
+bool ePrintPoints = false;
+
 //--------------------------------------------------------------
 void bezierExample::setup(){
 	ofSetLogLevel(OF_LOG_VERBOSE);
@@ -10,6 +12,10 @@ void bezierExample::setup(){
 
 //--------------------------------------------------------------
 void bezierExample::update(){
+	if(ePrintPoints){
+		bezier.printLinePoints();
+		ePrintPoints = false;
+	}
 }
 
 //--------------------------------------------------------------
@@ -25,6 +31,9 @@ void bezierExample::keyPressed(int key){
 	}
 	if(key == 'c'){
 		bezier.clear();
+	}
+	if(key == 'p'){
+		ePrintPoints = true;
 	}
 }
 

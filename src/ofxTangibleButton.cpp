@@ -30,14 +30,14 @@ void ofxTangibleButton::touchDown(ofTouchEventArgs &e) {
 		touchY *= ofGetHeight();
 	}
 
-	if (!bClickable || !isOver(touchX, touchY) || bPressed)
+	if (!bClickable || !isOver(touchX, touchY) || bPressedByTouch)
 		return;
 
 	touchId = e.id;
 	setActive(true);
 	bChanged = true;
 
-	bPressed = true;
+	bPressedByTouch = true;
 }
 
 
@@ -50,7 +50,7 @@ void ofxTangibleButton::touchUp(ofTouchEventArgs &e) {
 		touchY *= ofGetHeight();
 	}
 
-	if (!bClickable || !bPressed)
+	if (!bClickable || !bPressedByTouch)
 		return;
 
 	if(touchId != e.id)
@@ -58,5 +58,5 @@ void ofxTangibleButton::touchUp(ofTouchEventArgs &e) {
 
 	setActive(false);
 	bChanged = true;
-	bPressed = false;
+	bPressedByTouch = false;
 }

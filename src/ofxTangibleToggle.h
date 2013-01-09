@@ -34,6 +34,7 @@ public:
 	virtual void touchUp(ofTouchEventArgs &e);
 
 	//TODO consider to inherit from ofxToggle (ofxGui)
+	//TODO cpy constructor safe?
 	template<class ListenerClass>
 	void addEventListener(ListenerClass * listener, void ( ListenerClass::*method )(bool&)){
 		ofAddListener(hasChangedEvent,listener,method);

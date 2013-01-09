@@ -62,7 +62,8 @@ void ofxTangibleHandle::draw() {
 		ofSetRectMode(OF_RECTMODE_CENTER);
 		ofRect(0, 0, width, height);
 	} else {
-		ofCircle(x, y, width / 2, width / 2);
+		ofTranslate(x,y);
+		ofEllipse(0, 0, width, height);
 	}
 
 	ofPopMatrix();
@@ -118,7 +119,7 @@ void ofxTangibleHandle::touchDown(ofTouchEventArgs &e) {
 		touchs.push_back(e);
 		touchs.back().x = touchX;
 		touchs.back().y = touchY;
-		bPressed = true;
+		bPressedByTouch = true;
 	}else if(touchs.size()==1){
 		touchs.push_back(e);
 		touchs.back().x = touchX;
@@ -195,6 +196,6 @@ void ofxTangibleHandle::touchUp(ofTouchEventArgs &e) {
 	}
 
 	if(touchs.empty())
-		bPressed = false;
+		bPressedByTouch = false;
 }
 

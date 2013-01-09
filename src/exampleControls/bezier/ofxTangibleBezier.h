@@ -25,6 +25,8 @@ public:
 
 	virtual void draw();
 
+	void printLinePoints();
+
 protected:
 	typedef list<ofxTangibleBezierControl> BezierControls;
 	BezierControls controls;

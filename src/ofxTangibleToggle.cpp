@@ -98,7 +98,7 @@ void ofxTangibleToggle::mouseMoved(ofMouseEventArgs &e){
 }
 
 void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
-	if (!bClickable || bPressed)
+	if (!bClickable || bPressedByTouch)
 			return;
 
 	float touchX = e.x;
@@ -113,13 +113,13 @@ void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
 		bTmpSwitch = true;
 
 		touchId = e.id;
-		bPressed = true;
+		bPressedByTouch = true;
 	}
 }
 
 
 void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
-	if (!bClickable || !bPressed)
+	if (!bClickable || !bPressedByTouch)
 		return;
 
 	float touchX = e.x;
@@ -134,7 +134,7 @@ void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
 		return;
 
 	bTmpSwitch = false;
-	bPressed = false;
+	bPressedByTouch = false;
 
 	if (isOver(touchX,touchY)){
 		setActive(!bActive);
