@@ -33,12 +33,12 @@ public:
 	virtual void moveBy(float dx, float dy);
 	virtual void rotateBy(float angle, float distance);//TODO distance default = 0
 
-	void startListeningTo(ofxTransmitter & transmitter, tangibleEventType type = TANGIBLE_MOVE);
-	void startListeningTo(ofxTransmitter * transmitter, tangibleEventType type = TANGIBLE_MOVE);
-	void startListeningTo(const int id, tangibleEventType type);
-	void stopListeningTo(ofxTransmitter & transmitter, tangibleEventType type);
-	void stopListeningTo(ofxTransmitter * transmitter, tangibleEventType type);
-	void stopListeningTo(const int id, tangibleEventType type);
+	virtual void startListeningTo(ofxTransmitter & transmitter, tangibleEventType type = TANGIBLE_MOVE);
+	virtual void startListeningTo(ofxTransmitter * transmitter, tangibleEventType type = TANGIBLE_MOVE);
+	virtual void startListeningTo(const int id, tangibleEventType type);
+	virtual void stopListeningTo(ofxTransmitter & transmitter, tangibleEventType type);
+	virtual void stopListeningTo(ofxTransmitter * transmitter, tangibleEventType type);
+	virtual void stopListeningTo(const int id, tangibleEventType type);
 
 	void setMoveListenersSpeed(float vx, float vy);
 	void setMoveListenersSpeed(const ofVec2f & v);

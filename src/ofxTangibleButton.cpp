@@ -50,7 +50,7 @@ void ofxTangibleButton::touchUp(ofTouchEventArgs &e) {
 		touchY *= ofGetHeight();
 	}
 
-	if (!bClickable || !bPressedByTouch)
+	if(!bPressedByTouch)
 		return;
 
 	if(touchId != e.id)

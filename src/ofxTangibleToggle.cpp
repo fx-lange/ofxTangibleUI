@@ -21,10 +21,11 @@ bool ofxTangibleToggle::isActive(){
 	return bActive;
 }
 
-void ofxTangibleToggle::setActive(bool active){
+void ofxTangibleToggle::setActive(bool active, bool silent){
 	if(bActive != active){
 		bActive = active;
-		ofNotifyEvent(hasChangedEvent,bActive,this);
+		if(!silent)
+			ofNotifyEvent(hasChangedEvent,bActive,this);
 	}
 }
 
@@ -38,6 +39,10 @@ void ofxTangibleToggle::resetChanged(){
 
 void ofxTangibleToggle::setClickable(bool clickable){
 	bClickable = clickable;
+}
+
+bool ofxTangibleToggle::isClickable(){
+	return bClickable;
 }
 
 void ofxTangibleToggle::draw(){

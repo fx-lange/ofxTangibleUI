@@ -21,10 +21,11 @@ public:
 	virtual void draw();
 
 	bool isActive();
-	void setActive(bool active);
+	void setActive(bool active, bool silent = false);
 	bool hasChanged();
 	void resetChanged();
 	void setClickable(bool clickable);
+	bool isClickable();
 
 	virtual void mouseMoved(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
