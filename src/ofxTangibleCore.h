@@ -17,6 +17,8 @@ enum tangibleDrawType{
 	TANGIBLE_DRAW_AS_CENTER_RECT
 };
 
+class ofxXmlSettings;
+
 class ofxTangibleCore: public ofxListener {
 public:
 	float width, height;
@@ -53,6 +55,9 @@ public:
 	virtual void touchCancelled(ofTouchEventArgs &e){}
 
 	virtual void draw() = 0;
+
+	virtual void saveToXml(ofxXmlSettings & xml);
+	virtual void loadFromXml(ofxXmlSettings & xml);
 
 	bool bPressed, bPressedByTouch;
 protected:

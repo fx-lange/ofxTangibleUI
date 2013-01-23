@@ -25,7 +25,7 @@ public:
 class ofxTransmitter {
 public:
 	static int generateId(){
-		return generatedId++;
+		return ++generatedId;
 	}
 
 	ofxTransmitter();
@@ -39,8 +39,8 @@ protected:
 	virtual void moveListeners(float dx, float dy);
 	virtual void rotateListeners(float angle, float distance);
 
-private:
 	int id;
+private:
 	static int generatedId;
 };
 

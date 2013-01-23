@@ -3,6 +3,7 @@
  */
 
 #include "ofxTangibleCore.h"
+#include "ofxXmlSettings.h"
 
 ofxTangibleCore::ofxTangibleCore(){
 	bMouseRegistered = false;
@@ -126,5 +127,20 @@ void ofxTangibleCore::unregisterTouch(){
 		return;
 	ofUnregisterTouchEvents(this);
 	bTouchRegistered = false;
+}
+
+void ofxTangibleCore::saveToXml(ofxXmlSettings & xml){
+	xml.setValue("x",x);
+	xml.setValue("y",y);
+	xml.setValue("width",width);
+	xml.setValue("height",height);
+}
+
+void ofxTangibleCore::loadFromXml(ofxXmlSettings & xml){
+	x = xml.getValue("x",0);
+	y = xml.getValue("y",0);
+	width = xml.getValue("width",20);
+	height = xml.getValue("height",20);
+	setup(x,y,width,height);
 }
 
