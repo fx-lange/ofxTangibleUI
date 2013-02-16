@@ -22,6 +22,7 @@ public:
 
 	bool isActive();
 	void setActive(bool active, bool silent = false);
+	void activateByEvent(bool & active);
 	bool hasChanged();
 	void resetChanged();
 	void setClickable(bool clickable);
@@ -49,7 +50,7 @@ public:
 protected:
 	bool bClickable;
 	ofEvent<bool> hasChangedEvent;
-	bool bActive, bTmpSwitch;
+	bool bActive, bDrawAsPressed;
 	bool bChanged;
 };
 

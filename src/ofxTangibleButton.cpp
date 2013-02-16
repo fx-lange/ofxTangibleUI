@@ -5,11 +5,7 @@ void ofxTangibleButton::mousePressed(ofMouseEventArgs &e) {
 	if (!bClickable || !isOver(e.x, e.y))
 		return;
 
-	if(bPressed == false){
-		setActive(true);
-		bChanged = true;
-	}
-
+	bDrawAsPressed = true;
 	bPressed = true;
 }
 
@@ -17,8 +13,14 @@ void ofxTangibleButton::mouseReleased(ofMouseEventArgs &e) {
 	if (!bClickable || !bPressed)
 		return;
 
-	setActive(false);
 	bPressed = false;
+	bDrawAsPressed = false;
+
+	if(isOver(e.x,e.y)){
+		setActive(true);
+		bActive = false; //TODO irritating
+	}
+
 }
 
 void ofxTangibleButton::touchDown(ofTouchEventArgs &e) {
@@ -58,8 +60,8 @@ void ofxTangibleButton::touchUp(ofTouchEventArgs &e) {
 
 	if(isOver(touchX,touchY)){
 		setActive(true);
+		bActive = false; //TODO irritating
 		bChanged = true;
 	}
 	bPressedByTouch = false;
-	setActive(false,true);
 }

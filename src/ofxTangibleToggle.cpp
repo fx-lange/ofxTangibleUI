@@ -6,7 +6,7 @@
 
 ofxTangibleToggle::ofxTangibleToggle(){
 	color.set(255,255,0);
-	bActive = bTmpSwitch = false;
+	bActive = bDrawAsPressed = false;
 	bClickable = true;
 	bChanged = false;
 }
@@ -27,6 +27,10 @@ void ofxTangibleToggle::setActive(bool active, bool silent){
 		if(!silent)
 			ofNotifyEvent(hasChangedEvent,bActive,this);
 	}
+}
+
+void ofxTangibleToggle::activateByEvent(bool & active){
+	setActive(active==true);
 }
 
 bool ofxTangibleToggle::hasChanged(){
@@ -50,7 +54,7 @@ void ofxTangibleToggle::draw(){
 	ofPushMatrix();
 
 	bool bDrawActive = bActive;
-	if(bTmpSwitch){
+	if(bDrawAsPressed){
 		bDrawActive = !bDrawActive;
 	}
 
@@ -86,15 +90,15 @@ void ofxTangibleToggle::mousePressed(ofMouseEventArgs &e) {
 		return;
 
 	bPressed = true;
-	bTmpSwitch = true;
+	bDrawAsPressed = true;
 }
 
 void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
-	bTmpSwitch = false;
+	bDrawAsPressed = false;
 	if (!bClickable || !bPressed || !isOver(e.x, e.y))
 		return;
 
-	setActive(!bActive);
+	setActive(!bActive); //onRelease
 	bChanged = true;
 	bPressed = false;
 }
@@ -116,7 +120,7 @@ void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
 	}
 
 	if (isOver(touchX, touchY)){
-		bTmpSwitch = true;
+		bDrawAsPressed = true;
 
 		touchId = e.id;
 		bPressedByTouch = true;
@@ -131,7 +135,7 @@ void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
 	float touchX = e.x;
 	float touchY = e.y;
 
-	if(bScaleTouchEvent){
+	if(bScaleTouchEvent){ //for example tuio coordinates are between 0 and 1
 		touchX *= ofGetWidth();
 		touchY *= ofGetHeight();
 	}
@@ -139,11 +143,11 @@ void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
 	if(touchId != e.id)
 		return;
 
-	bTmpSwitch = false;
+	bDrawAsPressed = false;
 	bPressedByTouch = false;
 
 	if (isOver(touchX,touchY)){
-		setActive(!bActive);
+		setActive(!bActive); //onRelease
 		bChanged = true;
 	}
 }
