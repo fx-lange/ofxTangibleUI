@@ -61,6 +61,7 @@ public:
 
 	bool bPressed, bPressedByTouch;
 protected:
+
 	float pX, pY;
 	int touchId;
 

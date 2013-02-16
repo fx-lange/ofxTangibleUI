@@ -16,6 +16,7 @@ ofxListener::ofxListener() :
 
 ofxListener::~ofxListener() {
 	if (bListeningToMove) {
+		moveTransmitters.clear();
 		bListeningToMove = false;
 		ofRemoveListener(ofxTangibleMoveEvent::events, this, &ofxListener::moveEvent);
 	}

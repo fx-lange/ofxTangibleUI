@@ -73,7 +73,8 @@ void ofxTangibleToggle::draw(){
 		ofSetRectMode(OF_RECTMODE_CENTER);
 		ofRect(0, 0, width, height);
 	} else {
-		ofCircle(x, y, width / 2, width / 2);
+		ofTranslate(x,y);
+		ofEllipse(0, 0, width, height);
 	}
 
 	ofPopMatrix();
