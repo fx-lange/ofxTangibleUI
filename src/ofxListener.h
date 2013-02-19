@@ -61,7 +61,7 @@ protected:
 	const ofVec3f zeroBaseCheck;
 
 	float innerRotate;
-	virtual void rotateInner(float degree);
+	virtual void rotateInner(float degree); //TODO naming - rotate shape/ object vs rotateBy() = moveByRotate - rotateAroundRotationCenter
 private:
 	ofVec2f rotateCenter;
 	float oldAngle;

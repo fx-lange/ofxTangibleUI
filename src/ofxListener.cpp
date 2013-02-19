@@ -219,7 +219,8 @@ void ofxListener::rotateBy(float angle, float distance) {
 	y = vec.y;
 
 	rotateListeners(angle, distance);
-	updateOldAngle();
+//	updateOldAngle();
+	oldAngle += angle;
 
 //	rotateInner(angle);
 	innerRotate += angle;

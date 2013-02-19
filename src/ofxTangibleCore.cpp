@@ -137,10 +137,10 @@ void ofxTangibleCore::saveToXml(ofxXmlSettings & xml){
 }
 
 void ofxTangibleCore::loadFromXml(ofxXmlSettings & xml){
-	x = xml.getValue("x",0);
-	y = xml.getValue("y",0);
-	width = xml.getValue("width",20);
-	height = xml.getValue("height",20);
-	setup(x,y,width,height);
+	float x = xml.getValue("x",0);
+	float y = xml.getValue("y",0);
+	float w = xml.getValue("width",20);
+	float h = xml.getValue("height",20);
+	setup(x,y,w,h);
 }
 
