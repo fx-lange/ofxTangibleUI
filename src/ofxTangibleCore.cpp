@@ -14,6 +14,7 @@ ofxTangibleCore::ofxTangibleCore(){
 	bScaleTouchEvent = true;
 	bPressed = false;
 	bPressedByTouch = false;
+	bDrawDebug = false;
 }
 
 ofxTangibleCore::~ofxTangibleCore() {
@@ -48,6 +49,7 @@ void ofxTangibleCore::init(const ofxTangibleCore& other){
 	bPressed = other.bPressed;
 	bPressedByTouch = other.bPressedByTouch;
 	bScaleTouchEvent = other.bScaleTouchEvent;
+	color = other.color;
 
 	pX = other.pX;
 	pY = other.pY;
@@ -91,6 +93,46 @@ bool ofxTangibleCore::isOver(float px, float py) {
 		}else {
 			return false;
 		}
+	}
+}
+
+void ofxTangibleCore::draw() {
+	ofPushStyle();
+	ofPushMatrix();
+
+	if (drawType == TANGIBLE_DRAW_AS_CENTERED_RECT) {
+		ofTranslate(x,y);
+		ofRotate(innerRotate);
+		ofSetRectMode(OF_RECTMODE_CENTER);
+	} else {
+		ofTranslate(x,y);
+		ofRotate(innerRotate);
+	}
+
+	drawInner();
+	if(bDrawDebug){
+		drawDebug();
+	}
+
+	ofPopMatrix();
+	ofPopStyle();
+}
+
+void ofxTangibleCore::drawInner(){
+	ofSetColor(color);
+	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
+		ofRect(0,0,width,height);
+	}else{
+		ofEllipse(0,0,width,height);
+	}
+}
+
+void ofxTangibleCore::drawDebug(){
+	ofSetColor(color);
+	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
+		ofRect(x,y,width,height);
+	}else{
+		ofEllipse(x,y,width,height);
 	}
 }
 

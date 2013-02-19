@@ -23,6 +23,7 @@ public:
 	float width, height;
 	tangibleDrawType drawType;
 	bool bScaleTouchEvent;
+	ofColor color;
 
 	ofxTangibleCore();
 	virtual ~ofxTangibleCore();
@@ -53,12 +54,13 @@ public:
 	virtual void touchUp(ofTouchEventArgs &e){}
 	virtual void touchCancelled(ofTouchEventArgs &e){}
 
-	virtual void draw() = 0;
+	virtual void draw(); //for styling you should override drawInner() not draw() //TODO move to core?
 
 	virtual void saveToXml(ofxXmlSettings & xml);
 	virtual void loadFromXml(ofxXmlSettings & xml);
 
-	bool bPressed, bPressedByTouch;
+	bool bPressed, bPressedByTouch;//TODO change accessibility to protected
+	bool bDrawDebug;
 protected:
 
 	float pX, pY;
@@ -72,6 +74,8 @@ protected:
 
 	virtual bool isOver(float px, float py);
 
+	virtual void drawInner();
+	virtual void drawDebug(); //as default same as drawInner - for later, once you start designing your own classes
 private:
 	bool bMouseRegistered, bTouchRegistered;
 	void init(const ofxTangibleCore& other);

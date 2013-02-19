@@ -40,28 +40,16 @@ bool ofxTangibleHandle::isGrabbingEnabled() {
 	return bGrabbingEnabled;
 }
 
-void ofxTangibleHandle::draw() {
-	ofPushStyle();
-	ofPushMatrix();
 
+void ofxTangibleHandle::drawInner(){
 	if (fillMe) {
 		ofFill();
 	} else {
 		ofNoFill();
 	}
-	ofSetColor(color);
-	if (drawType == TANGIBLE_DRAW_AS_CENTERED_RECT) {
-		ofTranslate(x,y);
-		ofRotate(innerRotate);
-		ofSetRectMode(OF_RECTMODE_CENTER);
-		ofRect(0, 0, width, height);
-	} else {
-		ofTranslate(x,y);
-		ofEllipse(0, 0, width, height);
-	}
 
-	ofPopMatrix();
-	ofPopStyle();
+	ofSetColor(color);
+	ofxTangibleCore::drawInner();
 }
 
 void ofxTangibleHandle::moveInner(float dx, float dy) {

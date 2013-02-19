@@ -9,16 +9,11 @@
 
 class ofxTangibleToggle : public ofxTangibleCore{
 public:
-
-	ofColor color;
-
 	ofxTangibleToggle();
 
 	//default copy and assignment constructor
 
 	virtual void setup(float _x,float _y, float _w, float _h);
-
-	virtual void draw();
 
 	bool isActive();
 	void setActive(bool active, bool silent = false);
@@ -52,6 +47,8 @@ protected:
 	ofEvent<bool> hasChangedEvent;
 	bool bActive, bDrawAsPressed;
 	bool bChanged;
+
+	virtual void drawInner();
 };
 
 #endif /* OFXTOGGLE_H_ */
