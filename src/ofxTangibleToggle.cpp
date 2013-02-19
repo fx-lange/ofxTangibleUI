@@ -65,13 +65,7 @@ void ofxTangibleToggle::draw(){
 	}
 
 	ofSetColor(color);
-	if (drawType == TANGIBLE_DRAW_AS_RECT) {
-		ofTranslate(width/2.f,height/2.f);
-		ofTranslate(x,y);
-		ofRotate(innerRotate);
-		ofSetRectMode(OF_RECTMODE_CENTER);
-		ofRect(0, 0, width, height);
-	} else if (drawType == TANGIBLE_DRAW_AS_CENTER_RECT) {
+	if (drawType == TANGIBLE_DRAW_AS_CENTERED_RECT) {
 		ofTranslate(x,y);
 		ofRotate(innerRotate);
 		ofSetRectMode(OF_RECTMODE_CENTER);

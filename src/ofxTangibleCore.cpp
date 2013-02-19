@@ -8,7 +8,7 @@
 ofxTangibleCore::ofxTangibleCore(){
 	bMouseRegistered = false;
 	bTouchRegistered = false;
-	drawType = TANGIBLE_DRAW_AS_RECT;
+	drawType = TANGIBLE_DRAW_AS_CENTERED_RECT;
 	touchId = -1;
 	innerRotate = 0.f;
 	bScaleTouchEvent = true;
@@ -83,11 +83,6 @@ bool ofxTangibleCore::isOver(float px, float py) {
 		}
 	}else{
 		ofVec2f mouse(px-x,py-y);
-
-		if(drawType == TANGIBLE_DRAW_AS_RECT){
-			mouse.x -= width/2.f;
-			mouse.y -= height/2.f;
-		}
 
 		mouse.rotate(-innerRotate);
 

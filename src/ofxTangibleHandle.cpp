@@ -50,31 +50,7 @@ void ofxTangibleHandle::draw() {
 		ofNoFill();
 	}
 	ofSetColor(color);
-	if (drawType == TANGIBLE_DRAW_AS_RECT) {
-//		ofTranslate(width/2.f,height/2.f);
-//		ofTranslate(x,y);
-//		ofRotate(innerRotate);
-//		ofSetRectMode(OF_RECTMODE_CENTER);
-//		ofRect(0, 0, width, height);
-//		ofTranslate(x,y);
-//			ofVec3f vecToShapeCenter = ofVec3f(width/2.f,height/2.f);
-//			vecToShapeCenter.rotate(0,0,innerRotate);
-//			ofTranslate(x,y);
-//			ofCircle(0,0,5,5);
-//			ofTranslate(vecToShapeCenter);
-//			ofRotate(innerRotate);
-//			ofCircle(0,0,5,5);
-//			ofRect(0, 0, width, height);
-//			vecToShapeCenter.rotate(0,0,-innerRotate);
-//			ofTranslate(-vecToShapeCenter);
-//			ofRect(0, 0, width, height);
-				ofVec3f vecToShapeCenter = ofVec3f(width/2.f,height/2.f);
-				ofTranslate(x,y);
-				ofCircle(0,0,5,5);
-				ofRotate(innerRotate);
-				ofTranslate(-vecToShapeCenter);
-				ofRect(0, 0, width, height);
-	} else if (drawType == TANGIBLE_DRAW_AS_CENTER_RECT) {
+	if (drawType == TANGIBLE_DRAW_AS_CENTERED_RECT) {
 		ofTranslate(x,y);
 		ofRotate(innerRotate);
 		ofSetRectMode(OF_RECTMODE_CENTER);

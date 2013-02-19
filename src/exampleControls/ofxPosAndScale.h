@@ -32,7 +32,7 @@ public:
 
 	virtual void setup(float x,float y, float w, float h){
 		ofxTangibleHandle::setup(x,y+h/2,w/3,h/10);
-		range.setup(x,y);
+		range.setup(x,y-h/2.f);
 		range.range = h;
 	}
 
