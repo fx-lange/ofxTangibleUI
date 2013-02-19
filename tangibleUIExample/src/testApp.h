@@ -8,6 +8,7 @@
 #include "ofxTimeline.h"
 #include "ofxPosAndScale.h"
 #include "ofxTangibleBezier.h"
+#include "ofxTangibleImage.h"
 
 class tangibleUiExample : public ofBaseApp{
 
@@ -40,4 +41,6 @@ class tangibleUiExample : public ofBaseApp{
 		ofxPosAndScale pAndS;
 		ofxTangibleBezierHelper r1,r2;
 		vector<ofxTangibleBezierHelper> helpers;
+
+		ofxTangibleImage imageHandle;
 };

@@ -7,6 +7,7 @@ float x,y;
 void tangibleUiExample::setup(){
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofBackground(0);
+	ofEnableAlphaBlending();
 
 	//test handles
 	handle.setup(40,40,20,20);
@@ -77,6 +78,8 @@ void tangibleUiExample::setup(){
 	helpers.reserve(10);
 	helpers.push_back(h1);
 	helpers.push_back(h2);
+
+	imageHandle.setup(400,400,"transparency.png");
 }
 
 void tangibleUiExample::toggleHasChanged(bool & active){
@@ -112,6 +115,8 @@ void tangibleUiExample::draw(){
 
 	helpers[0].draw();
 	helpers[1].draw();
+
+	imageHandle.draw();
 }
 
 //--------------------------------------------------------------
