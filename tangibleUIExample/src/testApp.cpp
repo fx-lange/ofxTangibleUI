@@ -24,12 +24,12 @@ void tangibleUiExample::setup(){
 	//test toggle
 	toggle.setup(65,40,20,20);
 	toggle.startListeningTo(handle);
-	toggle.addListener(this,&tangibleUiExample::toggleHasChanged);
+	toggle.addEventListener(this,&tangibleUiExample::toggleHasChanged);
 
 	//test button
 	button.setup(90,40,20,20);
 	button.startListeningTo(toggle);
-	button.addListener(this,&tangibleUiExample::buttonHasChanged);
+	button.addEventListener(this,&tangibleUiExample::buttonHasChanged);
 
 	//test destructor and copy constructor
 	ofxTangibleHandle tempHandle;
