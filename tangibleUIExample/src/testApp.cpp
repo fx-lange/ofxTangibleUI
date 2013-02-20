@@ -80,6 +80,7 @@ void tangibleUiExample::setup(){
 	helpers.push_back(h2);
 
 	imageHandle.setup(400,400,"transparency.png");
+	imageHandle.bDrawDebug = true;
 }
 
 void tangibleUiExample::toggleHasChanged(bool & active){
