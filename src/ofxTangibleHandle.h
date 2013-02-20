@@ -1,27 +1,16 @@
-/*
- * ofxTangibleHandle.h
- */
-
 #ifndef OFXHANDLE_H_
 #define OFXHANDLE_H_
 
 #include "ofxTangibleCore.h"
 
+/* TODO
+ * hover?!
+ * test >=3 finger rotation (any problems?) */
+
 struct touchCursor : public ofVec2f{
 	int id;
-
-	touchCursor& operator=(const ofTouchEventArgs& e){
-		x = e.x;
-		y = e.y;
-		id = e.id;
-		return *this;
-	}
-
-	touchCursor(const ofTouchEventArgs& e){
-		x = e.x;
-		y = e.y;
-		id = e.id;
-	}
+	touchCursor& operator=(const ofTouchEventArgs& e);
+	touchCursor(const ofTouchEventArgs& e);
 };
 
 class ofxTangibleHandle : public ofxTangibleCore{
@@ -33,16 +22,19 @@ public:
 
 	virtual void setup(float _x,float _y, float _w, float _h);
 
+	//control whether grabbing the object is possible
 	virtual void enableGrabbing();
 	virtual void disableGrabbing();
 	virtual void setGrabbing(bool bGrabbing);
 	virtual void toggleGrabbing();
 	virtual bool isGrabbingEnabled();
 
+	//mouse interaction
 	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);
 
+	//touch interaction
 	virtual void touchDown(ofTouchEventArgs &e);
 	virtual void touchMoved(ofTouchEventArgs &e);
 	virtual void touchUp(ofTouchEventArgs &e);
@@ -50,13 +42,20 @@ public:
 protected:
 	bool bGrabbingEnabled;
 
-	vector<touchCursor> touchs;
-	ofVec2f touchCenter;
-	float angleToTouchCenter;
+	vector<touchCursor> touchs; //0-2 touch cursor stored
+	ofVec2f touchCenter;		//center of touch cursors
+	float angleToTouchCenter;	//angle of the touch cursors to the touchCenter
 
+	/* method to move the object only called internal by mouse or touch interaction methods
+	 * forwards movement direction to moveBy(dx,dy) by default
+	 * encapsulated for the case that the behavior should differ depending on whether
+	 * 		movement is called from inside(moveInner->moveBy) or outside (moveEvent->moveBy)*/
 	virtual void moveInner(float dx, float dy);
 
-	virtual void drawInner(); //should override this function to style your own class
+	/* is called by draw()
+	 * coordinate system is centered at x,y and rotated by innerRotate
+	 * you should override this function to style your own class */
+	virtual void drawInner();
 };
 
 class ofxTangibleYFixedHandle : public ofxTangibleHandle{

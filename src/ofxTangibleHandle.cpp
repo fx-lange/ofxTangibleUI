@@ -1,11 +1,3 @@
-/*
- * ofxTangibleHandle.cpp
- */
-
-/*TODO
- * hover?!
- * */
-
 #include "ofxTangibleHandle.h"
 
 ofxTangibleHandle::ofxTangibleHandle() :
@@ -179,5 +171,18 @@ void ofxTangibleHandle::touchUp(ofTouchEventArgs &e) {
 
 	if(touchs.empty())
 		bPressedByTouch = false;
+}
+
+touchCursor& touchCursor::operator=(const ofTouchEventArgs& e){
+	x = e.x;
+	y = e.y;
+	id = e.id;
+	return *this;
+}
+
+touchCursor::touchCursor(const ofTouchEventArgs& e){
+	x = e.x;
+	y = e.y;
+	id = e.id;
 }
 

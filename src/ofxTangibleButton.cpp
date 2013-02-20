@@ -36,8 +36,6 @@ void ofxTangibleButton::touchDown(ofTouchEventArgs &e) {
 		return;
 
 	touchId = e.id;
-//	setActive(true); //onRelease
-//	bChanged = true;
 
 	bPressedByTouch = true;
 }
@@ -60,8 +58,7 @@ void ofxTangibleButton::touchUp(ofTouchEventArgs &e) {
 
 	if(isOver(touchX,touchY)){
 		setActive(true);
-		bActive = false; //TODO irritating
-		bChanged = true;
+		bActive = false; //TODO kind of irritating
 	}
 	bPressedByTouch = false;
 }

@@ -1,7 +1,3 @@
-/*
- * ofxTangibleCore.cpp
- */
-
 #include "ofxTangibleCore.h"
 #include "ofxXmlSettings.h"
 
@@ -119,21 +115,26 @@ void ofxTangibleCore::draw() {
 }
 
 void ofxTangibleCore::drawInner(){
+	ofPushStyle();
+	ofSetColor(color);
+	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
+		ofRect(0,0,width,height);
+	}else{
+		ofCircle(0,0,width); //radius = width, ignore height
+	}
+	ofPopStyle();
+}
+
+void ofxTangibleCore::drawDebug(){
+	ofPushStyle();
+	ofNoFill();
 	ofSetColor(color);
 	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
 		ofRect(0,0,width,height);
 	}else{
 		ofEllipse(0,0,width,height);
 	}
-}
-
-void ofxTangibleCore::drawDebug(){
-	ofSetColor(color);
-	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
-		ofRect(x,y,width,height);
-	}else{
-		ofEllipse(x,y,width,height);
-	}
+	ofPopStyle();
 }
 
 void ofxTangibleCore::registerMouse() {

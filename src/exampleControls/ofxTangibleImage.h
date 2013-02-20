@@ -1,6 +1,7 @@
 #ifndef OFXTANGIBLEIMAGE_H_
 #define OFXTANGIBLEIMAGE_H_
 
+#include "ofMain.h"
 #include "ofxTangibleHandle.h"
 
 class ofxTangibleImage : public ofxTangibleHandle{

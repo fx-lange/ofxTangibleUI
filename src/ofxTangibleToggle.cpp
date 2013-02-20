@@ -8,7 +8,6 @@ ofxTangibleToggle::ofxTangibleToggle(){
 	color.set(255,255,0);
 	bActive = bDrawAsPressed = false;
 	bClickable = true;
-	bChanged = false;
 }
 
 void ofxTangibleToggle::setup(float _x,float _y, float _w, float _h){
@@ -33,14 +32,6 @@ void ofxTangibleToggle::activateByEvent(bool & active){
 	setActive(active==true);
 }
 
-bool ofxTangibleToggle::hasChanged(){
-	return bChanged;
-}
-
-void ofxTangibleToggle::resetChanged(){
-	bChanged = false;
-}
-
 void ofxTangibleToggle::setClickable(bool clickable){
 	bClickable = clickable;
 }
@@ -50,13 +41,16 @@ bool ofxTangibleToggle::isClickable(){
 }
 
 void ofxTangibleToggle::drawInner(){
+	//REVISIT could be encapsulated by using sth. like preDraw() or styleBeforeDraw()
 
-	bool bDrawActive = bActive;
+	//toggle only changes state on mouseRelease() / touchUp()
+	// => temporary visual state needed if pressed
+	bool bDrawAsActive = bActive;
 	if(bDrawAsPressed){
-		bDrawActive = !bDrawActive;
+		bDrawAsActive = !bDrawAsActive;
 	}
 
-	if(bDrawActive){
+	if(bDrawAsActive){
 		ofFill();
 	}else{
 		ofNoFill();
@@ -80,7 +74,6 @@ void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
 		return;
 
 	setActive(!bActive); //onRelease
-	bChanged = true;
 	bPressed = false;
 }
 
@@ -129,6 +122,5 @@ void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
 
 	if (isOver(touchX,touchY)){
 		setActive(!bActive); //onRelease
-		bChanged = true;
 	}
 }
