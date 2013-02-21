@@ -75,7 +75,7 @@ protected:
 	virtual void unregisterTouch();
 
 	//hit test
-	//REVISIT needed public?!
+	//REVISIT needed as public?!
 	virtual bool isOver(float px, float py);
 
 	/* is called by draw()

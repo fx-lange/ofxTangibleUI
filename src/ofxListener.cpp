@@ -1,7 +1,3 @@
-/*
- * ofxListener.cpp
- */
-
 #include "ofxListener.h"
 
 ofxListener::ofxListener() :
@@ -219,10 +215,8 @@ void ofxListener::rotateBy(float angle, float distance) {
 	y = vec.y;
 
 	rotateListeners(angle, distance);
-//	updateOldAngle();
 	oldAngle += angle;
 
-//	rotateInner(angle);
 	innerRotate += angle;
 
 	bLocked = false;
