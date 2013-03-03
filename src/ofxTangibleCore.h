@@ -14,7 +14,10 @@ enum tangibleDrawType{
 	TANGIBLE_DRAW_AS_CENTERED_RECT //draw object as a rectangle using OF_RECTMODE_CENTER (centered at x,y)
 };
 
-
+/* ofxTangibleCore
+ * tangible interactive base class (by default via mouse or touch)
+ * also movable by listening (ofxListener)
+ */
 class ofxTangibleCore: public ofxListener {
 public:
 	float width, height;

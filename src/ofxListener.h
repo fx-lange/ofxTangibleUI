@@ -4,17 +4,13 @@
 #include "ofMain.h"
 #include "ofxTransmitter.h"
 
-/*REVISIT
- * incorrect naming?!
- */
-
 enum tangibleEventType {
 	TANGIBLE_MOVE, TANGIBLE_ROTATE
 };
 
 /* ofxListener
  * - movable class but only by "listening" and not by interaction (unlike ofxTangibileCore)
- * - any listener can be transmitter
+ * - any listener can be a transmitter
  * - base class for ofxTangibleCore
  */
 class ofxListener: public ofPoint, public ofxTransmitter {
