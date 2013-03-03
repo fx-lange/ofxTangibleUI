@@ -126,7 +126,7 @@ void ofxTangibleCore::drawInner(){
 	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
 		ofRect(0,0,width,height);
 	}else{
-		ofCircle(0,0,width); //radius = width, ignore height
+		ofCircle(0,0,width/2.f); //radius = width, ignore height
 	}
 	ofPopStyle();
 }

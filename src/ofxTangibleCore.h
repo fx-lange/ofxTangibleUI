@@ -10,7 +10,7 @@ class ofxXmlSettings;
  */
 
 enum tangibleDrawType{
-	TANGIBLE_DRAW_AS_CIRCLE, //draw object as a circle (not as an ellipse) -> width = radius, height is ignored
+	TANGIBLE_DRAW_AS_CIRCLE, //draw object as a circle (not as an ellipse) -> width = diameter, height is ignored
 	TANGIBLE_DRAW_AS_CENTERED_RECT //draw object as a rectangle using OF_RECTMODE_CENTER (centered at x,y)
 };
 
