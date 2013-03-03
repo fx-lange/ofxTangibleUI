@@ -27,13 +27,16 @@ public:
 
 	virtual void setup(float x, float y);
 
-	//methods to move or rotate by event
-	virtual void moveEvent(ofxTangibleMoveEvent & e);
-	virtual void rotateEvent(ofxTangibleRotateEvent & e);
+	//methods to handle events
+	virtual void handleMoveEvent(ofxTangibleMoveEvent & e);
+	virtual void handleRotateEvent(ofxTangibleRotateEvent & e);
 
-	//core movement and rotation functionality
-	virtual void moveBy(float dx, float dy);
-	virtual void rotateBy(float angle, float distance = 0);
+	//methods to move or rotate by event or called external
+	virtual void moveExternal(float dx,float dy);
+	virtual void rotateExternal(float angle,float distance=0);
+
+	//rotate listener shape around its center
+	virtual void rotateInner(float degree); //REVISIT naming - rotate shape/object
 
 	/* listening concept:
 	 * ofxListener is listening to one static ofEvent - not to one ofEvent per transmitter!
@@ -68,10 +71,13 @@ protected:
 
 	virtual void updateOldAngle();
 
+	//core movement methods ...
+	virtual void moveBy(float dx, float dy);				// by direction
+	virtual void rotateBy(float angle, float distance = 0); // by rotation around a rotationCenter - //REVISIT naming? moveByRotate/roatetOuter/rotateAroundRotationCenter
+
 	const ofVec3f base;
 	const ofVec3f zeroBaseCheck;
 
-	virtual void rotateInner(float degree); //TODO move up?, naming - rotate shape/ object vs rotateBy() = moveByRotate - rotateAroundRotationCenter
 	float innerRotate;
 private:
 	ofVec2f rotateCenter;
@@ -82,7 +88,7 @@ private:
 	list<int> moveTransmitters;
 	list<int> rotateTransmitters;
 	bool bListeningToMove, bListeningToRotate;
-	void init(const ofxListener& other);
+	void copyInit(const ofxListener& other);
 };
 
 #endif /* OFXLISTENER_H_*/

@@ -10,7 +10,7 @@ public:
 
 	virtual void setup(float _x, float _y, float _w, float _h, float centerX = 0, float centerY = 0);
 
-	virtual void moveInner(float dx, float dy);
+	virtual void moveViaInteraction(float dx, float dy);
 
 	virtual void moveBy(float dx, float dy);
 };

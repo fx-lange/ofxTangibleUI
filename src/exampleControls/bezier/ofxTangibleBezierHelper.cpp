@@ -5,7 +5,7 @@ void ofxTangibleBezierHelper::setup(float _x, float _y, float _w, float _h, floa
 	setRotateCenter(centerX,centerY);
 }
 
-void ofxTangibleBezierHelper::moveInner(float dx, float dy) {
+void ofxTangibleBezierHelper::moveViaInteraction(float dx, float dy) {
 	ofxTangibleHandle::moveBy(dx, dy);
 }
 

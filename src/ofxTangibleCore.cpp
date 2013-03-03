@@ -69,6 +69,8 @@ void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 	ofxListener::setup(_x,_y);
 	width = _w;
 	height = _h;
+
+	setRotateCenter(x+width/2.f,y+width/2.f);
 }
 
 bool ofxTangibleCore::isOver(float px, float py) {
@@ -90,6 +92,10 @@ bool ofxTangibleCore::isOver(float px, float py) {
 			return false;
 		}
 	}
+}
+
+void ofxTangibleCore::moveInternal(float dx, float dy) {
+	moveBy(dx, dy);
 }
 
 void ofxTangibleCore::draw() {

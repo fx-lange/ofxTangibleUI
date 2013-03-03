@@ -36,7 +36,7 @@ public:
 		range.range = h;
 	}
 
-	virtual void moveInner(float dx,float dy){
+	virtual void moveInternal(float dx,float dy){
 		moveBy(0,dy);
 		y = y < range.getMin() ? range.getMin() : y;
 		y = y > range.getMax() ? range.getMax() : y;

@@ -46,12 +46,6 @@ protected:
 	ofVec2f touchCenter;		//center of touch cursors
 	float angleToTouchCenter;	//angle of the touch cursors to the touchCenter
 
-	/* method to move the object only called internal by mouse or touch interaction methods
-	 * forwards movement direction to moveBy(dx,dy) by default
-	 * encapsulated for the case that the behavior should differ depending on whether
-	 * 		movement is called from inside(moveInner->moveBy) or outside (moveEvent->moveBy)*/
-	virtual void moveInner(float dx, float dy);
-
 	/* is called by draw()
 	 * coordinate system is centered at x,y and rotated by innerRotate
 	 * you should override this function to style your own class */

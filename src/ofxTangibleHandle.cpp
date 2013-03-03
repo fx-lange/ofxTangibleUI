@@ -44,10 +44,6 @@ void ofxTangibleHandle::drawInner(){
 	ofxTangibleCore::drawInner();
 }
 
-void ofxTangibleHandle::moveInner(float dx, float dy) {
-	moveBy(dx, dy);
-}
-
 void ofxTangibleHandle::mousePressed(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !isOver(e.x, e.y))
 		return;
@@ -65,7 +61,7 @@ void ofxTangibleHandle::mouseDragged(ofMouseEventArgs &e) {
 	float dx = e.x - pX;
 	float dy = e.y - pY;
 
-	moveInner(dx, dy);
+	moveInternal(dx, dy);
 
 	pX = e.x;
 	pY = e.y;
@@ -123,7 +119,7 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 			float dx = touchX - te.x;
 			float dy = touchY - te.y;
 
-			moveInner(dx, dy);
+			moveInternal(dx, dy);
 			te.x = touchX;
 			te.y = touchY;
 		}
@@ -146,7 +142,7 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 			touchCursor & other = touchs[otherIdx];
 			ofVec2f newCenter = (et+other)/2.f;
 			ofVec2f diff = newCenter - touchCenter;
-			moveInner(diff.x, diff.y);
+			moveInternal(diff.x, diff.y);
 			touchCenter = newCenter;
 			//rotate
 			float newAngle = (touchs[0] - touchCenter).angle(base);

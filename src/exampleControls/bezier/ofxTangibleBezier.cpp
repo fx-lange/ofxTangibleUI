@@ -68,7 +68,7 @@ void ofxTangibleBezier::mouseMoved(ofMouseEventArgs &e) {
 		controls.push_back(control);
 		bStartedAgain = false;
 	}else{
-		controls.back().moveBy(e.x - pX, e.y - pY);
+		controls.back().moveExternal(e.x - pX, e.y - pY);
 	}
 	pX = e.x;
 	pY = e.y;
