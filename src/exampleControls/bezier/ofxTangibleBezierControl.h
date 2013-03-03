@@ -23,6 +23,9 @@ public:
 	ofxTangibleBezierControl(const ofxTangibleBezierControl& other);
 
 	virtual void setup(float _x,float _y, float _w, float _h);
+
+	virtual void moveInternal(float dx, float dy);
+
 	virtual void draw();
 };
 

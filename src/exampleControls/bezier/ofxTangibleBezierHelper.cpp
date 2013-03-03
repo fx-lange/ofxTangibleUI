@@ -5,11 +5,7 @@ void ofxTangibleBezierHelper::setup(float _x, float _y, float _w, float _h, floa
 	setRotateCenter(centerX,centerY);
 }
 
-void ofxTangibleBezierHelper::moveViaInteraction(float dx, float dy) {
-	ofxTangibleHandle::moveBy(dx, dy);
-}
-
-void ofxTangibleBezierHelper::moveBy(float dx, float dy) {
+void ofxTangibleBezierHelper::moveExternal(float dx, float dy) {
 	moveRotateCenter(dx,dy);
-	ofxTangibleHandle::moveBy(dx, dy);
+	ofxTangibleHandle::moveExternal(dx, dy);
 }

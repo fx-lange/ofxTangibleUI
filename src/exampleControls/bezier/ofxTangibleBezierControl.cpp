@@ -29,6 +29,12 @@ void ofxTangibleBezierControl::setup(float _x, float _y, float _w, float _h) {
 	disableGrabbing();
 }
 
+void ofxTangibleBezierControl::moveInternal(float dx, float dy){
+	if(r1.isPressed() || r2.isPressed())
+		return;
+	ofxTangibleCore::moveInternal(dx,dy);
+}
+
 void ofxTangibleBezierControl::draw() {
 	ofPushStyle();
 	ofSetColor(color, 100);
