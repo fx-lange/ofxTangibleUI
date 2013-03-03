@@ -1,13 +1,9 @@
-#ifndef _TEST_APP
-#define _TEST_APP
-
 #include "ofMain.h"
 #include "ofxTuioClient.h"
 
 #include "ofxTangibleHandle.h"
 #include "ofxTangibleToggle.h"
 #include "ofxTangibleButton.h"
-#include "ofxTangibleBezierHelper.h"
 
 class ofxTangibleMoon : public ofxTangibleHandle{
 public:
@@ -123,5 +119,3 @@ public:
 	void touchMoved(ofTouchEventArgs & touch);
 	
 };
-
-#endif

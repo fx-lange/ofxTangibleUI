@@ -1,6 +1,6 @@
 #include "tuioExample.h"
 
-ofxTangibleBase handle;
+ofxTangibleBase base;
 ofxTangibleToggle toggle;
 ofxTangibleButton button;
 
@@ -18,9 +18,9 @@ void tuioExample::setup(){
 	ofAddListener(ofEvents().touchMoved,this,&tuioExample::touchMoved);
 
 	//TangibleUI
-	handle.setup(50,50,300,300);
-	toggle.setup(300,50,100,100);
-	button.setup(500,50,100,100);
+	base.setup(200,400,300,300);
+	toggle.setup(300,150,100,100);
+	button.setup(500,150,100,100);
 	button.addEventListener(&toggle,&ofxTangibleToggle::activateByEvent);
 }
 
@@ -36,7 +36,7 @@ void tuioExample::draw(){
 	myTuio.drawCursors();
 	myTuio.drawObjects();
 
-	handle.draw();
+	base.draw();
 	toggle.draw();
 	button.draw();
 }
@@ -45,7 +45,7 @@ void tuioExample::draw(){
 void tuioExample::keyPressed(int key){
 	switch(key){
 	case 'r':
-		handle.rotateInner(5);
+		base.rotateInner(5);
 		break;
 	}
 }

@@ -95,5 +95,7 @@
 		<configuration configurationName="Default">
 			<resource resourceType="PROJECT" workspacePath="/tuioTangibleUIExample"/>
 		</configuration>
+		<configuration configurationName="Debug"/>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>
