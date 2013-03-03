@@ -1,0 +1,4 @@
+ofxTuioWrapper
+ofxOsc
+ofxTangibleUI
+ofxXmlSettings
