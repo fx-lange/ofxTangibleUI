@@ -233,8 +233,5 @@ void ofxListener::rotateBy(float angle, float distance) {
 
 void ofxListener::rotateInner(float degree){
 	innerRotate += degree;
-	//only rotateListeners if rotateCenter = center
-//	if(*this == rotateCenter){
-		rotateListeners(degree,0);
-//	}
+//	rotateListeners(degree,0); //override it like this, if you want to listen to inner rotation
 }
