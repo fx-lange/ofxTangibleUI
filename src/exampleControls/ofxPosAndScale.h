@@ -19,10 +19,6 @@ public:
 		return y+range;
 	}
 
-	virtual void moveBy(float dx,float dy){
-		ofxListener::moveBy(dx,dy);
-	}
-
 	//TODO getter setter
 };
 
@@ -37,7 +33,7 @@ public:
 	}
 
 	virtual void moveInternal(float dx,float dy){
-		moveBy(0,dy);
+		ofxTangibleHandle::moveInternal(0,dy);
 		y = y < range.getMin() ? range.getMin() : y;
 		y = y > range.getMax() ? range.getMax() : y;
 	}
