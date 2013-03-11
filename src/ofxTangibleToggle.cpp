@@ -39,6 +39,7 @@ void ofxTangibleToggle::resetChanged(){
 
 void ofxTangibleToggle::setClickable(bool clickable){
 	bClickable = clickable;
+	bPressed = bPressedByTouch = false;
 }
 
 bool ofxTangibleToggle::isClickable(){
