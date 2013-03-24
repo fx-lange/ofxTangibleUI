@@ -11,6 +11,15 @@ ofEvent <ofxTangibleRotateEvent> ofxTangibleRotateEvent::events;
 ofxTransmitter::ofxTransmitter()
 	:id(generateId()) {}
 
+ofxTransmitter::ofxTransmitter(const ofxTransmitter & other){
+	id = other.id;
+}
+
+ofxTransmitter& ofxTransmitter::operator=(const ofxTransmitter& other){
+	id = other.id;
+	return *this;
+}
+
 void ofxTransmitter::moveListeners(float dx, float dy) {
 	//send ofEvent
 	ofxTangibleMoveEvent moveEvent;

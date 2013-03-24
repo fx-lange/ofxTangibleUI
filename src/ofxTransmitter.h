@@ -29,6 +29,8 @@ public:
 	}
 
 	ofxTransmitter();
+	ofxTransmitter(const ofxTransmitter & );
+	ofxTransmitter & operator=(const ofxTransmitter & );
 	virtual ~ofxTransmitter(){};
 
 	int getId(){

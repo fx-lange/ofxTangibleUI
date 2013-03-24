@@ -21,12 +21,14 @@ ofxListener::~ofxListener() {
 	}
 }
 
-ofxListener::ofxListener(const ofxListener& other) {
+ofxListener::ofxListener(const ofxListener& other)
+	:ofxTransmitter(other){
 	copyInit(other);
 	ofLog(OF_LOG_VERBOSE, "ofxListener COPY");
 }
 
-ofxListener& ofxListener::operator=(const ofxListener& other) {
+ofxListener& ofxListener::operator=(const ofxListener& other){
+	ofxTransmitter::operator=(other);
 	copyInit(other);
 	return *this;
 }
@@ -164,6 +166,7 @@ void ofxListener::handleMoveEvent(ofxTangibleMoveEvent & e) {
 }
 
 void ofxListener::handleRotateEvent(ofxTangibleRotateEvent & e) {
+	int size = *rotateTransmitters.begin();
 	list<int>::iterator it = find(rotateTransmitters.begin(),rotateTransmitters.end(),e.id);
 	if (it != rotateTransmitters.end()) {
 		rotateExternal(e.angle, e.distance);

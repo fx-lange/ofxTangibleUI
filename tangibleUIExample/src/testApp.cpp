@@ -75,7 +75,6 @@ void tangibleUiExample::setup(){
 	h1.setKeepSameDistance(true);
 	h2.startListeningTo(h1,TANGIBLE_ROTATE);
 	r1.startListeningTo(h1,TANGIBLE_ROTATE);
-	helpers.reserve(10);
 	helpers.push_back(h1);
 	helpers.push_back(h2);
 
