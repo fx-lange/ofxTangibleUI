@@ -1,7 +1,6 @@
 #include "ofxListener.h"
 
-ofxListener::ofxListener() :
-		base(0, -1), zeroBaseCheck(1, 0) {
+ofxListener::ofxListener() {
 	bLocked = false;
 	bListeningToMove = bListeningToRotate = false;
 	bKeepSameDistance = false;
@@ -22,8 +21,7 @@ ofxListener::~ofxListener() {
 	}
 }
 
-ofxListener::ofxListener(const ofxListener& other) :
-		ofxTransmitter(other), base(0, -1), zeroBaseCheck(1, 0) {
+ofxListener::ofxListener(const ofxListener& other) {
 	copyInit(other);
 	ofLog(OF_LOG_VERBOSE, "ofxListener COPY");
 }
@@ -106,10 +104,8 @@ void ofxListener::setKeepSameDistance(bool sameDistance) {
 }
 
 void ofxListener::updateOldAngle() {
-	oldAngle = (*this - rotateCenter).angle(base);
-	if ((*this - rotateCenter).angle(zeroBaseCheck) > 90.f) {
-		oldAngle *= -1.f;
-	}
+	ofVec3f vec = *this - rotateCenter;
+	oldAngle = ofRadToDeg(atan2(vec.x,vec.y));
 }
 
 void ofxListener::startListeningTo(ofxTransmitter & transmitter, tangibleEventType type) {
@@ -194,14 +190,13 @@ void ofxListener::moveBy(float dx, float dy) {
 	moveListeners(dx * moveListenersSpeed.x, dy * moveListenersSpeed.y);
 
 	//rotateBy
-	float newAngle = (*this - rotateCenter).angle(base);
-	if ((*this - rotateCenter).angle(zeroBaseCheck) > 90.f) {
-		newAngle *= -1.f;
-	}
+	ofVec3f vec = *this - rotateCenter;
+	float newAngle = ofRadToDeg(atan2(vec.x,vec.y));
+
 	float angleDiff = newAngle - oldAngle;
 	oldAngle = newAngle;
 	if(abs(angleDiff) > 0.0001)
-		rotateListeners(angleDiff, this->distance(rotateCenter));
+		rotateListeners(-angleDiff, this->distance(rotateCenter));
 
 	bLocked = false;
 }

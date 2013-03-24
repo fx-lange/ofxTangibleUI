@@ -71,9 +71,6 @@ protected:
 	virtual void moveBy(float dx, float dy);				// by direction
 	virtual void rotateBy(float angle, float distance = 0); // by rotation around a rotationCenter - //REVISIT naming? moveByRotate/roatetOuter/rotateAroundRotationCenter
 
-	const ofVec3f base;
-	const ofVec3f zeroBaseCheck;
-
 	float innerRotate;
 private:
 	ofVec2f rotateCenter;

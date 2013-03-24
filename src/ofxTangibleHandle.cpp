@@ -97,7 +97,7 @@ void ofxTangibleHandle::touchDown(ofTouchEventArgs &e) {
 		//calc center
 		touchCenter = (touchs[0] + touchs[1]) /2.f;
 		//calc rotation
-		angleToTouchCenter = (touchs[0] - touchCenter).angle(base);
+		angleToTouchCenter = ofRadToDeg(atan2(touchs[0].x - touchCenter.x,touchs[0].y - touchCenter.y));
 	}//else ignore
 }
 
@@ -145,7 +145,7 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 			moveInternal(diff.x, diff.y);
 			touchCenter = newCenter;
 			//rotate
-			float newAngle = (touchs[0] - touchCenter).angle(base);
+			float newAngle = ofRadToDeg(atan2(touchs[0].x - touchCenter.x,touchs[0].y - touchCenter.y));
 			rotateInner(angleToTouchCenter - newAngle);
 			angleToTouchCenter = newAngle;
 		}
