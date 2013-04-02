@@ -51,11 +51,11 @@ public:
 	const ofVec2f& getRotateCenter() const;
 	void setKeepSameDistance(bool sameDistance);
 
+	virtual void updateOldAngle();
 protected:
 	bool bLocked;
 	ofVec2f moveListenersSpeed;
 
-	virtual void updateOldAngle();
 
 	const ofVec3f base;
 	const ofVec3f zeroBaseCheck;
