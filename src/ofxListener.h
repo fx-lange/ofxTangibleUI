@@ -65,7 +65,7 @@ protected:
 	bool bLocked;
 	ofVec2f moveListenersSpeed;
 
-	virtual void updateOldAngle();
+	virtual void updateOldAngle();							//TODO perhaps need to be public or called internal if object size changes
 
 	//core movement methods ...
 	virtual void moveBy(float dx, float dy);				// by direction
