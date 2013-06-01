@@ -12,6 +12,8 @@ ofxListener::ofxListener() {
 ofxListener::~ofxListener() {
 	if (bListeningToMove) {
 		moveTransmitters.clear();
+		moveVerTransmitters.clear();
+		moveHorTransmitters.clear();
 		bListeningToMove = false;
 		ofRemoveListener(ofxTangibleMoveEvent::events, this, &ofxListener::handleMoveEvent);
 	}
@@ -49,6 +51,8 @@ void ofxListener::copyInit(const ofxListener& other) {
 	if (bListeningToMove) {
 		ofAddListener(ofxTangibleMoveEvent::events, this, &ofxListener::handleMoveEvent);
 		moveTransmitters = other.moveTransmitters;
+		moveVerTransmitters = other.moveVerTransmitters;
+		moveHorTransmitters = other.moveHorTransmitters;
 	}
 	if (bListeningToRotate) {
 		ofAddListener(ofxTangibleRotateEvent::events, this, &ofxListener::handleRotateEvent);
@@ -125,7 +129,19 @@ void ofxListener::startListeningTo(const int id, tangibleEventType type) {
 			bListeningToMove = true;
 			ofAddListener(ofxTangibleMoveEvent::events, this, &ofxListener::handleMoveEvent);
 		}
-	} else if (type == TANGIBLE_ROTATE) {
+	} else if (type == TANGIBLE_MOVE_VERTICAL) {
+		moveVerTransmitters.push_back(id);
+		if ( !bListeningToMove) {
+			bListeningToMove = true;
+			ofAddListener(ofxTangibleMoveEvent::events, this, &ofxListener::handleMoveEvent);
+		}
+	} else if (type == TANGIBLE_MOVE_HORIZONTAL) {
+		moveHorTransmitters.push_back(id);
+		if ( !bListeningToMove) {
+			bListeningToMove = true;
+			ofAddListener(ofxTangibleMoveEvent::events, this, &ofxListener::handleMoveEvent);
+		}
+	}else if (type == TANGIBLE_ROTATE) {
 		rotateTransmitters.push_back(id);
 		if (!rotateTransmitters.empty() && !bListeningToRotate) {
 			bListeningToRotate = true;
@@ -145,23 +161,40 @@ void ofxListener::stopListeningTo(ofxTransmitter * transmitter, tangibleEventTyp
 void ofxListener::stopListeningTo(const int id, tangibleEventType type) {
 	if (type == TANGIBLE_MOVE) {
 		moveTransmitters.remove(id);
-		if (moveTransmitters.empty() && bListeningToMove) {
-			bListeningToMove = false;
-			ofRemoveListener(ofxTangibleMoveEvent::events, this, &ofxListener::handleMoveEvent);
-		}
-	} else if (type == TANGIBLE_ROTATE) {
+	} else 	if (type == TANGIBLE_MOVE_VERTICAL) {
+		moveVerTransmitters.remove(id);
+	} else  if (type == TANGIBLE_MOVE_HORIZONTAL) {
+		moveHorTransmitters.remove(id);
+	}else if (type == TANGIBLE_ROTATE) {
 		rotateTransmitters.remove(id);
 		if (rotateTransmitters.empty() && bListeningToRotate) {
 			bListeningToRotate = false;
 			ofRemoveListener(ofxTangibleRotateEvent::events, this, &ofxListener::handleRotateEvent);
 		}
 	}
+	if (moveTransmitters.empty() && moveVerTransmitters.empty() && moveHorTransmitters.empty() && bListeningToMove) {
+		bListeningToMove = false;
+		ofRemoveListener(ofxTangibleMoveEvent::events, this, &ofxListener::handleMoveEvent);
+	}
+}
+
+void ofxListener::listenToEachOther(ofxListener & l1,ofxListener & l2,tangibleEventType type){
+	l1.startListeningTo(l2,type);
+	l2.startListeningTo(l1,type);
 }
 
 void ofxListener::handleMoveEvent(ofxTangibleMoveEvent & e) {
 	list<int>::iterator it = find(moveTransmitters.begin(),moveTransmitters.end(),e.id);
 	if (it != moveTransmitters.end()) {
 		moveExternal(e.dx, e.dy);
+	}
+	list<int>::iterator itV = find(moveVerTransmitters.begin(),moveVerTransmitters.end(),e.id);
+	if (itV != moveVerTransmitters.end()) {
+		moveExternal(0, e.dy);
+	}
+	list<int>::iterator itH = find(moveHorTransmitters.begin(),moveHorTransmitters.end(),e.id);
+	if (itH != moveHorTransmitters.end()) {
+		moveExternal(e.dx, 0);
 	}
 }
 

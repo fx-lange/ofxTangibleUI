@@ -5,7 +5,10 @@
 #include "ofxTransmitter.h"
 
 enum tangibleEventType {
-	TANGIBLE_MOVE, TANGIBLE_ROTATE
+	TANGIBLE_MOVE,
+	TANGIBLE_MOVE_VERTICAL,
+	TANGIBLE_MOVE_HORIZONTAL,
+	TANGIBLE_ROTATE
 };
 
 /* ofxListener
@@ -49,6 +52,8 @@ public:
 	virtual void stopListeningTo(ofxTransmitter * transmitter, tangibleEventType type);
 	virtual void stopListeningTo(const int id, tangibleEventType type);
 
+	static void listenToEachOther(ofxListener & l1,ofxListener & l2, tangibleEventType type = TANGIBLE_MOVE);
+
 	void setMoveListenersSpeed(float vx, float vy);
 	void setMoveListenersSpeed(const ofVec2f & v);
 	const ofVec2f& getMoveListenerSpeed() const;
@@ -79,6 +84,8 @@ private:
 	bool bKeepSameDistance;
 
 	list<int> moveTransmitters;
+	list<int> moveVerTransmitters;
+	list<int> moveHorTransmitters;
 	list<int> rotateTransmitters;
 	bool bListeningToMove, bListeningToRotate;
 	void copyInit(const ofxListener& other);
