@@ -5,6 +5,8 @@
 #include "ofxTangibleToggle.h"
 #include "ofxTangibleButton.h"
 
+#include "ofxRotaryKnob.h"
+
 class ofxTangibleMoon : public ofxTangibleHandle{
 public:
 	//default constructor and so an
@@ -118,4 +120,5 @@ public:
 	void touchUp(ofTouchEventArgs & touch);
 	void touchMoved(ofTouchEventArgs & touch);
 	
+	ofxRotaryKnob knob;
 };

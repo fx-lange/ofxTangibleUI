@@ -22,6 +22,7 @@ void tuioExample::setup(){
 	toggle.setup(300,150,100,100);
 	button.setup(500,150,100,100);
 	button.addEventListener(&toggle,&ofxTangibleToggle::activateByEvent);
+	knob.setup(500,500,300,300);
 }
 
 //--------------------------------------------------------------
@@ -39,6 +40,7 @@ void tuioExample::draw(){
 	base.draw();
 	toggle.draw();
 	button.draw();
+	knob.draw();
 }
 
 //--------------------------------------------------------------
