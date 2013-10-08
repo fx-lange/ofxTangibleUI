@@ -30,8 +30,8 @@ public:
 	virtual bool isGrabbingEnabled();
 
 	//mouse interaction
-	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mousePressed(ofMouseEventArgs &e);
+	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);
 
 	//touch interaction

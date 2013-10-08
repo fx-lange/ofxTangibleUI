@@ -24,7 +24,7 @@ public:
 	ofColor color;
 	tangibleDrawType drawType; //draw as circle or centered rectangle, also affects the hit test isOver(x,y)
 
-	bool bScaleTouchEvent;
+	static bool bScaleTouchEvent;
 	bool bDrawDebug;
 
 	ofxTangibleCore();

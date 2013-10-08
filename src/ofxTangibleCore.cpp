@@ -1,13 +1,14 @@
 #include "ofxTangibleCore.h"
 #include "ofxXmlSettings.h"
 
+bool ofxTangibleCore::bScaleTouchEvent = true;
+
 ofxTangibleCore::ofxTangibleCore(){
 	bMouseRegistered = false;
 	bTouchRegistered = false;
 	drawType = TANGIBLE_DRAW_AS_CENTERED_RECT;
 	touchId = -1;
 	innerRotate = 0.f;
-	bScaleTouchEvent = true;
 	bPressed = false;
 	bPressedByTouch = false;
 	bDrawDebug = false;
@@ -70,7 +71,7 @@ void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 	width = _w;
 	height = _h;
 
-	setRotateCenter(x+width/2.f,y+width/2.f);
+	setRotateCenter(x,y);
 }
 
 bool ofxTangibleCore::isOver(float px, float py) {
