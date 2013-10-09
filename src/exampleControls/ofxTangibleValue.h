@@ -4,6 +4,7 @@
 #include "ofxTangibleHandle.h"
 
 //TODO scale,inverse (=scale -1),calc sub methods
+//fontSize
 
 enum tangibleCalcValueMode{
 	TANGIBLE_VALUE_MODE_VERTICAL,

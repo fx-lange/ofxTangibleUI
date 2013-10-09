@@ -116,6 +116,8 @@ void ofxTangibleValue::touchUp(ofTouchEventArgs &e) {
 }
 
 void ofxTangibleValue::drawInner(){
+	ofPushStyle();
 	ofxTangibleHandle::drawInner();
 	ofDrawBitmapString(ofToString(tmpValue+value),0,0);
+	ofPopStyle();
 }
