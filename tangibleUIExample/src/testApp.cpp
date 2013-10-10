@@ -46,12 +46,13 @@ void tangibleUiExample::setup(){
 	xSpeed3.color.set(60,170,20);
 	handles[0].startListeningTo(xSpeed3);
 
-	//test timeline
-	timeline.setup(0,0,ofGetWidth(),ofGetHeight()/3);
 
-	//test control examples
+	// ----- test control examples ----- //
 	//pos and scale
-	pAndS.setup(400,400,20,40);
+	pAndS.setup(200,300,40,80);
+
+	//timeline
+	timeline.setup(0,0,ofGetWidth(),ofGetHeight()/4);
 
 	//rotation
 	x = 600;
@@ -78,8 +79,12 @@ void tangibleUiExample::setup(){
 	helpers.push_back(h1);
 	helpers.push_back(h2);
 
-	imageHandle.setup(400,400,"transparency.png");
+	//images
+	imageHandle.setup(500,100,"transparency.png");
 	imageHandle.bDrawDebug = true;
+
+	//tangible value
+	tangibleValue.setup(200,500,75,75);
 }
 
 void tangibleUiExample::toggleHasChanged(bool & active){
@@ -117,6 +122,7 @@ void tangibleUiExample::draw(){
 	helpers[1].draw();
 
 	imageHandle.draw();
+	tangibleValue.draw();
 }
 
 //--------------------------------------------------------------

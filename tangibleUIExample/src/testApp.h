@@ -9,6 +9,7 @@
 #include "ofxPosAndScale.h"
 #include "ofxTangibleBezier.h"
 #include "ofxTangibleImage.h"
+#include "ofxTangibleValue.h"
 
 class tangibleUiExample : public ofBaseApp{
 
@@ -33,14 +34,16 @@ class tangibleUiExample : public ofBaseApp{
 		ofxTangibleXFixedHandle xfixed;
 		ofxTangibleHandle handle;
 		ofxTangibleYFixedHandle yfixed;
-		ofxTangibleToggle toggle;
-		ofxTangibleButton button;
 		vector<ofxTangibleHandle> handles;
 		ofxTangibleYFixedHandle xSpeed3;
+
+		ofxTangibleToggle toggle;
+		ofxTangibleButton button;
+
 		ofxTimeline timeline;
 		ofxPosAndScale pAndS;
 		ofxTangibleBezierHelper r1,r2;
 		vector<ofxTangibleBezierHelper> helpers;
-
 		ofxTangibleImage imageHandle;
+		ofxTangibleValue tangibleValue;
 };
