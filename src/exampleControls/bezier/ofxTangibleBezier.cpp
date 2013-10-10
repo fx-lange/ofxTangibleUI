@@ -45,8 +45,7 @@ void ofxTangibleBezier::mousePressed(ofMouseEventArgs &e) {
 		return;
 	}
 
-	pX = e.x;
-	pY = e.y;
+	pastPos = e;
 
 	ofxTangibleBezierControl control;
 	control.setup(e.x, e.y, 10, 10);
@@ -68,15 +67,15 @@ void ofxTangibleBezier::mouseMoved(ofMouseEventArgs &e) {
 		controls.push_back(control);
 		bStartedAgain = false;
 	}else{
-		controls.back().moveExternal(e.x - pX, e.y - pY);
+		ofPoint diff = e - pastPos;
+		controls.back().moveExternal(diff.x,diff.y);
 	}
-	pX = e.x;
-	pY = e.y;
+
+	pastPos = e;
 }
 
 void ofxTangibleBezier::mouseDragged(ofMouseEventArgs &e) {
-	pX = e.x;
-	pY = e.y;
+	pastPos = e;
 }
 
 void ofxTangibleBezier::mouseReleased(ofMouseEventArgs &e) {

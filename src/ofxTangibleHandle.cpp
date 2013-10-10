@@ -56,21 +56,18 @@ void ofxTangibleHandle::mousePressed(ofMouseEventArgs &e) {
 
 	bPressed = true;
 
-	pX = e.x;
-	pY = e.y;
+	pastPos = e;
 }
 
 void ofxTangibleHandle::mouseDragged(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;
 
-	float dx = e.x - pX;
-	float dy = e.y - pY;
+	ofPoint diff = e - pastPos;
 
-	moveInternal(dx, dy);
+	moveInternal(diff.x, diff.y);
 
-	pX = e.x;
-	pY = e.y;
+	pastPos = e;
 }
 
 void ofxTangibleHandle::mouseReleased(ofMouseEventArgs &e) {

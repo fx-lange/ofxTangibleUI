@@ -63,8 +63,8 @@ void ofxTangibleValue::toggleUpdateAfterRelease(){
 void ofxTangibleValue::mousePressed(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !isOver(e.x, e.y))
 		return;
-	pX = e.x;
-	pY = e.y;
+
+	pastPos = e;
 
 	bPressed = true;
 
@@ -74,7 +74,7 @@ void ofxTangibleValue::mouseDragged(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;
 
-	calcValueByPos(ofPoint(pX,pY),e);
+	calcValueByPos(pastPos,e);
 }
 
 void ofxTangibleValue::mouseReleased(ofMouseEventArgs &e) {

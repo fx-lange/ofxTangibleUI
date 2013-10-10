@@ -49,8 +49,7 @@ void ofxTangibleCore::init(const ofxTangibleCore& other){
 	color = other.color;
 	bDrawDebug = other.bDrawDebug;
 
-	pX = other.pX;
-	pY = other.pY;
+	pastPos = other.pastPos;
 
 	/* very tricky ... took me long time to debug
 	 * because of (random) default initialization of bMouseRegistered

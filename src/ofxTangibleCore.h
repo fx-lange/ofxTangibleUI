@@ -66,7 +66,7 @@ public:
 		return bPressed || bPressedByTouch;
 	}
 protected:
-	float pX, pY;
+	ofPoint pastPos;
 	int touchId;
 	bool bPressed; 			//pressed by mouse
 	bool bPressedByTouch;	//pressed by touch
