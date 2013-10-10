@@ -37,6 +37,7 @@ void ofxTangibleButton::touchDown(ofTouchEventArgs &e) {
 
 	touchId = e.id;
 
+	bDrawAsPressed = true;
 	bPressedByTouch = true;
 }
 
@@ -60,5 +61,7 @@ void ofxTangibleButton::touchUp(ofTouchEventArgs &e) {
 		setActive(true);
 		bActive = false; //TODO kind of irritating
 	}
+
+	bDrawAsPressed = false;
 	bPressedByTouch = false;
 }
