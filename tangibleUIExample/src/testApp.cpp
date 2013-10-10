@@ -59,10 +59,15 @@ void tangibleUiExample::setup(){
 	y = 300;
 	r1.setup(x+15,y,10,10,x,y);
 	r2.setup(x-15,y,10,10,x,y);
-	r1.drawType = r2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
+	r3.setup(x+15,y+15,10,10,x,y);
+	r1.drawType = r2.drawType = r3.drawType = TANGIBLE_DRAW_AS_CIRCLE;
 
 	r1.startListeningTo(r2,TANGIBLE_ROTATE);
+	r1.startListeningTo(r3,TANGIBLE_ROTATE);
 	r2.startListeningTo(r1,TANGIBLE_ROTATE);
+	r3.startListeningTo(r1,TANGIBLE_ROTATE);
+
+	r1.fillMe = true;
 
 	ofxTangibleBezierHelper h1,h2;
 
@@ -118,6 +123,7 @@ void tangibleUiExample::draw(){
 	pAndS.draw();
 	r1.draw();
 	r2.draw();
+	r3.draw();
 	ofSetColor(255,255,255);
 	ofEllipse(x,y,5,5);
 
@@ -127,10 +133,12 @@ void tangibleUiExample::draw(){
 	imageHandle.draw();
 	tangibleValue.draw();
 	knob.draw();
+	ofCircle(helpers[0].getRotateCenter().x,helpers[0].getRotateCenter().y,5);
 }
 
 //--------------------------------------------------------------
 void tangibleUiExample::keyPressed(int key){
+
 
 }
 

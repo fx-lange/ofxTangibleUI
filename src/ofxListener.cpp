@@ -111,7 +111,7 @@ void ofxListener::setKeepSameDistance(bool sameDistance) {
 
 void ofxListener::updateOldAngle() {
 	ofVec3f vec = *this - rotateCenter;
-	oldAngle = ofRadToDeg(atan2(vec.x,vec.y));
+	oldAngle = ofRadToDeg(atan2(vec.y,vec.x));
 }
 
 void ofxListener::startListeningTo(ofxTransmitter & transmitter, tangibleEventType type) {
@@ -227,7 +227,7 @@ void ofxListener::moveBy(float dx, float dy) {
 
 	//rotateBy
 	ofVec3f vec = *this - rotateCenter;
-	float newAngle = ofRadToDeg(atan2(vec.x,vec.y));
+	float newAngle = ofRadToDeg(atan2(vec.y,vec.x));
 
 	float angleDiff = newAngle - oldAngle;
 	oldAngle = newAngle;
@@ -243,7 +243,7 @@ void ofxListener::rotateBy(float angle, float distance) {
 	bLocked = true;
 
 	ofVec3f vec = *this - rotateCenter;
-	vec.rotate(0, 0, angle);
+	vec.rotate(0, 0, -angle);
 
 	if (bKeepSameDistance && distance > 0.f) {
 		vec.normalize();
@@ -255,7 +255,7 @@ void ofxListener::rotateBy(float angle, float distance) {
 	y = vec.y;
 
 	rotateListeners(angle, distance);
-	oldAngle += angle;
+	oldAngle -= angle;
 
 	rotateInner(angle); //REVISIT perhaps use a boolean to control whether rotateInner should get called or not
 

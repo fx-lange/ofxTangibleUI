@@ -47,6 +47,7 @@ void ofxTangibleCore::init(const ofxTangibleCore& other){
 	bPressedByTouch = other.bPressedByTouch;
 	bScaleTouchEvent = other.bScaleTouchEvent;
 	color = other.color;
+	bDrawDebug = other.bDrawDebug;
 
 	pX = other.pX;
 	pY = other.pY;
