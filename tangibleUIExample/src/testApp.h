@@ -10,6 +10,7 @@
 #include "ofxTangibleBezier.h"
 #include "ofxTangibleImage.h"
 #include "ofxTangibleValue.h"
+#include "ofxRotaryKnob.h"
 
 class tangibleUiExample : public ofBaseApp{
 
@@ -46,4 +47,5 @@ class tangibleUiExample : public ofBaseApp{
 		vector<ofxTangibleBezierHelper> helpers;
 		ofxTangibleImage imageHandle;
 		ofxTangibleValue tangibleValue;
+		ofxRotaryKnob knob;
 };

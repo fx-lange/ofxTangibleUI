@@ -84,7 +84,10 @@ void tangibleUiExample::setup(){
 	imageHandle.bDrawDebug = true;
 
 	//tangible value
-	tangibleValue.setup(200,500,75,75);
+	tangibleValue.setup(200,500,100,100);
+
+	//rotary knob
+	knob.setup(500,500,100,100);
 }
 
 void tangibleUiExample::toggleHasChanged(bool & active){
@@ -123,6 +126,7 @@ void tangibleUiExample::draw(){
 
 	imageHandle.draw();
 	tangibleValue.draw();
+	knob.draw();
 }
 
 //--------------------------------------------------------------
