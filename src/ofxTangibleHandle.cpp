@@ -12,6 +12,11 @@ void ofxTangibleHandle::setup(float _x, float _y, float _w, float _h) {
 	enableGrabbing();
 }
 
+void ofxTangibleHandle::clear(){
+	bPressed = bPressedByTouch = false;
+	touchs.clear();
+}
+
 void ofxTangibleHandle::enableGrabbing() {
 	setGrabbing(true);
 }
@@ -22,6 +27,7 @@ void ofxTangibleHandle::disableGrabbing() {
 
 void ofxTangibleHandle::setGrabbing(bool bGrabbing) {
 	bGrabbingEnabled = bGrabbing;
+	clear();
 }
 
 void ofxTangibleHandle::toggleGrabbing() {

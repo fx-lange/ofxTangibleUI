@@ -21,6 +21,7 @@ public:
 	//default destructor and copy/assignment constructor
 
 	virtual void setup(float _x,float _y, float _w, float _h);
+	virtual void clear();
 
 	//control whether grabbing the object is possible
 	virtual void enableGrabbing();
