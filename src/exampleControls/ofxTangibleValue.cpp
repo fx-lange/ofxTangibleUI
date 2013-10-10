@@ -7,7 +7,7 @@ ofxTangibleValue::ofxTangibleValue()
 	value = 0;
 	tmpValue = 0;
 	calcValueMode = TANGIBLE_VALUE_MODE_BOTH;
-	minValue = numeric_limits<float>::min();
+	minValue = -numeric_limits<float>::max();
 	maxValue = numeric_limits<float>::max();
 }
 
