@@ -54,7 +54,10 @@ void tangibleUiExample::setup(){
 	//timeline
 	timeline.setup(0,0,ofGetWidth(),ofGetHeight()/4);
 
-	//rotation
+	//rotation chain
+	/* r1 - r3 are listen to each other
+	 * but only one (r1) has to be the broadcaster who also listens to the others
+	 */
 	x = 600;
 	y = 300;
 	r1.setup(x+15,y,10,10,x,y);
@@ -62,15 +65,15 @@ void tangibleUiExample::setup(){
 	r3.setup(x+15,y+15,10,10,x,y);
 	r1.drawType = r2.drawType = r3.drawType = TANGIBLE_DRAW_AS_CIRCLE;
 
+	r1.fillMe = true; //receiver and broadcaster
 	r1.startListeningTo(r2,TANGIBLE_ROTATE);
 	r1.startListeningTo(r3,TANGIBLE_ROTATE);
 	r2.startListeningTo(r1,TANGIBLE_ROTATE);
 	r3.startListeningTo(r1,TANGIBLE_ROTATE);
 
-	r1.fillMe = true;
 
+	//more rotation stuff (with copy constructor test via vector)
 	ofxTangibleBezierHelper h1,h2;
-
 	h1.setup(x+50,y,50,50,x,y);
 	h2.setup(x-50,y,10,10,x,y);
 	h1.color.set(0,255,100);
