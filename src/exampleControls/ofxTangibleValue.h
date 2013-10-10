@@ -19,7 +19,11 @@ public:
 
 	ofxTangibleValue();
 
+	void setValue(float val);
 	float getValue();
+
+	void setMinValue(float min);
+	void setMaxValue(float max);
 
 	void toggleUpdateAfterRelease();
 
@@ -36,10 +40,11 @@ public:
 	virtual void drawInner();
 
 protected:
-	float tmpValue; //?
+	float tmpValue, minValue, maxValue;
 	bool bUpdateValueAfterRelease;
 
 	void calcValueByPos(const ofVec2f & first,const ofVec2f & now);
+	void checkMinMax(float & val);
 	float value;
 };
 

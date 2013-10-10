@@ -1,4 +1,5 @@
 #include "ofxTangibleValue.h"
+#include "math.h"
 
 ofxTangibleValue::ofxTangibleValue()
 	:ofxTangibleHandle(){
@@ -6,22 +7,39 @@ ofxTangibleValue::ofxTangibleValue()
 	value = 0;
 	tmpValue = 0;
 	calcValueMode = TANGIBLE_VALUE_MODE_BOTH;
+	minValue = numeric_limits<float>::min();
+	maxValue = numeric_limits<float>::max();
+}
+
+void ofxTangibleValue::setValue(float val){
+	value = val;
+	tmpValue = 0;
 }
 
 float ofxTangibleValue::getValue(){
+	float returnValue = 0;
 	if(bUpdateValueAfterRelease){
-		return value;
+		returnValue = value;
 	}else{
-		return value+tmpValue;
+		returnValue = value+tmpValue;
 	}
+	checkMinMax(returnValue);
+	return returnValue;
+}
+
+void ofxTangibleValue::setMinValue(float min){
+	minValue = min;
+}
+void ofxTangibleValue::setMaxValue(float max){
+	maxValue = max;
 }
 
 void ofxTangibleValue::calcValueByPos(const ofVec2f & first,const ofVec2f & now){
 	switch(calcValueMode){
-	case TANGIBLE_VALUE_MODE_VERTICAL:
+	case TANGIBLE_VALUE_MODE_HORIZONTAL:
 		tmpValue = ( now.x - first.x );
 		break;
-	case TANGIBLE_VALUE_MODE_HORIZONTAL:
+	case TANGIBLE_VALUE_MODE_VERTICAL:
 		tmpValue = -1 * ( now.y - first.y );
 		break;
 	case TANGIBLE_VALUE_MODE_BOTH:
@@ -31,6 +49,11 @@ void ofxTangibleValue::calcValueByPos(const ofVec2f & first,const ofVec2f & now)
 //	if(!bUpdateValueAfterRelease){
 //		value += tmpValue;
 //	}
+}
+
+void ofxTangibleValue::checkMinMax(float & val){
+	val = val < minValue ? minValue : val;
+	val = val > maxValue ? maxValue : val;
 }
 
 void ofxTangibleValue::toggleUpdateAfterRelease(){
@@ -60,6 +83,9 @@ void ofxTangibleValue::mouseReleased(ofMouseEventArgs &e) {
 
 	value += tmpValue;
 	tmpValue = 0;
+
+	checkMinMax(value);
+
 	bPressed = false;
 }
 
@@ -111,7 +137,10 @@ void ofxTangibleValue::touchUp(ofTouchEventArgs &e) {
 	if(e.id == te.id){
 		touchs.clear();
 		value += tmpValue;
+		tmpValue = 0;
 		bPressedByTouch = false;
+
+		checkMinMax(value);
 	}
 }
 
