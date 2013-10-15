@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxTangibleHandle.h"
 
-//TODO calc sub methods, rounding!
+//TODO calc sub methods
 
 enum tangibleCalcValueMode{
 	TANGIBLE_VALUE_MODE_VERTICAL,
@@ -24,6 +24,7 @@ public:
 	void setMinValue(float min);
 	void setMaxValue(float max);
 	void setPixelToValueScaleFactor(float scale);
+	void setRoundTo(float roundTo);
 
 	void toggleUpdateAfterRelease();
 
@@ -40,11 +41,12 @@ public:
 	virtual void drawInner();
 
 protected:
-	float tmpValue, minValue, maxValue, scaleValue;
+	float tmpValue, minValue, maxValue, scaleValue, roundTo;
 	bool bUpdateValueAfterRelease;
 
 	void calcValueByPos(const ofVec2f & first,const ofVec2f & now);
 	void checkMinMax(float & val);
+	void roundValue(float & val);
 	float value;
 };
 

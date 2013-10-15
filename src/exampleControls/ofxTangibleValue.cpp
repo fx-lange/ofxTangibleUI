@@ -10,6 +10,7 @@ ofxTangibleValue::ofxTangibleValue()
 	minValue = -numeric_limits<float>::max();
 	maxValue = numeric_limits<float>::max();
 	scaleValue = 1.f;
+	roundTo = 1.f;
 }
 
 void ofxTangibleValue::setValue(float val){
@@ -24,6 +25,8 @@ float ofxTangibleValue::getValue(){
 	}else{
 		returnValue = value+tmpValue;
 	}
+
+	roundValue(returnValue);
 	checkMinMax(returnValue);
 	return returnValue;
 }
@@ -37,6 +40,10 @@ void ofxTangibleValue::setMaxValue(float max){
 
 void ofxTangibleValue::setPixelToValueScaleFactor(float scale){
 	scaleValue = scale;
+}
+
+void ofxTangibleValue::setRoundTo(float roundTo){
+	this->roundTo = roundTo;
 }
 
 void ofxTangibleValue::calcValueByPos(const ofVec2f & first,const ofVec2f & now){
@@ -62,6 +69,11 @@ void ofxTangibleValue::calcValueByPos(const ofVec2f & first,const ofVec2f & now)
 void ofxTangibleValue::checkMinMax(float & val){
 	val = val < minValue ? minValue : val;
 	val = val > maxValue ? maxValue : val;
+}
+
+void ofxTangibleValue::roundValue(float & val){
+	float tmp = floor(val / roundTo);
+	val = tmp * roundTo;
 }
 
 void ofxTangibleValue::toggleUpdateAfterRelease(){
