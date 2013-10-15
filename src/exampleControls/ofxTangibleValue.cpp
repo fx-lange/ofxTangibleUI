@@ -9,6 +9,7 @@ ofxTangibleValue::ofxTangibleValue()
 	calcValueMode = TANGIBLE_VALUE_MODE_BOTH;
 	minValue = -numeric_limits<float>::max();
 	maxValue = numeric_limits<float>::max();
+	scaleValue = 1.f;
 }
 
 void ofxTangibleValue::setValue(float val){
@@ -34,6 +35,10 @@ void ofxTangibleValue::setMaxValue(float max){
 	maxValue = max;
 }
 
+void ofxTangibleValue::setPixelToValueScaleFactor(float scale){
+	scaleValue = scale;
+}
+
 void ofxTangibleValue::calcValueByPos(const ofVec2f & first,const ofVec2f & now){
 	switch(calcValueMode){
 	case TANGIBLE_VALUE_MODE_HORIZONTAL:
@@ -46,6 +51,9 @@ void ofxTangibleValue::calcValueByPos(const ofVec2f & first,const ofVec2f & now)
 		tmpValue = ( now.x - first.x ) - ( now.y - first.y );
 		break;
 	}
+
+	tmpValue *= scaleValue;
+
 //	if(!bUpdateValueAfterRelease){
 //		value += tmpValue;
 //	}
@@ -146,7 +154,7 @@ void ofxTangibleValue::touchUp(ofTouchEventArgs &e) {
 
 void ofxTangibleValue::drawInner(){
 	ofPushStyle();
-	ofxTangibleHandle::drawInner();
+//	ofxTangibleHandle::drawInner();
 	ofDrawBitmapString(ofToString(tmpValue+value),0,0);
 	ofPopStyle();
 }
