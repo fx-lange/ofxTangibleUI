@@ -42,12 +42,16 @@ public:
 	virtual void setup(float _x,float _y, float _w, float _h);
 
 	//mouse interaction
+	virtual void registerMouse();
+	virtual void unregisterMouse();
 	virtual void mouseMoved(ofMouseEventArgs &e){}
 	virtual void mousePressed(ofMouseEventArgs &e){}
 	virtual void mouseDragged(ofMouseEventArgs &e){}
 	virtual void mouseReleased(ofMouseEventArgs &e){}
 
 	//touch interaction
+	virtual void registerTouch();
+	virtual void unregisterTouch();
 	virtual void touchDoubleTap(ofTouchEventArgs &e){}
 	virtual void touchDown(ofTouchEventArgs &e){}
 	virtual void touchMoved(ofTouchEventArgs &e){}
@@ -70,12 +74,6 @@ protected:
 	int touchId;
 	bool bPressed; 			//pressed by mouse
 	bool bPressedByTouch;	//pressed by touch
-
-	virtual void registerMouse();
-	virtual void unregisterMouse();
-
-	virtual void registerTouch();
-	virtual void unregisterTouch();
 
 	//hit test
 	//REVISIT needed as public?!
