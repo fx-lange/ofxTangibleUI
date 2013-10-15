@@ -71,7 +71,6 @@ void tangibleUiExample::setup(){
 	r2.startListeningTo(r1,TANGIBLE_ROTATE);
 	r3.startListeningTo(r1,TANGIBLE_ROTATE);
 
-
 	//more rotation stuff (with copy constructor test via vector)
 	ofxTangibleBezierHelper h1,h2;
 	h1.setup(x+50,y,50,50,x,y);

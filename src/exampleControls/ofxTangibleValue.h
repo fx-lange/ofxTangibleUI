@@ -18,8 +18,8 @@ public:
 
 	ofxTangibleValue();
 
-	void setValue(float val);
-	float getValue();
+	virtual void setValue(float val);
+	virtual float getValue();
 
 	void setMinValue(float min);
 	void setMaxValue(float max);
