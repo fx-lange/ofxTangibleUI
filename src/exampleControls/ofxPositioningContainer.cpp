@@ -1,5 +1,9 @@
 #include "ofxPositioningContainer.h"
 
+ofxPositioningContainer::ofxPositioningContainer(){
+	bPositioningActive = false;
+}
+
 void ofxPositioningContainer::push_back(ofxTangibleCore * obj){
 	ofxTangibleHandle positioner;
 	positioner.setup(obj->x,obj->y,obj->width,obj->height);
@@ -22,6 +26,7 @@ void ofxPositioningContainer::enablePositioning(){
 		mover[i].x = objects[i]->x;
 		mover[i].y = objects[i]->y;
 	}
+	bPositioningActive = true;
 }
 
 void ofxPositioningContainer::disablePositioning(){
@@ -30,6 +35,15 @@ void ofxPositioningContainer::disablePositioning(){
 		objects[i]->registerTouch();
 		mover[i].unregisterMouse();
 		mover[i].unregisterTouch();
+	}
+	bPositioningActive = false;
+}
+
+void ofxPositioningContainer::togglePositioning(){
+	if(bPositioningActive){
+		disablePositioning();
+	}else{
+		enablePositioning();
 	}
 }
 
