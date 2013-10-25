@@ -21,10 +21,10 @@ public:
 	virtual void setValue(float val);
 	virtual float getValue();
 
-	void setMinValue(float min);
-	void setMaxValue(float max);
-	void setPixelToValueScaleFactor(float scale);
-	void setRoundTo(float roundTo);
+	virtual void setMinValue(float min);
+	virtual void setMaxValue(float max);
+	virtual void setPixelToValueScaleFactor(float scale);
+	virtual void setRoundTo(float roundTo);
 
 	void toggleUpdateAfterRelease();
 
@@ -44,9 +44,12 @@ protected:
 	float tmpValue, minValue, maxValue, scaleValue, roundTo;
 	bool bUpdateValueAfterRelease;
 
-	void calcValueByPos(const ofVec2f & first,const ofVec2f & now);
-	void checkMinMax(float & val);
-	void roundValue(float & val);
+	virtual void calcValueByPos(const ofVec2f & first,const ofVec2f & now);
+	virtual void checkMinMax(float & val);
+	virtual void roundValue(float & val);
+
+	virtual void confirmValue();
+
 	float value;
 };
 

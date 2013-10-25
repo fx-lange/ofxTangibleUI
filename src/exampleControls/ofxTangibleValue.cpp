@@ -72,8 +72,16 @@ void ofxTangibleValue::checkMinMax(float & val){
 }
 
 void ofxTangibleValue::roundValue(float & val){
-	float tmp = floor(val / roundTo);
+	float tmp = round(val / roundTo);
 	val = tmp * roundTo;
+}
+
+void ofxTangibleValue::confirmValue(){
+
+	value += tmpValue;
+	tmpValue = 0;
+
+	checkMinMax(value);
 }
 
 void ofxTangibleValue::toggleUpdateAfterRelease(){
@@ -101,10 +109,7 @@ void ofxTangibleValue::mouseReleased(ofMouseEventArgs &e) {
 	if (!bPressed)
 		return;
 
-	value += tmpValue;
-	tmpValue = 0;
-
-	checkMinMax(value);
+	confirmValue();
 
 	bPressed = false;
 }
@@ -156,17 +161,15 @@ void ofxTangibleValue::touchUp(ofTouchEventArgs &e) {
 	touchCursor & te = touchs[0];
 	if(e.id == te.id){
 		touchs.clear();
-		value += tmpValue;
-		tmpValue = 0;
 		bPressedByTouch = false;
 
-		checkMinMax(value);
+		confirmValue();
 	}
 }
 
 void ofxTangibleValue::drawInner(){
 	ofPushStyle();
 //	ofxTangibleHandle::drawInner();
-	ofDrawBitmapString(ofToString(tmpValue+value),0,0);
+	ofDrawBitmapString(ofToString(getValue()),0,0);
 	ofPopStyle();
 }
