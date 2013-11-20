@@ -12,11 +12,11 @@ public:
 	virtual void setup(float _x,float _y, float _w, float _h);
 
 	//control whether toggle is active and whether it's clickable
-	bool isActive();
-	void setActive(bool active, bool silent = false);
-	void activateByEvent(bool & active);
-	void setClickable(bool clickable);
-	bool isClickable();
+	virtual bool isActive();
+	virtual void setActive(bool active, bool silent = false);
+	virtual void activateByEvent(bool & active);
+	virtual void setClickable(bool clickable);
+	virtual bool isClickable();
 
 	//mouse interaction
 	virtual void mouseMoved(ofMouseEventArgs &e);
