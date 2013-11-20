@@ -11,6 +11,7 @@ ofxTangibleValue::ofxTangibleValue()
 	maxValue = numeric_limits<float>::max();
 	scaleValue = 1.f;
 	roundTo = 1.f;
+	bNullen = false;
 }
 
 void ofxTangibleValue::setValue(float val){
@@ -28,6 +29,11 @@ float ofxTangibleValue::getValue(){
 
 	roundValue(returnValue);
 	checkMinMax(returnValue);
+
+	//hide -0
+	if(returnValue == -0.f){
+		returnValue = 0.f;
+	}
 	return returnValue;
 }
 
@@ -102,6 +108,11 @@ void ofxTangibleValue::mouseDragged(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;
 
+	if(bNullen){
+		pastPos = e;
+		bNullen = false;
+	}
+
 	calcValueByPos(pastPos,e);
 }
 
@@ -149,7 +160,13 @@ void ofxTangibleValue::touchMoved(ofTouchEventArgs &e) {
 	}
 
 	touchCursor & te = touchs[0];
+
 	if(e.id == te.id){
+		if(bNullen){
+			te.x = touchX;
+			te.y = touchY;
+			bNullen = false;
+		}
 		calcValueByPos(te,ofVec2f(touchX,touchY));
 	}
 }
@@ -172,4 +189,8 @@ void ofxTangibleValue::drawInner(){
 //	ofxTangibleHandle::drawInner();
 	ofDrawBitmapString(ofToString(getValue()),0,0);
 	ofPopStyle();
+}
+
+void ofxTangibleValue::nullen(){
+	bNullen = true;
 }

@@ -40,6 +40,8 @@ public:
 
 	virtual void drawInner();
 
+	virtual void nullen();//TODO WORKAROUND
+
 protected:
 	float tmpValue, minValue, maxValue, scaleValue, roundTo;
 	bool bUpdateValueAfterRelease;
@@ -51,6 +53,7 @@ protected:
 	virtual void confirmValue();
 
 	float value;
+	bool bNullen;
 };
 
 

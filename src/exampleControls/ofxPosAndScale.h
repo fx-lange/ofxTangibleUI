@@ -27,7 +27,7 @@ public:
 	ofxRange range;
 
 	virtual void setup(float x,float y, float w, float h){
-		ofxTangibleHandle::setup(x,y+h/2,w/3,h/10);
+		ofxTangibleHandle::setup(x,y+h/2.f,w,h/5);
 		range.setup(x,y-h/2.f);
 		range.range = h;
 	}
@@ -36,6 +36,12 @@ public:
 		ofxTangibleHandle::moveInternal(0,dy);
 		y = y < range.getMin() ? range.getMin() : y;
 		y = y > range.getMax() ? range.getMax() : y;
+	}
+
+	virtual void draw(){
+		ofSetColor(255);
+		range.draw();
+		ofxTangibleHandle::draw();
 	}
 
 
@@ -54,8 +60,6 @@ public:
 	virtual void draw(){
 		ofxTangibleHandle::draw();
 		slider.draw();
-		ofSetColor(255);
-		slider.range.draw();
 	}
 protected:
 	ofxTangibleSlider slider;
