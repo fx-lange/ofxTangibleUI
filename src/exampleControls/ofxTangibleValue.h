@@ -40,7 +40,6 @@ public:
 
 	virtual void drawInner();
 
-	virtual void nullen();//TODO WORKAROUND
 
 protected:
 	float tmpValue, minValue, maxValue, scaleValue, roundTo;
@@ -51,9 +50,10 @@ protected:
 	virtual void roundValue(float & val);
 
 	virtual void confirmValue();
+	virtual void clearDraggedDistance();	//for state safety: if the value gets changed (from outside) while pressed
 
 	float value;
-	bool bNullen;
+	bool bClearDragging;
 };
 
 

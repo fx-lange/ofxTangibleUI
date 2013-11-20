@@ -11,12 +11,16 @@ ofxTangibleValue::ofxTangibleValue()
 	maxValue = numeric_limits<float>::max();
 	scaleValue = 1.f;
 	roundTo = 1.f;
-	bNullen = false;
+	bClearDragging = false;
 }
 
 void ofxTangibleValue::setValue(float val){
 	value = val;
 	tmpValue = 0;
+
+	if(isPressed()){
+		clearDraggedDistance();
+	}
 }
 
 float ofxTangibleValue::getValue(){
@@ -108,9 +112,9 @@ void ofxTangibleValue::mouseDragged(ofMouseEventArgs &e) {
 	if (!bGrabbingEnabled || !bPressed)
 		return;
 
-	if(bNullen){
+	if(bClearDragging){
 		pastPos = e;
-		bNullen = false;
+		bClearDragging = false;
 	}
 
 	calcValueByPos(pastPos,e);
@@ -162,10 +166,10 @@ void ofxTangibleValue::touchMoved(ofTouchEventArgs &e) {
 	touchCursor & te = touchs[0];
 
 	if(e.id == te.id){
-		if(bNullen){
+		if(bClearDragging){
 			te.x = touchX;
 			te.y = touchY;
-			bNullen = false;
+			bClearDragging = false;
 		}
 		calcValueByPos(te,ofVec2f(touchX,touchY));
 	}
@@ -191,6 +195,6 @@ void ofxTangibleValue::drawInner(){
 	ofPopStyle();
 }
 
-void ofxTangibleValue::nullen(){
-	bNullen = true;
+void ofxTangibleValue::clearDraggedDistance(){
+	bClearDragging = true;
 }
