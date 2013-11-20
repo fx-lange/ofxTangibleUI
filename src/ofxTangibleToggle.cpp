@@ -5,7 +5,8 @@
 #include "ofxTangibleToggle.h"
 
 ofxTangibleToggle::ofxTangibleToggle(){
-	color.set(255,255,0);
+	color.set(255,255,0,215);
+	hoverColor.set(255,255,0,255);
 	bActive = bDrawAsPressed = false;
 	bClickable = true;
 }
@@ -46,7 +47,7 @@ void ofxTangibleToggle::drawInner(){
 
 	//toggle only changes state on mouseRelease() / touchUp()
 	// => temporary visual state needed if pressed
-	bool bDrawAsActive = bActive;
+	bool bDrawAsActive = isActive();
 	if(bDrawAsPressed){
 		bDrawAsActive = !bDrawAsActive;
 	}
@@ -57,7 +58,11 @@ void ofxTangibleToggle::drawInner(){
 		ofNoFill();
 	}
 
-	ofSetColor(color);
+	if(bHovered){
+		ofSetColor(hoverColor);
+	}else{
+		ofSetColor(color);
+	}
 	ofxTangibleCore::drawInner();
 }
 
@@ -79,7 +84,14 @@ void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
 }
 
 void ofxTangibleToggle::mouseMoved(ofMouseEventArgs &e){
-	//TODO hover effets
+	if(!bClickable)
+		return;
+
+	if(isOver(e.x, e.y)){
+		bHovered = true;
+	}else{
+		bHovered = false;
+	}
 }
 
 void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {

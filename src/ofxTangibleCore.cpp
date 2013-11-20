@@ -9,9 +9,11 @@ ofxTangibleCore::ofxTangibleCore(){
 	drawType = TANGIBLE_DRAW_AS_CENTERED_RECT;
 	touchId = -1;
 	innerRotate = 0.f;
-	bPressed = false;
-	bPressedByTouch = false;
+	bPressed = bPressedByTouch = false;
+	bHovered = false;
 	bDrawDebug = false;
+	color.set(225,225,225);
+	hoverColor.set(225,225,225,175);
 }
 
 ofxTangibleCore::~ofxTangibleCore() {
@@ -47,6 +49,7 @@ void ofxTangibleCore::init(const ofxTangibleCore& other){
 	bPressedByTouch = other.bPressedByTouch;
 	bScaleTouchEvent = other.bScaleTouchEvent;
 	color = other.color;
+	hoverColor = other.hoverColor;
 	bDrawDebug = other.bDrawDebug;
 
 	pastPos = other.pastPos;
@@ -123,7 +126,6 @@ void ofxTangibleCore::draw() {
 
 void ofxTangibleCore::drawInner(){
 	ofPushStyle();
-	ofSetColor(color);
 	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
 		ofRect(0,0,width,height);
 	}else{
@@ -135,7 +137,11 @@ void ofxTangibleCore::drawInner(){
 void ofxTangibleCore::drawDebug(){
 	ofPushStyle();
 	ofNoFill();
-	ofSetColor(color);
+	if(bHovered){
+		ofSetColor(hoverColor);
+	}else{
+		ofSetColor(color);
+	}
 	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
 		ofRect(0,0,width,height);
 	}else{

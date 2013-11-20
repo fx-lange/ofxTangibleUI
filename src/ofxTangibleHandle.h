@@ -34,6 +34,7 @@ public:
 	virtual void mousePressed(ofMouseEventArgs &e);
 	virtual void mouseDragged(ofMouseEventArgs &e);
 	virtual void mouseReleased(ofMouseEventArgs &e);
+	virtual void mouseMoved(ofMouseEventArgs &e);
 
 	//touch interaction
 	virtual void touchDown(ofTouchEventArgs &e);

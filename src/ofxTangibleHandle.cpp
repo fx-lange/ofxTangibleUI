@@ -6,7 +6,8 @@ ofxTangibleHandle::ofxTangibleHandle() :
 
 void ofxTangibleHandle::setup(float _x, float _y, float _w, float _h) {
 	ofxTangibleCore::setup(_x, _y, _w, _h);
-	color.set(255, 0, 0);
+	color.set(255, 0, 0, 215);
+	hoverColor.set(255,0,0,255);
 	registerMouse();
 	registerTouch();
 	enableGrabbing();
@@ -46,7 +47,11 @@ void ofxTangibleHandle::drawInner(){
 		ofNoFill();
 	}
 
-	ofSetColor(color);
+	if(bHovered){
+		ofSetColor(hoverColor);
+	}else{
+		ofSetColor(color);
+	}
 	ofxTangibleCore::drawInner();
 }
 
@@ -74,6 +79,17 @@ void ofxTangibleHandle::mouseReleased(ofMouseEventArgs &e) {
 	if (!bPressed)
 		return;
 	bPressed = false;
+}
+
+void ofxTangibleHandle::mouseMoved(ofMouseEventArgs &e){
+	if(!bGrabbingEnabled)
+		return;
+
+	if(isOver(e.x,e.y)){
+		bHovered = true;
+	}else{
+		bHovered = false;
+	}
 }
 
 void ofxTangibleHandle::touchDown(ofTouchEventArgs &e) {

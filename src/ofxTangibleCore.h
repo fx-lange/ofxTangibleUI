@@ -21,7 +21,7 @@ enum tangibleDrawType{
 class ofxTangibleCore: public ofxListener {
 public:
 	float width, height;
-	ofColor color;
+	ofColor color, hoverColor;
 	tangibleDrawType drawType; //draw as circle or centered rectangle, also affects the hit test isOver(x,y)
 
 	static bool bScaleTouchEvent;
@@ -74,6 +74,7 @@ protected:
 	int touchId;
 	bool bPressed; 			//pressed by mouse
 	bool bPressedByTouch;	//pressed by touch
+	bool bHovered;
 
 	//hit test
 	//REVISIT needed as public?!
