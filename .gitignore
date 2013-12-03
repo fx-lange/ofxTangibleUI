@@ -1,6 +1,7 @@
-tangibleUIExample/bin/*
-tangibleUIExample/obj/*
-bezierExample/bin/*
-bezierExample/obj/*
-tuioTouchExample/bin/*
-tuioTouchExample/obj/*
+example-controls/bin/*
+example-controls/obj/*
+example-bezier/bin/*
+example-bezier/obj/*
+example-tuioTouch/bin/*
+example-tuioTouch/obj/*
+*/.*project
