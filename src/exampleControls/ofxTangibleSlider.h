@@ -22,7 +22,7 @@ public:
 	//TODO getter setter
 };
 
-class ofxTangibleSlider : public ofxTangibleHandle{
+class ofxTangibleMarker : public ofxTangibleHandle{
 public:
 	ofxRange range;
 
@@ -43,26 +43,35 @@ public:
 		range.draw();
 		ofxTangibleHandle::draw();
 	}
-
-
 };
 
-class ofxPosAndScale : public ofxTangibleHandle{
+class ofxTangibleSlider : public ofxTangibleHandle{
 public:
 	virtual void setup(float x, float y, float w, float h){
 		ofxTangibleHandle::setup(x,y,w,h);
-		slider.setup(x+w+5,y,w,h);
+		slider.setup(x,y,w*0.8,h*0.8);
 		slider.range.startListeningTo(this);
 		slider.startListeningTo(this);
-
 	}
 
 	virtual void draw(){
 		ofxTangibleHandle::draw();
 		slider.draw();
 	}
+
+	virtual void moveInternal(float dx, float dy){
+		if(slider.isPressed())
+			return;
+
+		moveRotateCenter(dx,dy);
+		ofxTangibleCore::moveInternal(dx,dy);
+	}
+
+	virtual bool isHovered(){
+		return bHovered && !slider.isHovered();
+	}
 protected:
-	ofxTangibleSlider slider;
+	ofxTangibleMarker slider;
 };
 
 #endif /* OFXPOSANDSCALE_H_ */

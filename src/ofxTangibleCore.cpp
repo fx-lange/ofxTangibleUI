@@ -140,6 +140,11 @@ void ofxTangibleCore::draw() {
 
 void ofxTangibleCore::drawInner(){
 	ofPushStyle();
+	if(isHovered()){
+		ofSetColor(hoverColor);
+	}else{
+		ofSetColor(color);
+	}
 	if(drawType == TANGIBLE_DRAW_AS_CENTERED_RECT){
 		ofRect(0,0,width,height);
 	}else{
@@ -151,7 +156,7 @@ void ofxTangibleCore::drawInner(){
 void ofxTangibleCore::drawDebug(){
 	ofPushStyle();
 	ofNoFill();
-	if(bHovered){
+	if(isHovered()){
 		ofSetColor(hoverColor);
 	}else{
 		ofSetColor(color);

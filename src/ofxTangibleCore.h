@@ -73,6 +73,9 @@ public:
 	virtual bool isPressed(){
 		return bPressed || bPressedByTouch;
 	}
+	virtual bool isHovered(){
+		return bHovered;
+	}
 protected:
 	ofPoint pastPos;
 	int touchId;

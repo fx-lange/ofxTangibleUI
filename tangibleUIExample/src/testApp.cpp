@@ -43,8 +43,8 @@ void tangibleUiExample::setup(){
 	//test moveListenerSpeed
 	xSpeed3.setup(70,100,30,30);
 	xSpeed3.setMoveListenersSpeed(3.f,1.f);
-	xSpeed3.color.set(60,170,20,215);
-	xSpeed3.hoverColor.set(60,170,20,255);
+	xSpeed3.getColor().set(60,170,20,215);
+	xSpeed3.getHoverColor().set(60,170,20,255);
 	handles[0].startListeningTo(xSpeed3);
 
 
@@ -76,8 +76,8 @@ void tangibleUiExample::setup(){
 	ofxTangibleBezierHelper h1,h2;
 	h1.setup(x+50,y,50,50,x,y);
 	h2.setup(x-50,y,10,10,x,y);
-	h1.color.set(0,255,100,215);
-	h1.hoverColor.set(0,255,100,255);
+	h1.getColor().set(0,255,100,215);
+	h1.getHoverColor().set(0,255,100,255);
 	h1.drawType = h2.drawType = TANGIBLE_DRAW_AS_CIRCLE;
 
 	h1.startListeningTo(h2,TANGIBLE_ROTATE);
