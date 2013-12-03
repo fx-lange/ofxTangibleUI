@@ -9,7 +9,6 @@ Send me a message if you have any ideas, questions, suggestions or if you need h
 Motivation
 ----------
 
-This is the first attempt to clean up the whole mess in ofxSPTAUtils. 
 There are many well done GUI addons for openFrameworks out but most of them are panel based and only designed set up the applications. In many projects we need UI elements which we can drag around, drop here and there and create or delete on the fly - UI elements which can be part of the application. So the requirements for the UI change from project to project and instead of starting the next attempt to build THE GUI, ofxTangibleUI is meant to be an abstract core for dynamic GUIs. 
 
 Features
@@ -23,7 +22,8 @@ Features
 
 Dependencies
 ------------
-*	openFrameworks 0.071
+*	openFrameworks 0.8
+*	for the TUIO example -> ofxTuioWrapper	
 
 Todo
 ----

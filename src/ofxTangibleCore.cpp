@@ -49,7 +49,7 @@ void ofxTangibleCore::init(const ofxTangibleCore& other){
 	bPressedByTouch = other.bPressedByTouch;
 	bScaleTouchEvent = other.bScaleTouchEvent;
 	color = other.color;
-	hoverColor = other.hoverColor;
+	hoverColor = other.color;
 	bDrawDebug = other.bDrawDebug;
 
 	pastPos = other.pastPos;
@@ -75,6 +75,20 @@ void ofxTangibleCore::setup(float _x,float _y, float _w, float _h){
 	height = _h;
 
 	setRotateCenter(x,y);
+}
+
+void ofxTangibleCore::setColor(const ofColor & color){
+	this->color = color;
+}
+ofColor & ofxTangibleCore::getColor(){
+	return color;
+}
+
+void ofxTangibleCore::setHoverColor(const ofColor & color){
+	this->hoverColor = color;
+}
+ofColor & ofxTangibleCore::getHoverColor(){
+	return hoverColor;
 }
 
 bool ofxTangibleCore::isOver(float px, float py) {
