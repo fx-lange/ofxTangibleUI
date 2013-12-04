@@ -19,7 +19,6 @@ void ofxTimeline::setup(float x, float y, float w, float h, int range ) {
 	dropZone.set(x,y,w*4,h);
 	timerange = range;
 
-	dropZone.startListeningTo(this);
 	setMoveListenersSpeed(-3,0);
 //	settings.x0 = &(dropZone.x);
 //	settings.y0 = &(dropZone.y);
