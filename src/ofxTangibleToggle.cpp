@@ -7,7 +7,7 @@
 ofxTangibleToggle::ofxTangibleToggle(){
 	color.set(255,255,0,215);
 	hoverColor.set(255,255,0,255);
-	bActive = bDrawAsPressed = false;
+	bActive = false;
 	bClickable = true;
 }
 
@@ -48,7 +48,7 @@ void ofxTangibleToggle::drawInner(){
 	//toggle only changes state on mouseRelease() / touchUp()
 	// => temporary visual state needed if pressed
 	bool bDrawAsActive = isActive();
-	if(bDrawAsPressed){
+	if(isPressed()){
 		bDrawAsActive = !bDrawAsActive;
 	}
 
@@ -70,17 +70,15 @@ void ofxTangibleToggle::mousePressed(ofMouseEventArgs &e) {
 	if (!bClickable || !isOver(e.x, e.y))
 		return;
 
-	bPressed = true;
-	bDrawAsPressed = true;
+	setPressed(true);
 }
 
 void ofxTangibleToggle::mouseReleased(ofMouseEventArgs &e) {
-	bDrawAsPressed = false;
 	if (!bClickable || !bPressed || !isOver(e.x, e.y))
 		return;
 
+	setPressed(false);
 	setActive(!bActive); //onRelease
-	bPressed = false;
 }
 
 void ofxTangibleToggle::mouseMoved(ofMouseEventArgs &e){
@@ -107,10 +105,9 @@ void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
 	}
 
 	if (isOver(touchX, touchY)){
-		bDrawAsPressed = true;
-
 		touchId = e.id;
-		bPressedByTouch = true;
+
+		setPressedByTouch(true);
 	}
 }
 
@@ -130,8 +127,7 @@ void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
 	if(touchId != e.id)
 		return;
 
-	bDrawAsPressed = false;
-	bPressedByTouch = false;
+	setPressedByTouch(false);
 
 	if (isOver(touchX,touchY)){
 		setActive(!bActive); //onRelease

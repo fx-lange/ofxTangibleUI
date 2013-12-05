@@ -73,6 +73,8 @@ public:
 	virtual bool isPressed(){
 		return bPressed || bPressedByTouch;
 	}
+	virtual void setPressed(bool pressed);
+	virtual void setPressedByTouch(bool pressed);
 	virtual bool isHovered(){
 		return bHovered;
 	}

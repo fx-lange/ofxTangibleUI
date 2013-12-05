@@ -214,3 +214,11 @@ void ofxTangibleCore::loadFromXml(ofxXmlSettings & xml){
 	setup(x,y,w,h);
 }
 
+void ofxTangibleCore::setPressed(bool pressed){
+	bPressed = pressed;
+}
+void ofxTangibleCore::setPressedByTouch(bool pressed){
+	bPressedByTouch = pressed;
+}
+
+

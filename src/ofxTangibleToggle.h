@@ -44,7 +44,6 @@ protected:
 	bool bClickable;
 	ofEvent<bool> hasChangedEvent;
 	bool bActive;
-	bool bDrawAsPressed; //REVISIT same as bPressed?! should be!
 
 	/* is called by draw()
 	 * coordinate system is centered at x,y and rotated by innerRotate
