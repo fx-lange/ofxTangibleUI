@@ -10,7 +10,6 @@
 
 #include "ofMain.h"
 #include "ofxTangibleHandle.h"
-#include "ofxDropZone.h"
 
 class ofxTimeline : public ofxTangibleYFixedHandle {
 public:
@@ -18,7 +17,7 @@ public:
 
 	virtual void draw();
 protected:
-	ofxDropZone dropZone;
+	ofRectangle dropZone;
 	float lineHeight;
 	float lineCount;
 	int timerange;
