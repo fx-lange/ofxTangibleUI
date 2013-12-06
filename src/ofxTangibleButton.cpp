@@ -34,7 +34,7 @@ void ofxTangibleButton::touchDown(ofTouchEventArgs &e) {
 		return;
 
 	touchId = e.id;
-
+	touchPressure = e.pressure;
 	setPressedByTouch(true);
 }
 

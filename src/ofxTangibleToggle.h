@@ -49,6 +49,8 @@ protected:
 	 * coordinate system is centered at x,y and rotated by innerRotate
 	 * you should override this function to style your own class */
 	virtual void drawInner();
+
+	float touchPressure;
 };
 
 #endif /* OFXTOGGLE_H_ */

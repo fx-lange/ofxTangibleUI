@@ -107,6 +107,8 @@ void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
 	if (isOver(touchX, touchY)){
 		touchId = e.id;
 
+		touchPressure = e.pressure;
+
 		setPressedByTouch(true);
 	}
 }
