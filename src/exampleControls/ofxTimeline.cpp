@@ -7,7 +7,7 @@
 
 #include "ofxTimeline.h"
 
-void ofxTimeline::setup(float x, float y, float w, float h, int range ) {
+void ofxTimelineTest::setup(float x, float y, float w, float h, int range ) {
 	lineHeight = 30;
 	lineCount = round(h / lineHeight);
 	h = lineCount * lineHeight;
@@ -29,7 +29,7 @@ void ofxTimeline::setup(float x, float y, float w, float h, int range ) {
 //	checkTimeGrabber = false;
 }
 
-void ofxTimeline::draw() {
+void ofxTimelineTest::draw() {
 	ofPushStyle();
 	ofEnableAlphaBlending();
 	ofFill();

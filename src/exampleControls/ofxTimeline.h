@@ -11,7 +11,7 @@
 #include "ofMain.h"
 #include "ofxTangibleHandle.h"
 
-class ofxTimeline : public ofxTangibleYFixedHandle {
+class ofxTimelineTest : public ofxTangibleYFixedHandle {
 public:
 	virtual void setup(float x,float y,float w,float h,int range = 300);
 
