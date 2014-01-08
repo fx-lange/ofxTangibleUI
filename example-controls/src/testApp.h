@@ -4,7 +4,6 @@
 #include "ofxTangibleHandle.h"
 #include "ofxTangibleToggle.h"
 #include "ofxTangibleButton.h"
-#include "ofxTangiblePolyline.h"
 #include "ofxTimeline.h"
 #include "ofxTangibleSlider.h"
 #include "ofxTangibleBezier.h"
@@ -41,7 +40,7 @@ class tangibleUiExample : public ofBaseApp{
 		ofxTangibleToggle toggle;
 		ofxTangibleButton button;
 
-		ofxTimeline timeline;
+		ofxTimelineTest timeline;
 		ofxTangibleSlider pAndS;
 		ofxTangibleBezierHelper r1,r2,r3;
 		vector<ofxTangibleBezierHelper> helpers;
