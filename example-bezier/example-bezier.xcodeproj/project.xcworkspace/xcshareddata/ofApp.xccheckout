@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>91DDF3F8-3A5C-47EE-AA18-16CEAC4B6EC7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ofApp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D0BB620E-B065-468E-800F-BC56836D8C1A</key>
+		<string>ssh://github.com/fx-lange/ofxTangibleUI</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>example-bezier/ofApp.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D0BB620E-B065-468E-800F-BC56836D8C1A</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/fx-lange/ofxTangibleUI</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D0BB620E-B065-468E-800F-BC56836D8C1A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D0BB620E-B065-468E-800F-BC56836D8C1A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ofxTangibleUI</string>
+		</dict>
+	</array>
+</dict>
+</plist>
