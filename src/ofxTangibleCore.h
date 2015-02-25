@@ -52,6 +52,7 @@ public:
 	virtual void mousePressed(ofMouseEventArgs &e){}
 	virtual void mouseDragged(ofMouseEventArgs &e){}
 	virtual void mouseReleased(ofMouseEventArgs &e){}
+	virtual void mouseScrolled(ofMouseEventArgs &e){}
 
 	//touch interaction
 	virtual void registerTouch();
