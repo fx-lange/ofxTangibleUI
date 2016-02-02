@@ -46,6 +46,9 @@ public:
 	virtual void mousePressed(ofMouseEventArgs &e){}
 	virtual void mouseDragged(ofMouseEventArgs &e){}
 	virtual void mouseReleased(ofMouseEventArgs &e){}
+    virtual void mouseScrolled(ofMouseEventArgs &e){}
+    virtual void mouseEntered(ofMouseEventArgs &e){}
+    virtual void mouseExited(ofMouseEventArgs &e){}
 
 	//Touch
 	virtual void touchDoubleTap(ofTouchEventArgs &e){}
