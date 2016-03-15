@@ -107,11 +107,6 @@ void ofxTangibleHandle::touchDown(ofTouchEventArgs &e) {
 	float touchX = e.x;
 	float touchY = e.y;
 
-	if(bScaleTouchEvent){
-		touchX *= ofGetWidth();
-		touchY *= ofGetHeight();
-	}
-
 	if (!bGrabbingEnabled || !isOver(touchX, touchY))
 		return;
 
@@ -138,11 +133,6 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 	float touchX = e.x;
 	float touchY = e.y;
 
-	if(bScaleTouchEvent){
-		touchX *= ofGetWidth();
-		touchY *= ofGetHeight();
-	}
-
 	if(touchs.size()==1){
 		touchCursor & te = touchs[0];
 		if(e.id == te.id){
@@ -164,10 +154,6 @@ void ofxTangibleHandle::touchMoved(ofTouchEventArgs &e) {
 		if(otherIdx!=-1){
 			touchCursor & et = touchs[1-otherIdx];
 			et = e;
-			if(bScaleTouchEvent){
-				et.x *= ofGetWidth();
-				et.y *= ofGetHeight();
-			}
 			//pan
 			touchCursor & other = touchs[otherIdx];
 			ofVec2f newCenter = (et+other)/2.f;

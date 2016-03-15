@@ -5,13 +5,14 @@
 #include "ofxTangibleCore.h"
 #include "ofxXmlSettings.h"
 
+ofCoreEvents * ofxTangibleCore::customEvents = nullptr;
+
 ofxTangibleCore::ofxTangibleCore(){
 	bMouseRegistered = false;
 	bTouchRegistered = false;
 	drawType = TANGIBLE_DRAW_AS_RECT;
 	touchId = -1;
 	innerRotate = 0.f;
-	bScaleTouchEvent = true;
 	bPressed = false;
 	bPressedByTouch = false;
 }
@@ -47,7 +48,6 @@ void ofxTangibleCore::init(const ofxTangibleCore& other){
 	height = other.height;
 	bPressed = other.bPressed;
 	bPressedByTouch = other.bPressedByTouch;
-	bScaleTouchEvent = other.bScaleTouchEvent;
 
 	pX = other.pX;
 	pY = other.pY;
@@ -104,28 +104,47 @@ void ofxTangibleCore::registerMouse() {
 		ofLog(OF_LOG_VERBOSE,"mouse already registered");
 		return;
 	}
-	ofRegisterMouseEvents(this);
+
+	if(customEvents!=nullptr){
+		registerCustomMouseEvents(this);
+	}else{
+		ofRegisterMouseEvents(this);
+	}
 	bMouseRegistered = true;
 }
 
 void ofxTangibleCore::unregisterMouse(){
 	if(!bMouseRegistered)
 		return;
-	ofUnregisterMouseEvents(this);
+
+	if(customEvents!=nullptr){
+		unregisterCustomMouseEvents(this);
+	}else{
+		ofUnregisterMouseEvents(this);
+	}
 	bMouseRegistered = false;
 }
 
 void ofxTangibleCore::registerTouch() {
 	if(bTouchRegistered)
 		return;
-	ofRegisterTouchEvents(this);
+
+	if(customEvents!=nullptr){
+		registerCustomTouchEvents(this);
+	}else{
+		ofRegisterTouchEvents(this);
+	}
 	bTouchRegistered = true;
 }
 
 void ofxTangibleCore::unregisterTouch(){
 	if(!bTouchRegistered)
 		return;
-	ofUnregisterTouchEvents(this);
+	if(customEvents!=nullptr){
+		unregisterCustomTouchEvents(this);
+	}else{
+		ofUnregisterTouchEvents(this);
+	}
 	bTouchRegistered = false;
 }
 

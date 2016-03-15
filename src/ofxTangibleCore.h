@@ -23,7 +23,6 @@ class ofxTangibleCore: public ofxListener {
 public:
 	float width, height;
 	tangibleDrawType drawType;
-	bool bScaleTouchEvent;
 
 	ofxTangibleCore();
 	virtual ~ofxTangibleCore();
@@ -63,8 +62,9 @@ public:
 	virtual void loadFromXml(ofxXmlSettings & xml);
 
 	bool bPressed, bPressedByTouch;
-protected:
 
+	static ofCoreEvents * customEvents;
+protected:
 	float pX, pY;
 	int touchId;
 
@@ -73,6 +73,36 @@ protected:
 
 	virtual void registerTouch();
 	virtual void unregisterTouch();
+
+	template<class ListenerClass>
+	static void registerCustomMouseEvents(ListenerClass * listener){
+		ofAddListener(customEvents->mouseMoved,listener,&ListenerClass::mouseMoved);
+		ofAddListener(customEvents->mousePressed,listener,&ListenerClass::mousePressed);
+		ofAddListener(customEvents->mouseDragged,listener,&ListenerClass::mouseDragged);
+		ofAddListener(customEvents->mouseReleased,listener,&ListenerClass::mouseReleased);
+	}
+
+	template<class ListenerClass>
+	static void unregisterCustomMouseEvents(ListenerClass * listener){
+		ofRemoveListener(customEvents->mouseMoved,listener,&ListenerClass::mouseMoved);
+		ofRemoveListener(customEvents->mousePressed,listener,&ListenerClass::mousePressed);
+		ofRemoveListener(customEvents->mouseDragged,listener,&ListenerClass::mouseDragged);
+		ofRemoveListener(customEvents->mouseReleased,listener,&ListenerClass::mouseReleased);
+	}
+
+	template<class ListenerClass>
+	static void registerCustomTouchEvents(ListenerClass * listener){
+		ofAddListener(customEvents->touchDown,listener,&ListenerClass::touchDown);
+		ofAddListener(customEvents->touchMoved,listener,&ListenerClass::touchMoved);
+		ofAddListener(customEvents->touchUp,listener,&ListenerClass::touchUp);
+	}
+
+	template<class ListenerClass>
+	static void unregisterCustomTouchEvents(ListenerClass * listener){
+		ofRemoveListener(customEvents->touchDown,listener,&ListenerClass::touchDown);
+		ofRemoveListener(customEvents->touchMoved,listener,&ListenerClass::touchMoved);
+		ofRemoveListener(customEvents->touchUp,listener,&ListenerClass::touchUp);
+	}
 
 	virtual bool isOver(float px, float py);
 

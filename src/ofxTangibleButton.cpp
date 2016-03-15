@@ -25,11 +25,6 @@ void ofxTangibleButton::touchDown(ofTouchEventArgs &e) {
 	float touchX = e.x;
 	float touchY = e.y;
 
-	if(bScaleTouchEvent){
-		touchX *= ofGetWidth();
-		touchY *= ofGetHeight();
-	}
-
 	if (!bClickable || !isOver(touchX, touchY) || bPressedByTouch)
 		return;
 
@@ -44,11 +39,6 @@ void ofxTangibleButton::touchDown(ofTouchEventArgs &e) {
 void ofxTangibleButton::touchUp(ofTouchEventArgs &e) {
 	float touchX = e.x;
 	float touchY = e.y;
-
-	if(bScaleTouchEvent){
-		touchX *= ofGetWidth();
-		touchY *= ofGetHeight();
-	}
 
 	if(!bPressedByTouch)
 		return;

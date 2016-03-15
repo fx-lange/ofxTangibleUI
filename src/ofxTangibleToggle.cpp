@@ -111,11 +111,6 @@ void ofxTangibleToggle::touchDown(ofTouchEventArgs &e) {
 	float touchX = e.x;
 	float touchY = e.y;
 
-	if(bScaleTouchEvent){
-		touchX *= ofGetWidth();
-		touchY *= ofGetHeight();
-	}
-
 	if (isOver(touchX, touchY)){
 		bTmpSwitch = true;
 
@@ -131,11 +126,6 @@ void ofxTangibleToggle::touchUp(ofTouchEventArgs &e) {
 
 	float touchX = e.x;
 	float touchY = e.y;
-
-	if(bScaleTouchEvent){
-		touchX *= ofGetWidth();
-		touchY *= ofGetHeight();
-	}
 
 	if(touchId != e.id)
 		return;
